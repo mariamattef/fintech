@@ -1,0 +1,50 @@
+
+/*
+Screens
+1. Onboarding & Authentication
+2. Home
+3. Market
+4. Coin Details
+5. Buy/Sell Flow
+6. Portfolio
+7. Settings
+----------------------------------------------------------------------------
+Security Features
+1. Biometric Authentication
+   - Fingerprint authentication
+   - Face ID support
+2. Encrypted Storage
+   - Transaction history encrypted
+   - User credentials secured
+3. App Security
+   - Background app blur (hide sensitive data)
+   - Root detection -> (Optional)
+   - Screenshot prevention on sensitive screens (portfolio, transactions)
+   - Auto-lock after inactivity (configurable timeout)
+4. Session Security
+   - Automatic logout after timeout
+   - Secure token management
+----------------------------------------------------------------------------
+CoinGecko API Endpoints
+Home Screen:
+- GET /global - Market overview statistics
+- GET /search/trending - Trending coins list
+- GET /coins/markets?vs_currency=usd&order=market_cap_desc - Top gainers
+Market Screen:
+- GET /coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1 - Coin list with pagination
+- GET /search?query={keyword} - Search coins
+Coin Details Screen:
+- GET /coins/{id} - Detailed coin information
+- GET /coins/{id}/market_chart?vs_currency=usd&days={1|7|30|365|max} - Price chart data
+Portfolio Screen:
+- GET /simple/price?ids={comma_separated_coin_ids}&vs_currencies=usd&include_24hr_change=true - Live prices for holdings
+----------------------------------------------------------------------------
+Technical Requirements
+Architecture: Clean Architecture
+Testing: Unit + Integration tests
+Flavors
+CI/CD
+PS: Use whatever you want in authentication & profile data (Firebase, ..)
+----------------------------------------------------------------------------
+Hope you all enjoy developing it
+*/
