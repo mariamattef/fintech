@@ -44,11 +44,19 @@ ThemeData getLightTheme() {
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: AppColors.grey200),
+        borderSide: const BorderSide(
+          color: AppColors.primaryLightBlue300,
+          width: 1.5,
+        ),
+
+        // #1D3A70
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: AppColors.grey200),
+        borderSide: const BorderSide(
+          color: AppColors.primaryLightBlue300,
+          width: 1.5,
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
@@ -59,6 +67,7 @@ ThemeData getLightTheme() {
       ),
       filled: true,
       fillColor: AppColors.grey0,
+      prefixIconColor: Color(0xBF000000),
       hintStyle: AppTextStyles.mRegular.copyWith(color: AppColors.grey400),
     ),
 

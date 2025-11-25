@@ -10,7 +10,7 @@ class AppColors {
   // static const primaryLightBlue100 = Color(0xff5fa9e8);
   // static const primaryLightBlue200 = Color(0xff409be0);
   static const primaryLightBlue300 = Color(0xff1D3A70);
-  static const scaffoldBackgroundLightBlue = Color(0xffe7f3fc);
+  static const scaffoldBackgroundLightBlue = Color(0xffF5F8FE);
 
   // Dark Blue Theme
   static const primaryDarkBlue0 = Color(0xff0D0D0D);
@@ -34,6 +34,7 @@ class AppColors {
   static const grey50 = Color(0xffeceff3);
   static const grey25 = Color(0xfff6f8fa);
   static const grey0 = Color(0xffffffff);
+  // static const grey00 = Color(0xff1D3A70);
 
   //error
   static const error300 = Color(0xff710e21);

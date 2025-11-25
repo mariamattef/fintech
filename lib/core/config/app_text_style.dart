@@ -41,6 +41,12 @@ class AppTextStyles {
     fontSize: 20,
     height: 1.4,
   );
+  static const heading26 = TextStyle(
+    fontFamily: AppFonts.lato,
+    fontWeight: FontWeight.w700,
+    fontSize: 26,
+    height: 1,
+  );
   // use 24
   static const headingH4 = TextStyle(
     fontFamily: AppFonts.lato,
@@ -87,10 +93,10 @@ class AppTextStyles {
 
   static const xsSemiBold = TextStyle(
     fontFamily: AppFonts.lato,
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: FontWeight.w600,
-    height: 1.55,
-    letterSpacing: -0.24,
+    height: 16 / 12,
+    letterSpacing: 0,
   );
 
   // body small
@@ -98,7 +104,7 @@ class AppTextStyles {
     fontFamily: AppFonts.lato,
     fontSize: 14,
     height: 1.55,
-    letterSpacing: -0.28,
+    letterSpacing: 0,
   );
   static const sMedium = TextStyle(
     fontFamily: AppFonts.lato,
@@ -127,10 +133,10 @@ class AppTextStyles {
   );
   static const mMedium = TextStyle(
     fontFamily: AppFonts.lato,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: FontWeight.w500,
-    height: 1.6,
-    letterSpacing: -0.32,
+    height: 1.47,
+    letterSpacing: 0,
   );
 
   static const mSemiBold = TextStyle(
@@ -151,13 +157,13 @@ class AppTextStyles {
     fontFamily: AppFonts.lato,
     fontSize: 18,
     fontWeight: FontWeight.w500,
-    height: 1.55,
+    height: 1,
   );
 
   static const lSemiBold = TextStyle(
     fontFamily: AppFonts.lato,
     fontSize: 18,
     fontWeight: FontWeight.w600,
-    height: 1.55,
+    height: 1.3,
   );
 }

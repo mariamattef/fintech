@@ -14,7 +14,6 @@ ThemeData getDarkTheme() {
     colorScheme: ColorScheme.dark(
       primary: AppColors.primaryDarkBlue300,
       secondary: AppColors.sky100,
-      background: AppColors.scaffoldBackgroundDarkBlue,
       surface: AppColors.grey800,
     ),
 
@@ -33,7 +32,7 @@ ThemeData getDarkTheme() {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryDarkBlue300,
-        foregroundColor: AppColors.grey0,
+        foregroundColor: AppColors.grey800 ,
         disabledBackgroundColor: AppColors.grey800,
         disabledForegroundColor: AppColors.grey400,
         shape: RoundedRectangleBorder(
@@ -45,21 +44,24 @@ ThemeData getDarkTheme() {
 
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: AppColors.grey600),
+        borderRadius: BorderRadius.circular(10.r),
+        borderSide: const BorderSide(color: AppColors.grey0),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: AppColors.grey600),
+        borderRadius: BorderRadius.circular(10.r),
+        borderSide: const BorderSide(color: AppColors.grey0),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide:
-            const BorderSide(color: AppColors.primaryDarkBlue300, width: 2),
+        borderSide: const BorderSide(
+          color: AppColors.primaryDarkBlue300,
+          width: 2,
+        ),
       ),
       filled: true,
-      fillColor: AppColors.grey800,
-      hintStyle: AppTextStyles.mRegular.copyWith(color: AppColors.grey400),
+      prefixIconColor: Color(0xBFFFFFFF),
+      fillColor: AppColors.scaffoldBackgroundDarkBlue,
+      hintStyle: AppTextStyles.sMedium.copyWith(color: Color(0xff8C8C8C)),
     ),
 
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -71,8 +73,6 @@ ThemeData getDarkTheme() {
     ),
   );
 }
-
-
 
 // ThemeData getDarkTheme() {
 //   return ThemeData(

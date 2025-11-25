@@ -1,5 +1,7 @@
 import 'package:fintech/core/not_found.dart';
 import 'package:fintech/core/splash.dart';
+import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
+import 'package:fintech/features/auth/presentation/screens/register_screen.dart';
 import 'package:fintech/features/home/buy_crypto_screen.dart';
 import 'package:fintech/features/home/presentation/screens/coin_details_screen.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
@@ -21,6 +23,9 @@ class AppRouter {
     BuyCryptoScreen.routeName: (context) => const BuyCryptoScreen(),
     Splash.routename: (context) => const Splash(),
     OnBoardingScreen.routename: (context) => const OnBoardingScreen(),
+    LoginScreen.routename: (context) => const LoginScreen(),
+    RegisterScreen.routename: (context) => const RegisterScreen(),
+
     // PaymentMethodScreen.routeName: (context) => const PaymentMethodScreen(),
   };
 

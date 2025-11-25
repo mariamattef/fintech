@@ -1,7 +1,8 @@
-import 'package:fintech/core/config/app_color.dart';
-import 'package:fintech/features/settings/presentation/screens/settings_screen.dart';
+import 'package:fintech/features/onboarding/presentation/widgets/butttons_inboarding.dart';
+import 'package:fintech/features/onboarding/presentation/widgets/dots_inboarding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static const String routename = '/onBoarding';
@@ -31,6 +32,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           Column(
             children: [
+              Gap(30),
               Expanded(
                 child: PageView.builder(
                   controller: _controller,
@@ -58,68 +60,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
               ),
 
-,,
-              
-              // Padding(
-              //   padding: EdgeInsets.only(right: 20.h, left: 20.w, bottom: 20.h),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       // Next Button
-              //       GestureDetector(
-              //         onTap: () {
-              //           if (currentIndex < onboardingData.length - 1) {
-              //             _controller.nextPage(
-              //               duration: Duration(milliseconds: 400),
-              //               curve: Curves.easeInOut,
-              //             );
-              //           } else {
-              //             Navigator.pushNamed(
-              //               context,
-              //               SettingsScreen.routeName,
-              //             );
-              //           }
-              //         },
-              //         child: Container(
-              //           padding: EdgeInsets.all(12.r),
-              //           decoration: BoxDecoration(
-              //             color: Theme.of(context).colorScheme.primary,
-              //             borderRadius: BorderRadius.circular(30.r),
-              //           ),
-              //           child: Icon(
-              //             Icons.arrow_back_ios_new_outlined,
-              //             size: 15.sp,
-              //             color:
-              //                 Theme.of(context).brightness == Brightness.light
-              //                 ? AppColors.grey0
-              //                 : AppColors.grey900,
-              //           ),
-              //         ),
-              //       ),
-              //       Row(
-              //         children: List.generate(
-              //           onboardingData.length,
-              //           (index) => AnimatedContainer(
-              //             duration: Duration(milliseconds: 300),
-              //             margin: EdgeInsets.only(right: 5.w),
-              //             width: currentIndex == index ? 23.w : 10.w,
-              //             height: 5.h,
-              //             decoration: BoxDecoration(
-              //               color: currentIndex == index
-              //                   ? Theme.of(context).colorScheme.primary
-              //                   : Color(0xff494D58),
-
-              //               borderRadius: BorderRadius.circular(10.r),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-         
-         
-         
+              currentIndex == onboardingData.length - 1
+                  ? ButtonsInBoarding()
+                  : DotsInBoardingWidget(
+                      currentIndex: currentIndex,
+                      onboardingData: onboardingData,
+                      controller: _controller,
+                    ),
             ],
           ),
         ],
