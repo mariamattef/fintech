@@ -2,26 +2,29 @@ import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomElevationBottom extends StatelessWidget {
-  final void Function()? onPressed;
+class CustomOutlinedButton extends StatelessWidget {
   final String text;
+  final void Function() onPressed;
   final double? width;
-  final ButtonStyle? style;
-  const CustomElevationBottom({
+  const CustomOutlinedButton({
     super.key,
-    this.onPressed,
     required this.text,
-    this.width, this.style,
+    required this.onPressed,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return OutlinedButton(
       onPressed: onPressed,
-      style:style?? ElevatedButton.styleFrom(
-        minimumSize: Size(width ?? double.infinity.r, 55),
+      style: OutlinedButton.styleFrom(
+        minimumSize: Size(width ?? double.infinity.r, 50.r),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(31.r),
+        ),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.primary,
+          width: 2,
         ),
       ),
       child: Text(text, style: AppTextStyles.lSemiBold),

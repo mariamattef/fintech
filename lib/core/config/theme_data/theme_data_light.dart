@@ -9,10 +9,11 @@ ThemeData getLightTheme() {
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundLightBlue,
     fontFamily: AppFonts.lato,
+   
 
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryLightBlue300,
-      secondary: AppColors.primaryLightBlue50,
+      secondary: AppColors.primaryLightBlue300,
       surface: AppColors.grey0,
     ),
 

@@ -22,7 +22,7 @@ class AppColors {
   static const scaffoldBackgroundDarkBlue = Color(0xFF121212);
 
   // grey scale
-  static const grey900 = Color(0xff0d0d12);
+  static const grey900 = Color(0xff0D0D0D);
   static const grey800 = Color(0xff1a1b25);
   static const grey700 = Color(0xff272835);
   static const grey600 = Color(0xff36394a);

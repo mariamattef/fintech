@@ -22,7 +22,25 @@ class DotsInBoardingWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Next Button
+          Row(
+            children: List.generate(
+              onboardingData.length,
+              (index) => AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                margin: EdgeInsets.only(right: 5.w),
+                width: currentIndex == index ? 23.w : 10.w,
+                height: 5.h,
+                decoration: BoxDecoration(
+                  color: currentIndex == index
+                      ? Theme.of(context).colorScheme.primary
+                      : Color(0xff494D58),
+
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+              ),
+            ),
+          ),
+
           GestureDetector(
             onTap: () {
               if (currentIndex < onboardingData.length - 1) {
@@ -41,29 +59,11 @@ class DotsInBoardingWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30.r),
               ),
               child: Icon(
-                Icons.arrow_back_ios_new_outlined,
+                Icons.arrow_forward_ios_rounded,
                 size: 15.sp,
                 color: Theme.of(context).brightness == Brightness.light
                     ? AppColors.grey0
                     : AppColors.grey900,
-              ),
-            ),
-          ),
-          Row(
-            children: List.generate(
-              onboardingData.length,
-              (index) => AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                margin: EdgeInsets.only(right: 5.w),
-                width: currentIndex == index ? 23.w : 10.w,
-                height: 5.h,
-                decoration: BoxDecoration(
-                  color: currentIndex == index
-                      ? Theme.of(context).colorScheme.primary
-                      : Color(0xff494D58),
-
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
               ),
             ),
           ),

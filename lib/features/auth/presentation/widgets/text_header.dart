@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class TextHeader extends StatelessWidget {
-  final String title, subtitlle, subtile2;
+  final String title;
+  final String? subtitle;
+  final String? subtile2;
   const TextHeader({
     super.key,
     required this.title,
-    required this.subtitlle,
-    required this.subtile2,
+    this.subtitle,
+    this.subtile2,
   });
 
   @override
@@ -18,6 +20,7 @@ class TextHeader extends StatelessWidget {
       children: [
         Text(
           title,
+          textAlign: TextAlign.center,
           style: AppTextStyles.heading26.copyWith(
             color: Theme.of(context).brightness == Brightness.dark
                 ? Colors.white
@@ -26,9 +29,9 @@ class TextHeader extends StatelessWidget {
         ),
         Gap(20),
         Text(
-          ' $subtitlle $subtile2',
+          ' ${subtitle?? ''}  ${subtile2 ?? ''}'  ,
           textAlign: TextAlign.center,
-          style: AppTextStyles.lSemiBold,
+          style: AppTextStyles.lMedium,
         ),
       ],
     );

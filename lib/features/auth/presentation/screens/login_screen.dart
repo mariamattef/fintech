@@ -1,7 +1,7 @@
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
-import 'package:fintech/features/auth/presentation/widgets/Finfer_or_faceid_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/custom_divider.dart';
-import 'package:fintech/features/auth/presentation/widgets/custom_text_frm_field.dart';
+import 'package:fintech/features/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:fintech/features/auth/presentation/widgets/fingure_or_faceid_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/remember_me_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_bottom_auth_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
@@ -37,11 +37,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   Spacer(),
                   TextHeader(
                     title: 'Login To Your Account',
-                    subtitlle: 'Welcome back you’ve ',
+                    subtitle: 'Welcome back you’ve ',
                     subtile2: '\nbeen missed!',
                   ),
-
-                  Gap(50),
+                  Gap(80),
                   Form(
                     child: Column(
                       children: [

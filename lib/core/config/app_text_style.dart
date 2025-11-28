@@ -43,16 +43,17 @@ class AppTextStyles {
   );
   static const heading26 = TextStyle(
     fontFamily: AppFonts.lato,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w600,
     fontSize: 26,
-    height: 1,
+    height: 40.11 / 26,
   );
   // use 24
   static const headingH4 = TextStyle(
     fontFamily: AppFonts.lato,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w500,
     fontSize: 24,
     height: 1,
+    letterSpacing: 0,
   );
 
   static const headingH3 = TextStyle(
@@ -151,13 +152,16 @@ class AppTextStyles {
   static const lRegular = TextStyle(
     fontFamily: AppFonts.lato,
     fontSize: 18,
-    height: 1.55,
+    fontWeight: FontWeight.w400,
+    height: 1,
+    letterSpacing: 0,
   );
   static const lMedium = TextStyle(
     fontFamily: AppFonts.lato,
     fontSize: 18,
     fontWeight: FontWeight.w500,
-    height: 1,
+    height: 1.4,
+    letterSpacing: 0,
   );
 
   static const lSemiBold = TextStyle(

@@ -14,7 +14,7 @@ ThemeData getDarkTheme() {
     colorScheme: ColorScheme.dark(
       primary: AppColors.primaryDarkBlue300,
       secondary: AppColors.sky100,
-      surface: AppColors.grey800,
+      surface: AppColors.grey900,
     ),
 
     textTheme: ThemeData.dark().textTheme.apply(
@@ -32,7 +32,7 @@ ThemeData getDarkTheme() {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryDarkBlue300,
-        foregroundColor: AppColors.grey800 ,
+        foregroundColor: AppColors.grey800,
         disabledBackgroundColor: AppColors.grey800,
         disabledForegroundColor: AppColors.grey400,
         shape: RoundedRectangleBorder(
