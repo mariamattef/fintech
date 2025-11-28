@@ -5,6 +5,8 @@ import 'package:fintech/core/config/theme_data/theme_data_light.dart';
 import 'package:fintech/core/databases/cache/cache_helper.dart';
 import 'package:fintech/core/routting/routes.dart';
 import 'package:fintech/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:fintech/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +16,7 @@ import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await CacheHelper().init();
   await EasyLocalization.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(

@@ -1,5 +1,6 @@
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/widgets/custom_outlines_button.dart';
+import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
 import 'package:fintech/features/auth/presentation/screens/register_screen.dart';
 import 'package:fintech/features/settings/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,8 @@ class ButtonsInBoarding extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, SettingsScreen.routeName);
-              // Navigator.pushNamed(context, LoginScreen.routename);
+              // Navigator.pushNamed(context, SettingsScreen.routeName);
+              Navigator.pushNamed(context, LoginScreen.routename);
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(double.infinity.r, 55),

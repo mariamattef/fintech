@@ -1,4 +1,6 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -20,7 +22,14 @@ class HeaderWidget extends StatelessWidget {
         ),
         const Spacer(),
         IconButton(
-          onPressed: () {},
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut();
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              LoginScreen.routename,
+              (route) => false,
+            );
+          },
           icon: const Icon(
             Icons.notifications_outlined,
             color: Color(0xFF1A2C4F),
