@@ -6,6 +6,7 @@ import 'package:fintech/core/databases/cache/cache_helper.dart';
 import 'package:fintech/core/routting/routes.dart';
 import 'package:fintech/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:fintech/firebase_options.dart';
+import 'package:fintech/root.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class MainApp extends StatelessWidget {
               darkTheme: getDarkTheme(),
               themeMode: newMode,
               debugShowCheckedModeBanner: false,
-              initialRoute: OnBoardingScreen.routename,
+              initialRoute: Root.routeName,
               onGenerateRoute: AppRouter.onGenerateRoute,
             );
           },

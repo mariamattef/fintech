@@ -7,7 +7,7 @@ import 'package:fintech/features/auth/presentation/widgets/fingure_or_faceid_wid
 import 'package:fintech/features/auth/presentation/widgets/remember_me_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_bottom_auth_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
-import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
+import 'package:fintech/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -87,34 +87,35 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ..showSnackBar(
                                         const SnackBar(
                                           content: Text(
-                                              'You Logged In Successfully'),
+                                            'You Logged In Successfully',
+                                          ),
                                         ),
                                       );
-                                    Navigator.pushReplacementNamed(context,
-                                        CryptoHomeScreen.routeName);
+                                    Navigator.pushReplacementNamed(
+                                      context,
+                                      Root.routeName,
+                                    );
                                   } else if (state is AuthFailure) {
                                     ScaffoldMessenger.of(context)
                                       ..hideCurrentSnackBar()
                                       ..showSnackBar(
-                                        SnackBar(
-                                          content: Text(state.message),
-                                        ),
+                                        SnackBar(content: Text(state.message)),
                                       );
                                   }
                                 },
                                 builder: (context, state) {
                                   if (state is AuthLoading) {
                                     return const Center(
-                                        child: CircularProgressIndicator());
+                                      child: CircularProgressIndicator(),
+                                    );
                                   }
                                   return CustomElevationBottom(
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
                                         context.read<AuthCubit>().login(
-                                              email: _emailController.text,
-                                              password:
-                                                  _passwordController.text,
-                                            );
+                                          email: _emailController.text,
+                                          password: _passwordController.text,
+                                        );
                                       }
                                     },
                                     text: 'Login',

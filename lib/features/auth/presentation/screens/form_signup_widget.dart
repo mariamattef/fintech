@@ -1,6 +1,7 @@
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:fintech/features/auth/presentation/widgets/custom_text_form_field.dart';
+import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,7 +82,7 @@ class _FormSignUpWidgetState extends State<FormSignUpWidget> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Account created successfully')),
                 );
-                Navigator.pushReplacementNamed(context, CryptoHomeScreen.routeName);
+                Navigator.pushReplacementNamed(context, LoginScreen.routename);
               } else if (state is AuthFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.message)),

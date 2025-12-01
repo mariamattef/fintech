@@ -10,13 +10,12 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = true;
     return Scaffold(
       appBar: AppBar(
         title: Text('settings'.tr()),
         actions: [
           Switch(
-            value: isDark,
+            value: context.isDarkMode,
             onChanged: (bool x) {
               if (context.isDarkMode) {
                 context.read<ThemeCubit>().updateTheme(ThemeMode.light);

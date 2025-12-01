@@ -73,8 +73,6 @@ class AuthCubit extends Cubit<AuthState> {
       if (user != null) {
         emit(AuthSuccess(user));
       } else {
-        // This case is unlikely with signInWithEmailAndPassword,
-        // as it would throw an exception for null user.
         emit(AuthFailure('Login failed, please try again.'));
       }
     } on FirebaseAuthException catch (e) {
