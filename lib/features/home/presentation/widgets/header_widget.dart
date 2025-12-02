@@ -1,6 +1,4 @@
 import 'package:fintech/core/config/app_text_style.dart';
-import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -18,21 +16,16 @@ class HeaderWidget extends StatelessWidget {
         const SizedBox(width: 12),
         Text(
           "Hi, $name  👋🏾",
-          style: AppTextStyles.headingH6.copyWith(color: Color(0xFF1F1F1F)),
+          style: AppTextStyles.headingH6.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
         const Spacer(),
         IconButton(
-          onPressed: () async {
-            await FirebaseAuth.instance.signOut();
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              LoginScreen.routename,
-              (route) => false,
-            );
-          },
-          icon: const Icon(
+          onPressed: () async {},
+          icon: Icon(
             Icons.notifications_outlined,
-            color: Color(0xFF1A2C4F),
+            color: Theme.of(context).colorScheme.primary,
             size: 28,
           ),
         ),
