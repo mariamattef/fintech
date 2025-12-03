@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/features/auth/presentation/screens/face_id_screen.dart';
 import 'package:fintech/features/auth/presentation/screens/fingure_print_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class FingerOrFaceIdWidget extends StatelessWidget {
             Navigator.pushNamed(context, FingurePrintScreen.routeName);
           },
           child: SvgPicture.asset(
-            'assets/svg/icons/Group 2258.svg',
+            AppAssets.fingurePrint,
             height: 50.h,
             width: 50.w,
             fit: BoxFit.contain,
@@ -28,7 +29,7 @@ class FingerOrFaceIdWidget extends StatelessWidget {
             Navigator.pushNamed(context, FaceIdScreen.routeName);
           },
           child: SvgPicture.asset(
-            'assets/svg/icons/face id.svg',
+            AppAssets.faceId,
             height: 50.h,
             width: 50.w,
             fit: BoxFit.contain,

@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/features/onboarding/presentation/widgets/butttons_inboarding.dart';
 import 'package:fintech/features/onboarding/presentation/widgets/dots_inboarding_widget.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  static const String routename = '/onBoarding';
+  static const String routeName = '/onBoarding';
   const OnBoardingScreen({super.key});
 
   @override
@@ -17,13 +18,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   int currentIndex = 0;
 
   List<Map<String, String>> onboardingData = [
-    {"image": "assets/images/onB1.png", "text": "Welcome to Crypto X"},
-    {"image": "assets/images/onB2.png", "text": "Transaction Security "},
-    {
-      "image": "assets/images/onB3.png",
-      "text": "Fast and reliable Market updated",
-    },
-    {"image": "assets/images/onB4.png", "text": "Get Started Now!"},
+    {"image": AppAssets.onB1, "text": "Welcome to Crypto X"},
+    {"image": AppAssets.onB2, "text": "Transaction Security "},
+    {"image": AppAssets.onB3, "text": "Fast and reliable Market updated"},
+    {"image": AppAssets.onB4, "text": "Get Started Now!"},
   ];
   @override
   Widget build(BuildContext context) {

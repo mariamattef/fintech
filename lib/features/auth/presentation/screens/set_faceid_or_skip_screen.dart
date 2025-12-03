@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/core/widgets/custom_outlines_button.dart';
 import 'package:fintech/features/auth/presentation/screens/set_faceid_screen.dart';
@@ -31,7 +32,7 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                       subtitle:
                           'Add your face ID to make your account more secure.',
                       child: FaceIdWidget(
-                        stringImg: 'assets/svg/icons/face id.svg',
+                        stringImg: AppAssets.faceId,
                         onTap: () {},
                       ),
                     ),
@@ -46,7 +47,7 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                         },
                         width: 155.w,
                       ),
-                      Gap(20),
+                      const Gap(20),
                       Expanded(
                         child: CustomElevationBottom(
                           text: 'Contenue',
@@ -68,7 +69,7 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
             top: 0,
             right: 0,
             child: SvgPicture.asset(
-              'assets/svg/icons/Ellipse 52.svg',
+              AppAssets.ellipse52,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).brightness == Brightness.dark
                     ? Colors.white

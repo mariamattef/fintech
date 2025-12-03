@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,7 +15,7 @@ class SearchBartWidget extends StatelessWidget {
           prefixIcon: Padding(
             padding: EdgeInsets.all(10.0.r),
             child: SvgPicture.asset(
-              'assets/svg/icons/search-normal.svg',
+              AppAssets.searchNormal,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
@@ -28,7 +29,7 @@ class SearchBartWidget extends StatelessWidget {
           suffixIcon: IconButton(
             padding: EdgeInsets.all(10.0.r),
             icon: SvgPicture.asset(
-              'assets/svg/icons/setting-5.svg',
+              AppAssets.setting5,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).brightness == Brightness.dark
                     ? Colors.white

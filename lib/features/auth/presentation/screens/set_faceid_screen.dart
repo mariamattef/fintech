@@ -1,4 +1,5 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/features/auth/presentation/screens/set_faceid_verified.dart';
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class SetFaceidScreen extends StatelessWidget {
           Positioned.fill(
             child: Opacity(
               opacity: 0.9,
-              child: Image.asset('assets/images/bg.png', fit: BoxFit.cover),
+              child: Image.asset(AppAssets.bg, fit: BoxFit.cover),
             ),
           ),
           SizedBox(
@@ -28,21 +29,21 @@ class SetFaceidScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Gap(100),
+                  const Gap(100),
                   Text(
                     'Place your face ID in face\nscanner until the icon completely',
                     textAlign: TextAlign.center,
                     style: AppTextStyles.lMedium.copyWith(color: Colors.white),
                   ),
-                  Spacer(flex: 2),
+                  const Spacer(flex: 2),
                   FaceIdWidget(
-                    stringImg: 'assets/svg/icons/face id.svg',
+                    stringImg: AppAssets.faceId,
                     onTap: () {
                       Navigator.pushNamed(context, SetFaceidVerified.routeName);
                     },
                   ),
-                  Spacer(),
-                  Text(
+                  const Spacer(),
+                  const Text(
                     textAlign: TextAlign.center,
                     'Once your scanning is complete, you will be able to sign in by using face ID',
                     style: TextStyle(
@@ -50,7 +51,7 @@ class SetFaceidScreen extends StatelessWidget {
                       color: Color.fromRGBO(255, 255, 255, 1),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),

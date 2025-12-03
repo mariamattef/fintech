@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:fintech/features/auth/presentation/screens/register_screen.dart';
@@ -15,7 +16,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String routename = '/login';
+  static const String routeName = '/login';
   const LoginScreen({super.key});
 
   @override
@@ -33,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-
       child: Scaffold(
         body: Stack(
           children: [
@@ -45,105 +45,102 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.all(20.r),
                   child: Column(
                     children: [
-                      Gap(100),
-                      TextHeader(
+                      const Gap(100),
+                      const TextHeader(
                         title: 'Login To Your Account',
                         subtitle: 'Welcome back you’ve ',
                         subtile2: '\nbeen missed!',
                       ),
-                      Gap(80),
-                      BlocProvider(
-                        create: (context) => AuthCubit(),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              CustomTextFormField(
-                                hintText: 'E-mail ID',
-                                icon: Icons.email_outlined,
-                                controller: _emailController,
-                              ),
-                              Gap(10),
-                              CustomTextFormField(
-                                hintText: 'Password',
-                                icon: Icons.lock_outline_rounded,
-                                controller: _passwordController,
-                              ),
-                              Gap(10),
-                              RememberMeWidget(
-                                rememberMe: _rememberMe,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _rememberMe = value!;
-                                  });
-                                },
-                              ),
-                              Gap(20),
-                              BlocConsumer<AuthCubit, AuthState>(
-                                listener: (context, state) {
-                                  if (state is AuthSuccess) {
-                                    ScaffoldMessenger.of(context)
-                                      ..hideCurrentSnackBar()
-                                      ..showSnackBar(
-                                        const SnackBar(
-                                          content: Text(
-                                            'You Logged In Successfully',
-                                          ),
+                      const Gap(80),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            CustomTextFormField(
+                              hintText: 'E-mail ID',
+                              icon: Icons.email_outlined,
+                              controller: _emailController,
+                            ),
+                            const Gap(10),
+                            CustomTextFormField(
+                              hintText: 'Password',
+                              icon: Icons.lock_outline_rounded,
+                              controller: _passwordController,
+                            ),
+                            const Gap(10),
+                            RememberMeWidget(
+                              rememberMe: _rememberMe,
+                              onChanged: (value) {
+                                setState(() {
+                                  _rememberMe = value!;
+                                });
+                              },
+                            ),
+                            const Gap(20),
+                            BlocConsumer<AuthCubit, AuthState>(
+                              listener: (context, state) {
+                                if (state is AuthSuccess) {
+                                  ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'You Logged In Successfully',
                                         ),
-                                      );
-                                    Navigator.pushReplacementNamed(
-                                      context,
-                                      Root.routeName,
+                                      ),
                                     );
-                                  } else if (state is AuthFailure) {
-                                    ScaffoldMessenger.of(context)
-                                      ..hideCurrentSnackBar()
-                                      ..showSnackBar(
-                                        SnackBar(content: Text(state.message)),
-                                      );
-                                  }
-                                },
-                                builder: (context, state) {
-                                  if (state is AuthLoading) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                  return CustomElevationBottom(
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        context.read<AuthCubit>().login(
-                                          email: _emailController.text,
-                                          password: _passwordController.text,
-                                        );
-                                      }
-                                    },
-                                    text: 'Login',
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    Root.routeName,
                                   );
-                                },
-                              ),
-                              Gap(40),
-                              Column(
-                                children: [
-                                  CustomDivider(),
-                                  Gap(40),
-                                  FingerOrFaceIdWidget(),
-                                  Gap(30),
-                                  TextBottomAuthWidget(
-                                    text: 'Don’t have an account?',
-                                    text2: 'Sign Up',
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        RegisterScreen.routename,
+                                } else if (state is AuthFailure) {
+                                  ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                      SnackBar(content: Text(state.message)),
+                                    );
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is AuthLoading) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return CustomElevationBottom(
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      context.read<AuthCubit>().login(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
                                       );
-                                    },
-                                  ),
-                                  Gap(30),
-                                ],
-                              ),
-                            ],
-                          ),
+                                    }
+                                  },
+                                  text: 'Login',
+                                );
+                              },
+                            ),
+                            const Gap(40),
+                            Column(
+                              children: [
+                                const CustomDivider(),
+                                const Gap(40),
+                                const FingerOrFaceIdWidget(),
+                                const Gap(30),
+                                TextBottomAuthWidget(
+                                  text: 'Don’t have an account?',
+                                  text2: 'Sign Up',
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      RegisterScreen.routeName,
+                                    );
+                                  },
+                                ),
+                                const Gap(30),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -155,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
               top: 0,
               right: 0,
               child: SvgPicture.asset(
-                'assets/svg/icons/Ellipse 52.svg',
+                AppAssets.ellipse52,
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).brightness == Brightness.dark
                       ? Colors.white
