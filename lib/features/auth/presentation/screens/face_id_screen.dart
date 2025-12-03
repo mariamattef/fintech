@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/features/auth/presentation/screens/faceid_verified_screen.dart';
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class FaceIdScreen extends StatelessWidget {
           Positioned.fill(
             child: Opacity(
               opacity: 0.9,
-              child: Image.asset('assets/images/bg.png', fit: BoxFit.cover),
+              child: Image.asset(AppAssets.bg, fit: BoxFit.cover),
             ),
           ),
           SizedBox(
@@ -30,7 +31,7 @@ class FaceIdScreen extends StatelessWidget {
                   Gap(100),
                   Spacer(flex: 2),
                   FaceIdWidget(
-                    stringImg: 'assets/svg/icons/face id.svg',
+                    stringImg: AppAssets.faceId,
                     onTap: () {
                       Navigator.pushNamed(
                         context,

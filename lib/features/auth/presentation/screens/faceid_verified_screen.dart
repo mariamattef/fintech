@@ -1,4 +1,5 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class FaceidVerifiedScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           SvgPicture.asset(
-                            'assets/svg/icons/Component 1.svg',
+                            AppAssets.component1,
                             colorFilter: ColorFilter.mode(
                               Theme.of(context).brightness == Brightness.dark
                                   ? Colors.white
@@ -90,7 +91,7 @@ class FaceidVerifiedScreen extends StatelessWidget {
             top: 0,
             right: 0,
             child: SvgPicture.asset(
-              'assets/svg/icons/Ellipse 52.svg',
+              AppAssets.ellipse52,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).brightness == Brightness.dark
                     ? Colors.white

@@ -1,5 +1,5 @@
 import 'package:fintech/core/config/app_text_style.dart';
-import 'package:fintech/features/home/presentation/screens/coin_details_screen.dart';
+import 'package:fintech/features/market/presentation/screens/coin_details_screen.dart';
 import 'package:fintech/features/home/presentation/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,9 +1,10 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Splash extends StatelessWidget {
-  static const String routename = '/splash';
+  static const String routeName = '/splash';
   const Splash({super.key});
 
   @override
@@ -19,7 +20,7 @@ class Splash extends StatelessWidget {
           fit: StackFit.loose,
           children: [
             SvgPicture.asset(
-              "assets/svg/icons/Ellipse 51 (1).svg",
+              AppAssets.ellipse51_1,
               fit: BoxFit.fitWidth,
               width: double.infinity,
 
@@ -30,11 +31,11 @@ class Splash extends StatelessWidget {
               ),
             ),
             SvgPicture.asset(
-              'assets/svg/icons/Group.svg',
+              AppAssets.group,
               fit: BoxFit.fitWidth,
             ),
             SvgPicture.asset(
-              'assets/svg/icons/Ellipse 50.svg',
+              AppAssets.ellipse50,
               fit: BoxFit.fitWidth,
               width: double.infinity,
               colorFilter: ColorFilter.mode(

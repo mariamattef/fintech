@@ -11,10 +11,7 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
-          radius: 22,
-          backgroundImage: NetworkImage(img), // Placeholder image
-        ),
+        CircleAvatar(radius: 22, backgroundImage: NetworkImage(img)),
         const SizedBox(width: 12),
         Text(
           "Hi, $name  👋🏾",
@@ -26,7 +23,7 @@ class HeaderWidget extends StatelessWidget {
             await FirebaseAuth.instance.signOut();
             Navigator.pushNamedAndRemoveUntil(
               context,
-              LoginScreen.routename,
+              LoginScreen.routeName,
               (route) => false,
             );
           },

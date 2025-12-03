@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:flutter/material.dart';
 
 class NotFound extends StatelessWidget {
@@ -5,10 +6,13 @@ class NotFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Image.asset('assets/images/notfound.jpg', width: 250,),
+        child: Image.asset(
+          AppAssets.notfound,
+          width: 250,
+        ),
       ),
     );
   }

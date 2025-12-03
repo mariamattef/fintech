@@ -213,5 +213,7 @@
   "verificationSuccess": "تم التحقق بنجاح",
   "verificationFailed": "فشل التحقق",
   "passwordResetSu": "تم إعادة تعيين كلمة المرور بنجاح!",
-  "verificationAccountCode": "لقد أرسلنا لك رمزاً للتحقق من حسابك. الرجاء إدخال الرمز أدناه."
+  "verificationAccountCode": "لقد أرسلنا لك رمزاً للتحقق من حسابك. الرجاء إدخال الرمز أدناه.",
+  "Crypto Market":"سوق العملات المشفرة"
+
 }

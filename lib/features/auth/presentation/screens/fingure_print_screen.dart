@@ -1,3 +1,4 @@
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/features/auth/presentation/widgets/fingure_Print_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,7 @@ class FingurePrintScreen extends StatelessWidget {
                               text:
                                   'Please verify your identity using touch ID and it will proceed automatically.',
                               child: SvgPicture.asset(
-                                'assets/svg/icons/Component 1.svg',
+                                AppAssets.component1,
                                 colorFilter: ColorFilter.mode(
                                   Theme.of(context).brightness == Brightness.dark
                                       ? Colors.white
@@ -38,7 +39,7 @@ class FingurePrintScreen extends StatelessWidget {
             top: 0,
             right: 0,
             child: SvgPicture.asset(
-              'assets/svg/icons/Ellipse 52.svg',
+              AppAssets.ellipse52,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
