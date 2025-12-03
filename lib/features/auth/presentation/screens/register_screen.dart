@@ -1,10 +1,8 @@
-import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:fintech/features/auth/presentation/screens/form_signup_widget.dart';
 import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_bottom_auth_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -38,16 +36,13 @@ class RegisterScreen extends StatelessWidget {
                         subtile2: '\nexperience!',
                       ),
                       Gap(50),
-                      BlocProvider(
-                        create: (context) => AuthCubit(),
-                        child: FormSignUpWidget(),
-                      ),
+                      FormSignUpWidget(),
                       Gap(20),
                       TextBottomAuthWidget(
                         text: 'Don’t have an account?',
                         text2: 'Login',
                         onPressed: () {
-                          Navigator.pushNamed(context, LoginScreen.routename);
+                          Navigator.pushNamed(context, LoginScreen.routeName);
                         },
                       ),
                       Gap(10),

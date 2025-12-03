@@ -13,9 +13,7 @@ class FingerOrFaceIdWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, FingurePrintScreen.routeName);
-          },
+          onTap: () =>   Navigator.pushNamed(context, FingurePrintScreen.routeName),
           child: SvgPicture.asset(
             'assets/svg/icons/Group 2258.svg',
             height: 50.h,

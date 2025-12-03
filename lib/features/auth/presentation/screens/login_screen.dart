@@ -15,7 +15,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String routename = '/login';
+  static const String routeName = '/login';
   const LoginScreen({super.key});
 
   @override
@@ -52,98 +52,95 @@ class _LoginScreenState extends State<LoginScreen> {
                         subtile2: '\nbeen missed!',
                       ),
                       Gap(80),
-                      BlocProvider(
-                        create: (context) => AuthCubit(),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              CustomTextFormField(
-                                hintText: 'E-mail ID',
-                                icon: Icons.email_outlined,
-                                controller: _emailController,
-                              ),
-                              Gap(10),
-                              CustomTextFormField(
-                                hintText: 'Password',
-                                icon: Icons.lock_outline_rounded,
-                                controller: _passwordController,
-                              ),
-                              Gap(10),
-                              RememberMeWidget(
-                                rememberMe: _rememberMe,
-                                onChanged: (value) {
-                                  setState(() {
-                                    _rememberMe = value!;
-                                  });
-                                },
-                              ),
-                              Gap(20),
-                              BlocConsumer<AuthCubit, AuthState>(
-                                listener: (context, state) {
-                                  if (state is AuthSuccess) {
-                                    ScaffoldMessenger.of(context)
-                                      ..hideCurrentSnackBar()
-                                      ..showSnackBar(
-                                        const SnackBar(
-                                          content: Text(
-                                            'You Logged In Successfully',
-                                          ),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            CustomTextFormField(
+                              hintText: 'E-mail ID',
+                              icon: Icons.email_outlined,
+                              controller: _emailController,
+                            ),
+                            Gap(10),
+                            CustomTextFormField(
+                              hintText: 'Password',
+                              icon: Icons.lock_outline_rounded,
+                              controller: _passwordController,
+                            ),
+                            Gap(10),
+                            RememberMeWidget(
+                              rememberMe: _rememberMe,
+                              onChanged: (value) {
+                                setState(() {
+                                  _rememberMe = value!;
+                                });
+                              },
+                            ),
+                            Gap(20),
+                            BlocConsumer<AuthCubit, AuthState>(
+                              listener: (context, state) {
+                                if (state is AuthSuccess) {
+                                  ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'You Logged In Successfully',
                                         ),
-                                      );
-                                    Navigator.pushReplacementNamed(
-                                      context,
-                                      Root.routeName,
+                                      ),
                                     );
-                                  } else if (state is AuthFailure) {
-                                    ScaffoldMessenger.of(context)
-                                      ..hideCurrentSnackBar()
-                                      ..showSnackBar(
-                                        SnackBar(content: Text(state.message)),
-                                      );
-                                  }
-                                },
-                                builder: (context, state) {
-                                  if (state is AuthLoading) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
-                                  return CustomElevationBottom(
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        context.read<AuthCubit>().login(
-                                          email: _emailController.text,
-                                          password: _passwordController.text,
-                                        );
-                                      }
-                                    },
-                                    text: 'Login',
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    Root.routeName,
                                   );
-                                },
-                              ),
-                              Gap(40),
-                              Column(
-                                children: [
-                                  CustomDivider(),
-                                  Gap(40),
-                                  FingerOrFaceIdWidget(),
-                                  Gap(30),
-                                  TextBottomAuthWidget(
-                                    text: 'Don’t have an account?',
-                                    text2: 'Sign Up',
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        RegisterScreen.routename,
+                                } else if (state is AuthFailure) {
+                                  ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                      SnackBar(content: Text(state.message)),
+                                    );
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is AuthLoading) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return CustomElevationBottom(
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      context.read<AuthCubit>().login(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
                                       );
-                                    },
-                                  ),
-                                  Gap(30),
-                                ],
-                              ),
-                            ],
-                          ),
+                                    }
+                                  },
+                                  text: 'Login',
+                                );
+                              },
+                            ),
+                            Gap(40),
+                            Column(
+                              children: [
+                                CustomDivider(),
+                                Gap(40),
+                                FingerOrFaceIdWidget(),
+                                Gap(30),
+                                TextBottomAuthWidget(
+                                  text: 'Don’t have an account?',
+                                  text2: 'Sign Up',
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      RegisterScreen.routename,
+                                    );
+                                  },
+                                ),
+                                Gap(30),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ],

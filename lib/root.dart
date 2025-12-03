@@ -46,6 +46,7 @@ class _RootState extends State<Root> {
         child: SizedBox(
           height: 87.h,
           child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             currentIndex: _currentIndex,
             onTap: (index) {
               _currentIndex = index;
@@ -55,11 +56,11 @@ class _RootState extends State<Root> {
             items: [
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset('assets/svg/icons/home.svg'),
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     'assets/svg/icons/home_filled.svg',
                     colorFilter: ColorFilter.mode(
@@ -74,11 +75,11 @@ class _RootState extends State<Root> {
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset('assets/svg/icons/chart.svg'),
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     'assets/svg/icons/chart_filled.svg',
                     colorFilter: ColorFilter.mode(
@@ -93,11 +94,11 @@ class _RootState extends State<Root> {
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset('assets/svg/icons/briefcase.svg'),
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     'assets/svg/icons/briefcase_filled.svg',
                     colorFilter: ColorFilter.mode(
@@ -112,11 +113,11 @@ class _RootState extends State<Root> {
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset('assets/svg/icons/setting.svg'),
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     'assets/svg/icons/setting_filled.svg',
                     colorFilter: ColorFilter.mode(
