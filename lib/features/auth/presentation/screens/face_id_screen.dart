@@ -1,4 +1,4 @@
-import 'package:fintech/features/auth/presentation/screens/faceid_verified_screen.dart';
+import 'package:fintech/features/auth/presentation/biometrics_service.dart';
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,14 +29,12 @@ class FaceIdScreen extends StatelessWidget {
                 children: [
                   Gap(100),
                   Spacer(flex: 2),
-                  FaceIdWidget(
-                    stringImg: 'assets/svg/icons/face id.svg',
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        FaceidVerifiedScreen.routeName,
-                      );
-                    },
+                  GestureDetector(
+                    onTap: () => authFaceId(context),
+                    child: FaceIdWidget(
+                      stringImg: 'assets/svg/icons/face id.svg',
+                      onTap: () => authFaceId(context),
+                    ),
                   ),
                   Spacer(),
                   Text(

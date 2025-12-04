@@ -1,48 +1,70 @@
+import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:fintech/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:fintech/root.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Splash extends StatelessWidget {
-  static const String routename = '/splash';
+class Splash extends StatefulWidget {
+  static const String routeName = '/splash';
   const Splash({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Align(
-        alignment: Alignment(
-          0.2.w,
-          0.0,
-        ), // slightly to the right, vertically centered
-        child: Stack(
-          alignment: Alignment.center,
-          fit: StackFit.loose,
-          children: [
-            SvgPicture.asset(
-              "assets/svg/icons/Ellipse 51 (1).svg",
-              fit: BoxFit.fitWidth,
-              width: double.infinity,
+  State<Splash> createState() => _SplashState();
+}
 
-              colorFilter: ColorFilter.mode(
-                Color(0xff4F59621A),
-                
-                BlendMode.srcIn,
+class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<AuthCubit>().checkAuthStatus();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          Navigator.of(context).pushReplacementNamed(Root.routeName);
+        } else if (state is AuthInitial || state is AuthFailure) {
+          Navigator.of(
+            context,
+          ).pushReplacementNamed(OnBoardingScreen.routeName);
+        }
+      },
+      child: Scaffold(
+        body: Align(
+          alignment: Alignment(0.2.w, 0.0),
+          child: Stack(
+            alignment: Alignment.center,
+            fit: StackFit.loose,
+            children: [
+              SvgPicture.asset(
+                "assets/svg/icons/Ellipse 51 (1).svg",
+                fit: BoxFit.fitWidth,
+                width: double.infinity,
+                colorFilter: const ColorFilter.mode(
+                  Color(0xff4f59621a),
+                  BlendMode.srcIn,
+                ),
               ),
-            ),
-            SvgPicture.asset(
-              'assets/svg/icons/Group.svg',
-              fit: BoxFit.fitWidth,
-            ),
-            SvgPicture.asset(
-              'assets/svg/icons/Ellipse 50.svg',
-              fit: BoxFit.fitWidth,
-              width: double.infinity,
-              colorFilter: ColorFilter.mode(
-                Color(0xff4F59621A),
-                BlendMode.srcIn,
+              SvgPicture.asset(
+                'assets/svg/icons/Group.svg',
+                fit: BoxFit.fitWidth,
               ),
-            ),
-          ],
+              SvgPicture.asset(
+                'assets/svg/icons/Ellipse 50.svg',
+                fit: BoxFit.fitWidth,
+                width: double.infinity,
+                colorFilter: const ColorFilter.mode(
+                  Color(0xff4f59621a),
+                  BlendMode.srcIn,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

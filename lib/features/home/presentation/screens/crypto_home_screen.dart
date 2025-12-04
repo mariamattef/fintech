@@ -28,10 +28,7 @@ class _CryptoHomeScreenState extends State<CryptoHomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HeaderWidget(
-                  img: 'https://i.pravatar.cc/150?img=11',
-                  name: 'Ahmed',
-                ),
+                const HeaderWidget(),
                 Gap(25.r),
                 BalanceCardWidget(),
                 Gap(25.h),

@@ -11,8 +11,8 @@ import 'package:fintech/features/auth/presentation/screens/set_faceid_screen.dar
 import 'package:fintech/features/auth/presentation/screens/set_faceid_verified.dart';
 import 'package:fintech/features/auth/presentation/screens/set_fingure_print_screen.dart';
 import 'package:fintech/features/home/buy_crypto_screen.dart';
-import 'package:fintech/features/market/presentation/screens/coin_details_screen.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
+import 'package:fintech/features/market/presentation/screens/coin_details_screen.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
 import 'package:fintech/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
@@ -29,9 +29,9 @@ class AppRouter {
     PortfolioScreen.routeName: (context) => const PortfolioScreen(),
     SettingsScreen.routeName: (context) => const SettingsScreen(),
     BuyCryptoScreen.routeName: (context) => const BuyCryptoScreen(),
-    Splash.routename: (context) => const Splash(),
-    OnBoardingScreen.routename: (context) => const OnBoardingScreen(),
-    LoginScreen.routename: (context) => const LoginScreen(),
+    Splash.routeName: (context) => const Splash(),
+    OnBoardingScreen.routeName: (context) => const OnBoardingScreen(),
+    LoginScreen.routeName: (context) => const LoginScreen(),
     RegisterScreen.routename: (context) => const RegisterScreen(),
     FingurePrintScreen.routeName: (context) => const FingurePrintScreen(),
     FaceIdScreen.routeName: (context) => const FaceIdScreen(),

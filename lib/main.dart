@@ -3,10 +3,11 @@ import 'package:fintech/core/config/cubit/theme_cubit.dart';
 import 'package:fintech/core/config/theme_data/theme_data_dark.dart';
 import 'package:fintech/core/config/theme_data/theme_data_light.dart';
 import 'package:fintech/core/databases/cache/cache_helper.dart';
+import 'package:fintech/core/di/service_locator.dart';
 import 'package:fintech/core/routting/routes.dart';
-import 'package:fintech/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:fintech/core/splash.dart';
+import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:fintech/firebase_options.dart';
-import 'package:fintech/root.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ import 'package:path_provider/path_provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  setupServiceLocator();
   await CacheHelper().init();
   await EasyLocalization.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
@@ -44,7 +46,10 @@ class MainApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => ThemeCubit())],
+        providers: [
+          BlocProvider(create: (context) => ThemeCubit()),
+          BlocProvider(create: (context) => sl<AuthCubit>()),
+        ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, newMode) {
             return MaterialApp(
@@ -55,7 +60,7 @@ class MainApp extends StatelessWidget {
               darkTheme: getDarkTheme(),
               themeMode: newMode,
               debugShowCheckedModeBanner: false,
-              initialRoute: Root.routeName,
+              initialRoute: Splash.routeName,
               onGenerateRoute: AppRouter.onGenerateRoute,
             );
           },
