@@ -20,6 +20,8 @@ class AppAssets {
   static const String ellipse51_1 = 'assets/svg/icons/Ellipse 51 (1).svg';
   static const String group = 'assets/svg/icons/Group.svg';
   static const String ellipse50 = 'assets/svg/icons/Ellipse 50.svg';
+  static const String search = 'assets/svg/icons/search-normal.svg';
+  static const String setting5 = 'assets/svg/icons/setting-5.svg';
 
 
   // --- IMAGES ---
