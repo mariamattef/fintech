@@ -1,5 +1,5 @@
-import 'package:fintech/features/auth/presentation/screens/form_signup_widget.dart';
-import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/auth/presentation/widgets/form_signup_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_bottom_auth_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class RegisterScreen extends StatelessWidget {
-  static const String routename = '/register';
+  static const String routeName = RoutesContants.register;
   const RegisterScreen({super.key});
 
   @override
@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
                         text: 'Don’t have an account?',
                         text2: 'Login',
                         onPressed: () {
-                          Navigator.pushNamed(context, LoginScreen.routeName);
+                          Navigator.pushNamed(context, RoutesContants.login);
                         },
                       ),
                       Gap(10),

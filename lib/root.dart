@@ -1,3 +1,4 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Root extends StatefulWidget {
-  static const String routeName = '/root';
+  static const String routeName = RoutesContants.root;
   const Root({super.key});
 
   @override

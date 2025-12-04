@@ -1,5 +1,5 @@
 import 'package:fintech/core/config/app_text_style.dart';
-import 'package:fintech/features/auth/presentation/screens/fingure_verified_screen.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +29,7 @@ class FingurePrintWidget extends StatelessWidget {
         Spacer(),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, FingureVerifiedScreen.routeName);
+            Navigator.pushNamed(context,RoutesContants.fingureVerified);
           },
           child: child,
         ),

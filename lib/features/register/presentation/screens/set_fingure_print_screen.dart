@@ -1,12 +1,12 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_outlines_button.dart';
-import 'package:fintech/features/auth/presentation/screens/set_faceid_or_skip_screen.dart';
 import 'package:fintech/features/auth/presentation/widgets/fingure_Print_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SetFingurePrintScreen extends StatelessWidget {
-  static const String routeName = '/setfingureprintscreen';
+  static const String routeName = RoutesContants.setFingurePrint;
   const SetFingurePrintScreen({super.key});
 
   @override
@@ -29,12 +29,19 @@ class SetFingurePrintScreen extends StatelessWidget {
                           'Add a fingerprint to make your account more secure.',
                       text:
                           'Place your finger in fingerprint\nsensor until the icon completely',
-                      child: SvgPicture.asset(
-                        'assets/svg/icons/Group 2258.svg',
-
-                        height: 140,
-                        width: 120,
-                        fit: BoxFit.contain,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RoutesContants.setFingurePrintVerified,
+                          );
+                        },
+                        child: SvgPicture.asset(
+                          'assets/svg/icons/Group 2258.svg',
+                          height: 140,
+                          width: 120,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ),
@@ -44,11 +51,14 @@ class SetFingurePrintScreen extends StatelessWidget {
                       CustomOutlinedButton(
                         text: 'Skip',
                         onPressed: () {
-                          // Navigator.pop(context);
+                          Navigator.pushNamed(
+                            context,
+                            RoutesContants.setFaceid,
+                          );
 
                           Navigator.pushNamed(
                             context,
-                            SetFaceidOrSkipScreen.routeName,
+                            RoutesContants.setFaceidOrSkip,
                           );
                         },
                         width: 140.w,

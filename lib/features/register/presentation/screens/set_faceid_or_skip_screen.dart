@@ -1,6 +1,6 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/core/widgets/custom_outlines_button.dart';
-import 'package:fintech/features/auth/presentation/screens/set_faceid_screen.dart';
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/fingure_print_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class SetFaceidOrSkipScreen extends StatelessWidget {
-  static const String routeName = '/setDaceidOrSkipScreen';
+  static const String routeName = RoutesContants.setFaceidOrSkip;
   const SetFaceidOrSkipScreen({super.key});
 
   @override
@@ -32,7 +32,12 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                           'Add your face ID to make your account more secure.',
                       child: FaceIdWidget(
                         stringImg: 'assets/svg/icons/face id.svg',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            RoutesContants.setFaceid,
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -42,7 +47,11 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                       CustomOutlinedButton(
                         text: 'Skip',
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RoutesContants.root,
+                            (route) => false,
+                          );
                         },
                         width: 155.w,
                       ),
@@ -53,7 +62,7 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
-                              SetFaceidScreen.routeName,
+                              RoutesContants.setFaceid,
                             );
                           },
                         ),

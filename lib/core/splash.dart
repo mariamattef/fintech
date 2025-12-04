@@ -1,13 +1,12 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
-import 'package:fintech/features/onboarding/presentation/screens/onboarding_screen.dart';
-import 'package:fintech/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Splash extends StatefulWidget {
-  static const String routeName = '/splash';
+  static const String routeName = RoutesContants.splash;
   const Splash({super.key});
 
   @override
@@ -27,11 +26,9 @@ class _SplashState extends State<Splash> {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
-          Navigator.of(context).pushReplacementNamed(Root.routeName);
+          Navigator.of(context).pushReplacementNamed(RoutesContants.root);
         } else if (state is AuthInitial || state is AuthFailure) {
-          Navigator.of(
-            context,
-          ).pushReplacementNamed(OnBoardingScreen.routeName);
+          Navigator.of(context).pushReplacementNamed(RoutesContants.onboarding);
         }
       },
       child: Scaffold(

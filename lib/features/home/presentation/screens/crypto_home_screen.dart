@@ -1,15 +1,15 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/home/presentation/widgets/balance_cart_widget.dart';
 import 'package:fintech/features/home/presentation/widgets/header_widget.dart';
 import 'package:fintech/features/home/presentation/widgets/stat_cart_widget.dart';
 import 'package:fintech/features/home/presentation/widgets/text_header_home.dart';
 import 'package:fintech/features/home/presentation/widgets/trending_section_header.dart';
-import 'package:fintech/features/market/presentation/screens/coin_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CryptoHomeScreen extends StatefulWidget {
-  static const String routeName = '/crypto-home';
+  static const String routeName = RoutesContants.home;
 
   const CryptoHomeScreen({super.key});
 
@@ -218,7 +218,7 @@ class TrendingCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, CoinDetailsScreen.routeName);
+        Navigator.pushNamed(context, RoutesContants.coinDetails);
       },
       child: Container(
         width: 190.w,

@@ -1,9 +1,7 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
-import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
-import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
 import 'package:fintech/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class FormSignUpWidget extends StatefulWidget {
@@ -75,40 +73,53 @@ class _FormSignUpWidgetState extends State<FormSignUpWidget> {
             controller: _phoneController,
           ),
           Gap(30),
-          BlocConsumer<AuthCubit, AuthState>(
-            listener: (context, state) {
-              if (state is AuthSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Account created successfully')),
-                );
-                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-              } else if (state is AuthFailure) {
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text(state.message)));
-              }
-            },
-            builder: (context, state) {
-              if (state is AuthLoading) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              return CustomElevationBottom(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    context.read<AuthCubit>().signUp(
-                      firstName: _fNameController.text,
-                      lastName: _lNameController.text,
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                      confirmPassword: _confirmPassController.text,
-                      phone: _phoneController.text,
-                    );
-                  }
-                },
-                text: 'Sign Up',
+          CustomElevationBottom(
+            text: "Sign",
+            onPressed: () {
+              Navigator.pushReplacementNamed(
+                context,
+                RoutesContants.setFingurePrint,
               );
             },
           ),
+
+          // BlocConsumer<AuthCubit, AuthState>(
+          //   listener: (context, state) {
+          //     if (state is AuthSuccess) {
+          //       ScaffoldMessenger.of(context).showSnackBar(
+          //         const SnackBar(content: Text('Account created successfully')),
+          //       );
+          //     Navigator.pushReplacementNamed(
+          //       context,
+          //       RoutesContants.setFingurePrint,
+          //     );
+          //     } else if (state is AuthFailure) {
+          //       ScaffoldMessenger.of(
+          //         context,
+          //       ).showSnackBar(SnackBar(content: Text(state.message)));
+          //     }
+          //   },
+          //   builder: (context, state) {
+          //     if (state is AuthLoading) {
+          //       return const Center(child: CircularProgressIndicator());
+          //     }
+          //     return CustomElevationBottom(
+          //       onPressed: () {
+          //         if (_formKey.currentState!.validate()) {
+          //           context.read<AuthCubit>().signUp(
+          //             firstName: _fNameController.text,
+          //             lastName: _lNameController.text,
+          //             email: _emailController.text,
+          //             password: _passwordController.text,
+          //             confirmPassword: _confirmPassController.text,
+          //             phone: _phoneController.text,
+          //           );
+          //         }
+          //       },
+          //       text: 'Sign Up',
+          //     );
+          //   },
+          // ),
           Gap(10),
         ],
       ),

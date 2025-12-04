@@ -1,8 +1,9 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:flutter/material.dart';
 
 
 class BuyCryptoScreen extends StatefulWidget {
-  static const String routeName = '/buy-crypto';
+    static const String routeName = RoutesContants.buyCrypto;
 
   const BuyCryptoScreen({super.key});
 

@@ -1,13 +1,13 @@
-import 'package:fintech/core/config/app_text_style.dart';
-import 'package:fintech/features/auth/presentation/screens/set_faceid_verified.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/auth/presentation/biometrics_service.dart';
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class SetFaceidScreen extends StatelessWidget {
-  static const String routeName = '/setfaceIdScreen';
-  const SetFaceidScreen({super.key});
+class FaceIdScreen extends StatelessWidget {
+    static const String routeName = RoutesContants.faceId;
+  const FaceIdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +29,18 @@ class SetFaceidScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Gap(100),
-                  Text(
-                    'Place your face ID in face\nscanner until the icon completely',
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.lMedium.copyWith(color: Colors.white),
-                  ),
                   Spacer(flex: 2),
-                  FaceIdWidget(
-                    stringImg: 'assets/svg/icons/face id.svg',
-                    onTap: () {
-                      Navigator.pushNamed(context, SetFaceidVerified.routeName);
-                    },
+                  GestureDetector(
+                    onTap: () => authFaceId(context),
+                    child: FaceIdWidget(
+                      stringImg: 'assets/svg/icons/face id.svg',
+                      onTap: () => authFaceId(context),
+                    ),
                   ),
                   Spacer(),
                   Text(
                     textAlign: TextAlign.center,
-                    'Once your scanning is complete, you will be able to sign in by using face ID',
+                    'Please wait until your scanning is\ncomplete',
                     style: TextStyle(
                       fontSize: 18,
                       color: Color.fromRGBO(255, 255, 255, 1),

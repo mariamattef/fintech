@@ -1,13 +1,12 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
-import 'package:fintech/features/auth/presentation/screens/register_screen.dart';
 import 'package:fintech/features/auth/presentation/widgets/custom_divider.dart';
 import 'package:fintech/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:fintech/features/auth/presentation/widgets/fingure_or_faceid_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/remember_me_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_bottom_auth_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
-import 'package:fintech/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String routeName = '/login';
+  static const String routeName = RoutesContants.login;
   const LoginScreen({super.key});
 
   @override
@@ -91,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                   Navigator.pushReplacementNamed(
                                     context,
-                                    Root.routeName,
+                                    RoutesContants.root,
                                   );
                                 } else if (state is AuthFailure) {
                                   ScaffoldMessenger.of(context)
@@ -133,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () {
                                     Navigator.pushNamed(
                                       context,
-                                      RegisterScreen.routename,
+                                      RoutesContants.register,
                                     );
                                   },
                                 ),
