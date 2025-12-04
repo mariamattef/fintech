@@ -1,14 +1,16 @@
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
+import 'package:fintech/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class FingureVerifiedScreen extends StatelessWidget {
-  static const String routeName = '/fingureVerifiedScreen';
+    static const String routeName = RoutesContants.fingureVerified;
   const FingureVerifiedScreen({super.key});
 
   @override
@@ -44,7 +46,13 @@ class FingureVerifiedScreen extends StatelessWidget {
                   const Spacer(),
                   CustomElevationBottom(
                     text: 'Continue To Home',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RoutesContants.root,
+                        (route) => false,
+                      );
+                    },
                   ),
                   const Gap(20),
                 ],

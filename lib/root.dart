@@ -1,4 +1,5 @@
 import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Root extends StatefulWidget {
-  static const String routeName = '/root';
+  static const String routeName = RoutesContants.root;
   const Root({super.key});
 
   @override
@@ -47,6 +48,7 @@ class _RootState extends State<Root> {
         child: SizedBox(
           height: 87.h,
           child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             currentIndex: _currentIndex,
             onTap: (index) {
               _currentIndex = index;
@@ -58,9 +60,10 @@ class _RootState extends State<Root> {
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 6.0.h),
                   child: SvgPicture.asset(AppAssets.home),
+
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     AppAssets.homeFilled,
                     colorFilter: ColorFilter.mode(
@@ -77,9 +80,10 @@ class _RootState extends State<Root> {
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 6.0.h),
                   child: SvgPicture.asset(AppAssets.chart),
+
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     AppAssets.chartFilled,
                     colorFilter: ColorFilter.mode(
@@ -96,9 +100,10 @@ class _RootState extends State<Root> {
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 6.0.h),
                   child: SvgPicture.asset(AppAssets.briefcase),
+
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     AppAssets.briefcaseFilled,
                     colorFilter: ColorFilter.mode(
@@ -117,7 +122,7 @@ class _RootState extends State<Root> {
                   child: SvgPicture.asset(AppAssets.setting),
                 ),
                 activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
                     AppAssets.settingFilled,
                     colorFilter: ColorFilter.mode(

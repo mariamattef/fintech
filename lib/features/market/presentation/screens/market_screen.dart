@@ -1,3 +1,4 @@
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/market/presentation/widgets/crypto_list_item.dart';
 import 'package:fintech/features/market/presentation/widgets/custom_content_appbar.dart';
 import 'package:fintech/features/market/presentation/widgets/search_bar_widget.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class MarketScreen extends StatefulWidget {
-  static const String routeName = '/market';
+  static const String routeName = RoutesContants.market;
 
   const MarketScreen({super.key});
 

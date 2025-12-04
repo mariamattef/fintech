@@ -1,5 +1,5 @@
 import 'package:fintech/core/config/app_text_style.dart';
-import 'package:fintech/features/home/buy_crypto_screen.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/market/presentation/widgets/chart_cart_widget.dart';
 import 'package:fintech/features/market/presentation/widgets/coin_header_widget.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CoinDetailsScreen extends StatefulWidget {
-  static const String routeName = '/coin-details';
-
+  static const String routeName = RoutesContants.coinDetails;
   const CoinDetailsScreen({super.key});
 
   @override
@@ -239,7 +238,7 @@ class BottomButtonsCoinsDetails extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, BuyCryptoScreen.routeName);
+                Navigator.pushNamed(context, RoutesContants.buyCrypto);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary,

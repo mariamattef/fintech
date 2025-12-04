@@ -1,7 +1,11 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_outlines_button.dart';
+<<<<<<< HEAD
 import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
 import 'package:fintech/features/auth/presentation/screens/register_screen.dart';
+=======
+>>>>>>> auth
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -17,8 +21,13 @@ class ButtonsInBoarding extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () {
+<<<<<<< HEAD
               // Navigator.pushNamed(context, SettingsScreen.routeName);
               Navigator.pushNamed(context, LoginScreen.routeName);
+=======
+              // Navigator.pushNamed(context, RoutesContants.settings);
+              Navigator.pushNamed(context, RoutesContants.login);
+>>>>>>> auth
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(double.infinity.r, 55),
@@ -32,7 +41,11 @@ class ButtonsInBoarding extends StatelessWidget {
           CustomOutlinedButton(
             text: 'Register',
             onPressed: () {
+<<<<<<< HEAD
               Navigator.pushNamed(context, RegisterScreen.routeName);
+=======
+              Navigator.pushNamed(context, RoutesContants.register);
+>>>>>>> auth
             },
           ),
           Gap(60),

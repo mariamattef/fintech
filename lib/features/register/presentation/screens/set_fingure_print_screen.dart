@@ -1,17 +1,13 @@
 import 'package:fintech/core/config/assets.dart';
-import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/core/widgets/custom_outlines_button.dart';
-import 'package:fintech/features/auth/presentation/screens/set_faceid_screen.dart';
-import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
-import 'package:fintech/features/auth/presentation/widgets/fingure_print_widget.dart';
+import 'package:fintech/features/auth/presentation/widgets/fingure_Print_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
 
-class SetFaceidOrSkipScreen extends StatelessWidget {
-  static const String routeName = '/setDaceidOrSkipScreen';
-  const SetFaceidOrSkipScreen({super.key});
+class SetFingurePrintScreen extends StatelessWidget {
+  static const String routeName = RoutesContants.setFingurePrint;
+  const SetFingurePrintScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,36 +24,37 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: FingurePrintWidget(
-                      title: 'Set Your Face ID',
+                      title: 'Set Your Finger Print',
                       subtitle:
-                          'Add your face ID to make your account more secure.',
-                      child: FaceIdWidget(
-                        stringImg: AppAssets.faceId,
-                        onTap: () {},
+                          'Add a fingerprint to make your account more secure.',
+                      text:
+                          'Place your finger in fingerprint\nsensor until the icon completely',
+                      child: SvgPicture.asset(
+                        AppAssets.fingurePrint,
+                        height: 140,
+                        width: 120,
+                        fit: BoxFit.contain,
+
                       ),
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       CustomOutlinedButton(
                         text: 'Skip',
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(
+                            context,
+                            RoutesContants.setFaceid,
+                          );
+
+                          Navigator.pushNamed(
+                            context,
+                            RoutesContants.setFaceidOrSkip,
+                          );
                         },
-                        width: 155.w,
-                      ),
-                      const Gap(20),
-                      Expanded(
-                        child: CustomElevationBottom(
-                          text: 'Contenue',
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              SetFaceidScreen.routeName,
-                            );
-                          },
-                        ),
+                        width: 140.w,
                       ),
                     ],
                   ),

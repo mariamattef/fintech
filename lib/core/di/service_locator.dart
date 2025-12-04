@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:fintech/core/storage/secure_storage_service.dart';
+import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -6,6 +9,11 @@ final sl = GetIt.instance;
 void setupServiceLocator() {
   // Dio
   sl.registerLazySingleton(() => Dio());
+
+  // Secure Storage
+  sl.registerLazySingleton(() => const FlutterSecureStorage());
+  sl.registerLazySingleton(() => SecureStorageService(sl()));
+
   // sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: sl()));
 
   // // network info
@@ -14,10 +22,9 @@ void setupServiceLocator() {
   //   () => InternetServiceImpl(internetConnectionChecker: sl()),
   // );
 
-  // // Auth Feature
-  // // Cubit
-  // sl.registerFactory(
-  //     () => AuthCubit(authUsecase: sl(), verifyOtpUseCase: sl(), logoutUseCase: sl()));
+  // Auth Feature
+  // Cubit
+  sl.registerLazySingleton(() => AuthCubit(sl()));
 
   // // Use Cases
   // sl.registerLazySingleton(() => AuthUsecase(userRepository: sl()));
