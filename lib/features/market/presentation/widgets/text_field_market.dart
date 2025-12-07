@@ -25,11 +25,11 @@ class TextFieldMarket extends StatelessWidget {
               // bottom: 12.r,
               // top: 1.r,
             ),
-            child: SvgPicture.asset('assets/svg/icons/search-normal.svg'),
+            child: SvgPicture.asset(Assets.search),
           ),
           suffixIcon: Padding(
             padding: EdgeInsets.all(12.0.r),
-            child: SvgPicture.asset('assets/svg/icons/setting-5.svg'),
+            child: SvgPicture.asset(Assets.setting5),
           ),
           filled: true,
           fillColor: Colors.white,
