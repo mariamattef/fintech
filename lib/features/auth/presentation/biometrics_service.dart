@@ -1,5 +1,6 @@
-import 'package:fintech/features/auth/presentation/screens/faceid_verified_screen.dart';
-import 'package:fintech/features/auth/presentation/screens/fingure_verified_screen.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/login/presentation/screens/faceid_verified_screen.dart';
+import 'package:fintech/features/login/presentation/screens/fingure_verified_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,7 +46,7 @@ Future<void> authFingerprint(BuildContext context) async {
     );
 
     if (didAuthenticate) {
-      Navigator.pushNamed(context, FingureVerifiedScreen.routeName);
+      Navigator.pushNamed(context, RoutesContants.fingureVerified);
     } else {
       Fluttertoast.showToast(msg: "Authentication failed");
     }
@@ -93,7 +94,7 @@ Future<void> authFaceId(BuildContext context) async {
     );
 
     if (didAuthenticate) {
-      Navigator.pushNamed(context, FaceidVerifiedScreen.routeName);
+      Navigator.pushNamed(context, RoutesContants.faceidVerified);
     } else {
       Fluttertoast.showToast(msg: "Authentication failed");
     }

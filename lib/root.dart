@@ -1,3 +1,5 @@
+import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
@@ -7,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Root extends StatefulWidget {
-  static const String routeName = '/root';
+  static const String routeName = RoutesContants.root;
   const Root({super.key});
 
   @override
@@ -21,10 +23,10 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     pages = [
-      CryptoHomeScreen(),
-      MarketScreen(),
-      PortfolioScreen(),
-      SettingsScreen(),
+      const CryptoHomeScreen(),
+      const MarketScreen(),
+      const PortfolioScreen(),
+      const SettingsScreen(),
     ];
     controller = PageController(initialPage: _currentIndex);
     super.initState();
@@ -56,13 +58,14 @@ class _RootState extends State<Root> {
             items: [
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset('assets/svg/icons/home.svg'),
+                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  child: SvgPicture.asset(AppAssets.home),
+
                 ),
                 activeIcon: Padding(
                   padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
-                    'assets/svg/icons/home_filled.svg',
+                    AppAssets.homeFilled,
                     colorFilter: ColorFilter.mode(
                       Theme.of(
                         context,
@@ -75,13 +78,14 @@ class _RootState extends State<Root> {
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset('assets/svg/icons/chart.svg'),
+                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  child: SvgPicture.asset(AppAssets.chart),
+
                 ),
                 activeIcon: Padding(
                   padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
-                    'assets/svg/icons/chart_filled.svg',
+                    AppAssets.chartFilled,
                     colorFilter: ColorFilter.mode(
                       Theme.of(
                         context,
@@ -94,13 +98,14 @@ class _RootState extends State<Root> {
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset('assets/svg/icons/briefcase.svg'),
+                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  child: SvgPicture.asset(AppAssets.briefcase),
+
                 ),
                 activeIcon: Padding(
                   padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
-                    'assets/svg/icons/briefcase_filled.svg',
+                    AppAssets.briefcaseFilled,
                     colorFilter: ColorFilter.mode(
                       Theme.of(
                         context,
@@ -113,13 +118,13 @@ class _RootState extends State<Root> {
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset('assets/svg/icons/setting.svg'),
+                  padding: EdgeInsets.only(bottom: 6.0.h),
+                  child: SvgPicture.asset(AppAssets.setting),
                 ),
                 activeIcon: Padding(
                   padding: EdgeInsets.only(bottom: 4.0.h),
                   child: SvgPicture.asset(
-                    'assets/svg/icons/setting_filled.svg',
+                    AppAssets.settingFilled,
                     colorFilter: ColorFilter.mode(
                       Theme.of(
                         context,

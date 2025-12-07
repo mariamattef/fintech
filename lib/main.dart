@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/config/cubit/theme_cubit.dart';
 import 'package:fintech/core/config/theme_data/theme_data_dark.dart';
 import 'package:fintech/core/config/theme_data/theme_data_light.dart';
@@ -30,7 +31,7 @@ Future<void> main() async {
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
-      path: 'assets/translations',
+      path: AppAssets.translationsPath,
       fallbackLocale: const Locale('en'),
       child: const MainApp(),
     ),

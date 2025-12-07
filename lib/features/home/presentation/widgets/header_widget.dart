@@ -8,6 +8,33 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
+    return Row(
+      children: [
+        CircleAvatar(radius: 22, backgroundImage: NetworkImage(img)),
+        const SizedBox(width: 12),
+        Text(
+          "Hi, $name  👋🏾",
+          style: AppTextStyles.headingH6.copyWith(color: Color(0xFF1F1F1F)),
+        ),
+        const Spacer(),
+        IconButton(
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut();
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              LoginScreen.routeName,
+              (route) => false,
+            );
+          },
+          icon: const Icon(
+            Icons.notifications_outlined,
+            color: Color(0xFF1A2C4F),
+            size: 28,
+          ),
+        ),
+      ],
+=======
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         if (state is AuthSuccess) {
@@ -48,6 +75,7 @@ class HeaderWidget extends StatelessWidget {
         }
         return const SizedBox.shrink();
       },
+>>>>>>> auth
     );
   }
 }

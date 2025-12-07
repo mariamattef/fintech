@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/features/auth/presentation/screens/form_signup_widget.dart';
 import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
+=======
+import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/auth/presentation/widgets/form_signup_widget.dart';
+>>>>>>> auth
 import 'package:fintech/features/auth/presentation/widgets/text_bottom_auth_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +14,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class RegisterScreen extends StatelessWidget {
-  static const String routename = '/register';
+<<<<<<< HEAD
+  static const String routeName = '/register';
+=======
+  static const String routeName = RoutesContants.register;
+>>>>>>> auth
   const RegisterScreen({super.key});
 
   @override
@@ -17,7 +27,6 @@ class RegisterScreen extends StatelessWidget {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-
       child: Scaffold(
         body: Stack(
           children: [
@@ -29,23 +38,33 @@ class RegisterScreen extends StatelessWidget {
                   padding: EdgeInsets.all(20.r),
                   child: Column(
                     children: [
-                      Gap(100),
-                      TextHeader(
+                      const Gap(100),
+                      const TextHeader(
                         title: 'Create Your Account',
                         subtitle: 'Sign up to enjoy the best managing ',
                         subtile2: '\nexperience!',
                       ),
+<<<<<<< HEAD
+                      const Gap(50),
+                      FormSignUpWidget(),
+                      const Gap(20),
+=======
                       Gap(50),
                       FormSignUpWidget(),
                       Gap(20),
+>>>>>>> auth
                       TextBottomAuthWidget(
                         text: 'Don’t have an account?',
                         text2: 'Login',
                         onPressed: () {
+<<<<<<< HEAD
                           Navigator.pushNamed(context, LoginScreen.routeName);
+=======
+                          Navigator.pushNamed(context, RoutesContants.login);
+>>>>>>> auth
                         },
                       ),
-                      Gap(10),
+                      const Gap(10),
                     ],
                   ),
                 ),
@@ -55,7 +74,7 @@ class RegisterScreen extends StatelessWidget {
               top: 0,
               right: 0,
               child: SvgPicture.asset(
-                'assets/svg/icons/Ellipse 52.svg',
+                AppAssets.ellipse52,
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).brightness == Brightness.dark
                       ? Colors.white

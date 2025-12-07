@@ -1,4 +1,6 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
 import 'package:fintech/root.dart';
@@ -8,7 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class FingureVerifiedScreen extends StatelessWidget {
-  static const String routeName = '/fingureVerifiedScreen';
+    static const String routeName = RoutesContants.fingureVerified;
   const FingureVerifiedScreen({super.key});
 
   @override
@@ -25,35 +27,34 @@ class FingureVerifiedScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Spacer(),
-                  CircleAvatar(
+                  const Spacer(),
+                  const CircleAvatar(
                     radius: 65,
                     child: Icon(Icons.check_rounded, size: 110),
                   ),
-                  Spacer(),
-                  TextHeader(
+                  const Spacer(),
+                  const TextHeader(
                     title: 'You’re verified',
                     subtitle: '',
                     subtile2: '',
                   ),
-
                   Text(
                     'You have been verified your \ninformation completely. Let’s make transactions!',
                     style: AppTextStyles.lRegular,
                     textAlign: TextAlign.center,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   CustomElevationBottom(
                     text: 'Continue To Home',
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
-                        Root.routeName,
+                        RoutesContants.root,
                         (route) => false,
                       );
                     },
                   ),
-                  Gap(20),
+                  const Gap(20),
                 ],
               ),
             ),
@@ -62,7 +63,7 @@ class FingureVerifiedScreen extends StatelessWidget {
             top: 0,
             right: 0,
             child: SvgPicture.asset(
-              'assets/svg/icons/Ellipse 52.svg',
+              AppAssets.ellipse52,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).brightness == Brightness.dark
                     ? Colors.white

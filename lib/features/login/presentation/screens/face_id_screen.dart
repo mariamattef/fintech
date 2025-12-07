@@ -1,11 +1,17 @@
+<<<<<<< HEAD:lib/features/auth/presentation/screens/face_id_screen.dart
+import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/features/auth/presentation/screens/faceid_verified_screen.dart';
+=======
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/auth/presentation/biometrics_service.dart';
+>>>>>>> auth:lib/features/login/presentation/screens/face_id_screen.dart
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class FaceIdScreen extends StatelessWidget {
-  static const String routeName = '/faceIdScreen';
+    static const String routeName = RoutesContants.faceId;
   const FaceIdScreen({super.key});
 
   @override
@@ -16,7 +22,7 @@ class FaceIdScreen extends StatelessWidget {
           Positioned.fill(
             child: Opacity(
               opacity: 0.9,
-              child: Image.asset('assets/images/bg.png', fit: BoxFit.cover),
+              child: Image.asset(AppAssets.bg, fit: BoxFit.cover),
             ),
           ),
           SizedBox(
@@ -29,20 +35,14 @@ class FaceIdScreen extends StatelessWidget {
                 children: [
                   Gap(100),
                   Spacer(flex: 2),
-                  GestureDetector(
-                    onTap: () => authFaceId(context),
-                    child: FaceIdWidget(
-                      stringImg: 'assets/svg/icons/face id.svg',
-                      onTap: () => authFaceId(context),
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    textAlign: TextAlign.center,
-                    'Please wait until your scanning is\ncomplete',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color.fromRGBO(255, 255, 255, 1),
+                  FaceIdWidget(
+                    stringImg: AppAssets.faceId,
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        FaceidVerifiedScreen.routeName,
+                      );
+                    },
                     ),
                   ),
                   Spacer(),

@@ -1,6 +1,8 @@
+
+import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/core/widgets/custom_outlines_button.dart';
-import 'package:fintech/features/auth/presentation/screens/set_faceid_screen.dart';
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:fintech/features/auth/presentation/widgets/fingure_print_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class SetFaceidOrSkipScreen extends StatelessWidget {
-  static const String routeName = '/setDaceidOrSkipScreen';
+  static const String routeName = RoutesContants.setFaceidOrSkip;
   const SetFaceidOrSkipScreen({super.key});
 
   @override
@@ -31,8 +33,9 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                       subtitle:
                           'Add your face ID to make your account more secure.',
                       child: FaceIdWidget(
-                        stringImg: 'assets/svg/icons/face id.svg',
+                        stringImg: AppAssets.faceId,
                         onTap: () {},
+
                       ),
                     ),
                   ),
@@ -42,18 +45,22 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                       CustomOutlinedButton(
                         text: 'Skip',
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RoutesContants.root,
+                            (route) => false,
+                          );
                         },
                         width: 155.w,
                       ),
-                      Gap(20),
+                      const Gap(20),
                       Expanded(
                         child: CustomElevationBottom(
                           text: 'Contenue',
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
-                              SetFaceidScreen.routeName,
+                              RoutesContants.setFaceid,
                             );
                           },
                         ),
@@ -68,7 +75,7 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
             top: 0,
             right: 0,
             child: SvgPicture.asset(
-              'assets/svg/icons/Ellipse 52.svg',
+              AppAssets.ellipse52,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
