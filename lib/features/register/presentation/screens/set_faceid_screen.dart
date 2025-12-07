@@ -1,6 +1,9 @@
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/config/assets.dart';
-import 'package:fintech/features/auth/presentation/screens/set_faceid_verified.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class SetFaceidScreen extends StatelessWidget {
@@ -46,7 +49,7 @@ class SetFaceidScreen extends StatelessWidget {
                     },
                   ),
                   const Spacer(),
-                  const Text(
+                   Text(
                     textAlign: TextAlign.center,
                     'Once your scanning is complete, you will be able to sign in by using face ID',
                     style: TextStyle(

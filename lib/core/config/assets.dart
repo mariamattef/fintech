@@ -22,7 +22,7 @@ class AppAssets {
   static const String ellipse50 = 'assets/svg/icons/Ellipse 50.svg';
 
   static const String search = 'assets/svg/icons/search-normal.svg';
-  static const String setting5 = 'assets/svg/icons/setting-5.svg';
+  // static const String setting5 = 'assets/svg/icons/setting-5.svg';
 
   static const String ellipseR3 = 'assets/svg/icons/EllipseR3.svg';
   static const String ellipseR2 = 'assets/svg/icons/EllipseR2.svg';

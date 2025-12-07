@@ -1,4 +1,5 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/core/config/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,11 +26,11 @@ class TextFieldMarket extends StatelessWidget {
               // bottom: 12.r,
               // top: 1.r,
             ),
-            child: SvgPicture.asset(Assets.search),
+            child: SvgPicture.asset(AppAssets.search),
           ),
           suffixIcon: Padding(
             padding: EdgeInsets.all(12.0.r),
-            child: SvgPicture.asset(Assets.setting5),
+            child: SvgPicture.asset(AppAssets.setting5),
           ),
           filled: true,
           fillColor: Colors.white,

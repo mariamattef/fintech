@@ -1,12 +1,9 @@
-import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
-<<<<<<< HEAD:lib/features/auth/presentation/screens/form_signup_widget.dart
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
-=======
->>>>>>> auth:lib/features/auth/presentation/widgets/form_signup_widget.dart
 import 'package:fintech/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class FormSignUpWidget extends StatefulWidget {
@@ -78,7 +75,6 @@ class _FormSignUpWidgetState extends State<FormSignUpWidget> {
             controller: _phoneController,
           ),
           Gap(30),
-<<<<<<< HEAD:lib/features/auth/presentation/screens/form_signup_widget.dart
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is AuthSuccess) {
@@ -110,14 +106,6 @@ class _FormSignUpWidgetState extends State<FormSignUpWidget> {
                   }
                 },
                 text: 'Sign Up',
-=======
-          CustomElevationBottom(
-            text: "Sign",
-            onPressed: () {
-              Navigator.pushReplacementNamed(
-                context,
-                RoutesContants.setFingurePrint,
->>>>>>> auth:lib/features/auth/presentation/widgets/form_signup_widget.dart
               );
             },
           ),
