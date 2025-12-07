@@ -83,7 +83,7 @@ class BalanceCardWidget extends StatelessWidget {
           right: 0,
           top: 0,
           child: SvgPicture.asset(
-            "assets/svg/icons/EllipseR3.svg",
+           AppAssets.ellipseR3,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
                   ? Color.fromRGBO(13, 13, 13, 0.2)
@@ -96,7 +96,7 @@ class BalanceCardWidget extends StatelessWidget {
           right: 0,
           top: 0,
           child: SvgPicture.asset(
-            "assets/svg/icons/EllipseR2.svg",
+            AppAssets.ellipseR2,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
                   ? Color.fromRGBO(13, 13, 13, 0.3)
@@ -109,7 +109,7 @@ class BalanceCardWidget extends StatelessWidget {
           right: 0,
           top: 0,
           child: SvgPicture.asset(
-            "assets/svg/icons/EllipseR1.svg",
+            AppAssets.ellipseR1,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
                   ? Color.fromRGBO(13, 13, 13, 0.5)
@@ -122,7 +122,7 @@ class BalanceCardWidget extends StatelessWidget {
           left: 0,
           bottom: 0,
           child: SvgPicture.asset(
-            "assets/svg/icons/EllipseL3.svg",
+            AppAssets.ellipseL3,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
                   ? Color.fromRGBO(13, 13, 13, 0.2)
@@ -135,7 +135,7 @@ class BalanceCardWidget extends StatelessWidget {
           left: 0,
           bottom: 0,
           child: SvgPicture.asset(
-            "assets/svg/icons/EllipseL2.svg",
+            AppAssets.ellipseL2,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
                   ? Color.fromRGBO(13, 13, 13, 0.3)
@@ -149,7 +149,7 @@ class BalanceCardWidget extends StatelessWidget {
           left: -1,
           bottom: 0,
           child: SvgPicture.asset(
-            "assets/svg/icons/EllipseL1.svg",
+            AppAssets.ellipseL1,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
                   ? Color.fromRGBO(13, 13, 13, 0.5)
