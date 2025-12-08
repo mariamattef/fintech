@@ -214,6 +214,19 @@
   "verificationFailed": "Verification failed",
   "passwordResetSu": "Password reset successful!",
   "verificationAccountCode": "We've sent you a code to verify your account. Please enter the code below.",
-  "Crypto Market":"Crypto Market"
+  "Crypto Market":"Crypto Market",
+  "marketOverview": "Market Overview",
+  "trendingNow": "Trending Now",
+  "topGainers": "Top Gainers",
+  "marketCap": "Market Cap",
+  "24hVolume": "24h Volume",
+  "activeCoins": "Active Coins",
+  "btcDominance": "BTC Dominance",
+  "ethereum": "Ethereum",
+  "eth": "ETH",
+  "binanceCoin": "Binance Coin",
+  "bns": "BNS",
+  "litecoin": "Litecoin",
+  "ltc": "LTC"
 
 }

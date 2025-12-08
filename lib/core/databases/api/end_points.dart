@@ -1,6 +1,7 @@
 class EndPoints {
-  static const String baserUrl = "https://api.thecatapi.com/v1";
-  static const String breeds = "/breeds?limit=2&page=0";
+  static const String baserUrl = "https://api.coingecko.com/api/v3/";
+  static const String global = "global";
+  static const String trending = "search/trending";
   // static const String getReviews = "/api/reviews/{productId}";
 }
 

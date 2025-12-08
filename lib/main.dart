@@ -8,6 +8,7 @@ import 'package:fintech/core/di/service_locator.dart';
 import 'package:fintech/core/routting/routes.dart';
 import 'package:fintech/core/splash.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
+import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
 import 'package:fintech/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -50,6 +51,7 @@ class MainApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => ThemeCubit()),
           BlocProvider(create: (context) => sl<AuthCubit>()),
+          BlocProvider(create: (context) => sl<MarketOverviewCubit>()),
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, newMode) {
