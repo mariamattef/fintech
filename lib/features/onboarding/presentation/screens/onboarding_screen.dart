@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import 'package:fintech/core/config/assets.dart';
+=======
+import 'package:fintech/core/routting/routes_contants.dart';
+>>>>>>> auth
 import 'package:fintech/features/onboarding/presentation/widgets/butttons_inboarding.dart';
 import 'package:fintech/features/onboarding/presentation/widgets/dots_inboarding_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class OnBoardingScreen extends StatefulWidget {
+<<<<<<< HEAD
   static const String routeName = '/onBoarding';
+=======
+    static const String routeName = RoutesContants.onboarding;
+>>>>>>> auth
   const OnBoardingScreen({super.key});
 
   @override

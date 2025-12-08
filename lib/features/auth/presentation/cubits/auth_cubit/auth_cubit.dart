@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
+import 'package:fintech/core/storage/secure_storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +9,9 @@ import 'package:meta/meta.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit(this._secureStorageService) : super(AuthInitial());
+
+  final SecureStorageService _secureStorageService;
 
   Future<void> signUp({
     required String firstName,
@@ -42,8 +44,13 @@ class AuthCubit extends Cubit<AuthState> {
         //   'email': email,
         //   'phone': phone,
         // });
-
-        emit(AuthSuccess(user));
+        final idToken = await user.getIdToken();
+        if (idToken != null) {
+          await _secureStorageService.saveToken(idToken);
+          emit(AuthSuccess(user));
+        } else {
+          emit(AuthFailure('Failed to retrieve user token after sign up.'));
+        }
       } else {
         emit(AuthFailure('User creation failed, please try again.'));
       }
@@ -67,11 +74,19 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> login({required String email, required String password}) async {
     emit(AuthLoading());
     try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       final user = credential.user;
       if (user != null) {
-        emit(AuthSuccess(user));
+        final idToken = await user.getIdToken();
+        if (idToken != null) {
+          await _secureStorageService.saveToken(idToken);
+          emit(AuthSuccess(user));
+        } else {
+          emit(AuthFailure('Failed to retrieve user token.'));
+        }
       } else {
         emit(AuthFailure('Login failed, please try again.'));
       }
@@ -86,9 +101,7 @@ class AuthCubit extends Cubit<AuthState> {
       } else if (e.code == 'invalid-credential') {
         emit(AuthFailure('Invalid credentials, please try again.'));
       } else {
-        emit(
-          AuthFailure('An error occurred during login. Please try again.'),
-        );
+        emit(AuthFailure('An error occurred during login. Please try again.'));
       }
     } catch (e) {
       log('Login Exception: $e');
@@ -96,5 +109,40 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> logout() async {
+    emit(AuthLoading());
+    try {
+      await FirebaseAuth.instance.signOut();
+      await _secureStorageService.deleteToken();
+      emit(AuthInitial());
+    } catch (e) {
+      log('Logout Exception: $e');
+      emit(AuthFailure('An unexpected error occurred during logout.'));
+    }
+  }
 
+  Future<void> checkAuthStatus() async {
+    emit(AuthLoading());
+    try {
+      final token = await _secureStorageService.readToken();
+      if (token != null) {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          log('User found from previous session.');
+          emit(AuthSuccess(user));
+        } else {
+          log('Token found but no user, clearing token.');
+          await _secureStorageService.deleteToken();
+          emit(AuthInitial());
+        }
+      } else {
+        log('No token found, user is not logged in.');
+        emit(AuthInitial());
+      }
+    } catch (e) {
+      log('CheckAuthStatus Exception: $e');
+      await _secureStorageService.deleteToken();
+      emit(AuthInitial());
+    }
+  }
 }

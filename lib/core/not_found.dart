@@ -1,7 +1,9 @@
 import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:flutter/material.dart';
 
 class NotFound extends StatelessWidget {
+    static const String routeName = RoutesContants.notFound;
   const NotFound({super.key});
 
   @override

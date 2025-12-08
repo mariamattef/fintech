@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/cubit/theme_cubit.dart';
 import 'package:fintech/core/config/extentions/theme_extentions.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
-  static const String routeName = '/settings';
+    static const String routeName = RoutesContants.settings;
   const SettingsScreen({super.key});
 
   @override

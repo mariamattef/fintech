@@ -1,5 +1,5 @@
 import 'package:fintech/core/config/app_text_style.dart';
-import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class FaceidVerifiedScreen extends StatelessWidget {
-  static const String routeName = '/faceidVerifiedScreen';
+  static const String routeName = RoutesContants.faceidVerified;
   const FaceidVerifiedScreen({super.key});
 
   @override
@@ -80,7 +80,13 @@ class FaceidVerifiedScreen extends StatelessWidget {
                   Spacer(),
                   CustomElevationBottom(
                     text: 'Continue To Home',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RoutesContants.root,
+                        (route) => false,
+                      );
+                    },
                   ),
                   Gap(20),
                 ],

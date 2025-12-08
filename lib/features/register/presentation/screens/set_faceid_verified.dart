@@ -1,13 +1,15 @@
 import 'package:fintech/core/config/app_color.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/routting/routes_contants.dart';
+
 import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class SetFaceidVerified extends StatelessWidget {
-  static const String routeName = '/setfaceidverified';
+  static const String routeName = RoutesContants.setFaceidVerified;
   const SetFaceidVerified({super.key});
 
   @override
@@ -40,6 +42,7 @@ class SetFaceidVerified extends StatelessWidget {
                   FaceIdWidget(
                     onTap: () {},
                     stringImg: AppAssets.component1,
+
                   ),
                   const Spacer(),
                   ElevatedButton(
@@ -50,7 +53,13 @@ class SetFaceidVerified extends StatelessWidget {
                         borderRadius: BorderRadius.circular(31.r),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RoutesContants.root,
+                        (route) => false,
+                      );
+                    },
                     child: Text(
                       "Continue",
                       style: AppTextStyles.lSemiBold.copyWith(

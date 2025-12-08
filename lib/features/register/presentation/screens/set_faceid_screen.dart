@@ -1,13 +1,10 @@
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/features/auth/presentation/screens/set_faceid_verified.dart';
-import 'package:fintech/features/auth/presentation/widgets/face_id_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class SetFaceidScreen extends StatelessWidget {
-  static const String routeName = '/setfaceIdScreen';
+  static const String routeName = RoutesContants.setFaceid;
   const SetFaceidScreen({super.key});
 
   @override
@@ -39,7 +36,13 @@ class SetFaceidScreen extends StatelessWidget {
                   FaceIdWidget(
                     stringImg: AppAssets.faceId,
                     onTap: () {
-                      Navigator.pushNamed(context, SetFaceidVerified.routeName);
+                      // if (didAuthenticate) {
+                      //   Navigator.pushNamed(
+                      //     context,
+                      //     SetFaceidVerified.routeName,
+                      //   );
+                      // }
+                      Navigator.pushNamed(context, RoutesContants.setFaceidVerified);
                     },
                   ),
                   const Spacer(),
@@ -47,7 +50,7 @@ class SetFaceidScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     'Once your scanning is complete, you will be able to sign in by using face ID',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       color: Color.fromRGBO(255, 255, 255, 1),
                     ),
                   ),
