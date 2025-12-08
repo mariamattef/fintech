@@ -13,7 +13,6 @@ class RoutesContants {
   static const String buyCrypto = '/buy-crypto';
   static const String fingurePrint = '/fingure-print';
   static const String setFingurePrintVerified = '/set-fingure-print-verified';
-
   static const String faceId = '/face-id';
   static const String fingureVerified = '/fingure-verified';
   static const String faceidVerified = '/faceid-verified';
