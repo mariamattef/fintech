@@ -6,7 +6,7 @@ class TrendingCubit extends Cubit<TrendingState> {
   final GetTrendingUsecase getTrendingUsecase;
   TrendingCubit(this.getTrendingUsecase) : super(TrendingInitial());
 
-  Future<void> fatchTrending() async {
+  Future<void> fetchTrending() async {
     emit(TrendingLoading());
 
     try {

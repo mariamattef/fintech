@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/di/service_locator.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topgainers_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
@@ -43,9 +45,8 @@ class _RootState extends State<Root> {
         BlocProvider(
           create: (context) => sl<MarketOverviewCubit>()..getOverview(),
         ),
-        BlocProvider(
-          create: (context) => sl<TrendingCubit>()..fatchTrending(),
-        ),
+        BlocProvider(create: (context) => sl<TrendingCubit>()..fetchTrending()),
+        BlocProvider(create: (context) => sl<TopgainersCubit>()..fetchTopGainers()),
       ],
       child: Scaffold(
         body: PageView(
@@ -86,7 +87,7 @@ class _RootState extends State<Root> {
                       ),
                     ),
                   ),
-                  label: 'Home',
+                  label: 'Home'.tr(),
                 ),
                 BottomNavigationBarItem(
                   icon: Padding(
@@ -105,7 +106,7 @@ class _RootState extends State<Root> {
                       ),
                     ),
                   ),
-                  label: 'Market',
+                  label: 'Market'.tr(),
                 ),
                 BottomNavigationBarItem(
                   icon: Padding(
@@ -124,7 +125,7 @@ class _RootState extends State<Root> {
                       ),
                     ),
                   ),
-                  label: 'Portfolio',
+                  label: 'Portfolio'.tr(),
                 ),
                 BottomNavigationBarItem(
                   icon: Padding(
@@ -143,7 +144,7 @@ class _RootState extends State<Root> {
                       ),
                     ),
                   ),
-                  label: 'Settings',
+                  label: 'Settings'.tr(),
                 ),
               ],
             ),

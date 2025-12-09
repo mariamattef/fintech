@@ -4,14 +4,19 @@ import 'package:fintech/core/databases/api/dio_consumer.dart';
 import 'package:fintech/core/storage/secure_storage_service.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:fintech/features/home/data/data_source/market_remote_data_source.dart';
+import 'package:fintech/features/home/data/data_source/topgainer_remote_data_source.dart';
 import 'package:fintech/features/home/data/data_source/trending_remote_data_source.dart';
 import 'package:fintech/features/home/data/repos/market_repository_impl.dart';
-import 'package:fintech/features/home/data/repos/trending_repository_imp.dart';
+import 'package:fintech/features/home/data/repos/topgainer_repository_impl.dart';
+import 'package:fintech/features/home/data/repos/trending_repository_impl.dart';
 import 'package:fintech/features/home/domain/repos/market_repository.dart';
+import 'package:fintech/features/home/domain/repos/topgainer_repository.dart';
 import 'package:fintech/features/home/domain/repos/trending_repository.dart';
 import 'package:fintech/features/home/domain/usecases/get_market_overview_usecase.dart';
+import 'package:fintech/features/home/domain/usecases/get_topgainer_usecase.dart';
 import 'package:fintech/features/home/domain/usecases/get_trending_usecase.dart';
 import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
+import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topgainers_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -46,8 +51,17 @@ void setupServiceLocator() {
     () => TrendingRemoteDataSourceImpl(sl()),
   );
   sl.registerLazySingleton<TrendingRepository>(
-    () => TrendingRepositoryImp(sl()),
+    () => TrendingRepositoryImpl(sl()),
   );
   sl.registerLazySingleton(() => GetTrendingUsecase(sl()));
   sl.registerLazySingleton(() => TrendingCubit(sl()));
+
+  sl.registerLazySingleton<TopgainerRemoteDataSource>(
+    () => TopgainerRemoteDataSourceImpl(sl()),
+  );
+  sl.registerLazySingleton<TopgainerRepository>(
+    () => TopgainerRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton(() => GetTopgainerUsecase(sl()));
+  sl.registerLazySingleton(() => TopgainersCubit(sl()));
 }

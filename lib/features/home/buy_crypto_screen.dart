@@ -1,9 +1,8 @@
 import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:flutter/material.dart';
 
-
 class BuyCryptoScreen extends StatefulWidget {
-    static const String routeName = RoutesContants.buyCrypto;
+  static const String routeName = RoutesContants.buyCrypto;
 
   const BuyCryptoScreen({super.key});
 
@@ -52,9 +51,14 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                 ),
-                child: const Text("Continue", style: TextStyle(fontSize: 18, color: Colors.white)),
+                child: const Text(
+                  "Continue",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
               ),
             ),
             const SizedBox(height: 10), // Bottom safe area spacing
@@ -71,7 +75,11 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 5))
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
         ],
       ),
       child: Column(
@@ -83,16 +91,26 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("You Pay", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                  Text(
+                    "You Pay",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  ),
                   SizedBox(height: 5),
-                  Text("\$1,800.00", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF1A2C4F))),
+                  Text(
+                    "\$1,800.00",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1A2C4F),
+                    ),
+                  ),
                 ],
               ),
               _buildCurrencySelector("USD", Icons.attach_money),
             ],
           ),
           const SizedBox(height: 15),
-          
+
           // Divider with Swap Icon
           Stack(
             alignment: Alignment.center,
@@ -105,7 +123,11 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
                   shape: BoxShape.circle,
                   boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)],
                 ),
-                child: const Icon(Icons.swap_vert, color: Colors.orange, size: 24),
+                child: const Icon(
+                  Icons.swap_vert,
+                  color: Colors.orange,
+                  size: 24,
+                ),
               ),
             ],
           ),
@@ -118,23 +140,36 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("You Receive", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                  Text(
+                    "You Receive",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  ),
                   SizedBox(height: 5),
-                  Text("0.9876", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF1A2C4F))),
+                  Text(
+                    "0.9876",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1A2C4F),
+                    ),
+                  ),
                 ],
               ),
               _buildCurrencySelector("ETH", Icons.diamond_outlined),
             ],
           ),
           const SizedBox(height: 25),
-          
+
           // Rate Text
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.circle, size: 6, color: Colors.orange),
               SizedBox(width: 8),
-              Text("1 USD = 0.00078 ETH", style: TextStyle(color: Colors.grey, fontSize: 12)),
+              Text(
+                "1 USD = 0.00078 ETH",
+                style: TextStyle(color: Colors.grey, fontSize: 12),
+              ),
             ],
           ),
         ],
@@ -153,7 +188,13 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
         children: [
           Icon(icon, size: 18, color: const Color(0xFF1A2C4F)),
           const SizedBox(width: 5),
-          Text(code, style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1A2C4F))),
+          Text(
+            code,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1A2C4F),
+            ),
+          ),
           const SizedBox(width: 5),
           const Icon(Icons.keyboard_arrow_down, size: 18, color: Colors.grey),
         ],
@@ -179,15 +220,28 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: const Icon(Icons.attach_money, color: Colors.white, size: 16),
+                  child: const Icon(
+                    Icons.attach_money,
+                    color: Colors.white,
+                    size: 16,
+                  ),
                 ),
                 const SizedBox(width: 10),
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Exchange fee", style: TextStyle(color: Colors.grey, fontSize: 10)),
+                    Text(
+                      "Exchange fee",
+                      style: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
                     SizedBox(height: 2),
-                    Text("0.05%", style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1A2C4F))),
+                    Text(
+                      "0.05%",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF1A2C4F),
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -197,13 +251,22 @@ class _BuyCryptoScreenState extends State<BuyCryptoScreen> {
         const SizedBox(width: 15),
         Expanded(
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 22), // Adjusted to match height
+            padding: const EdgeInsets.symmetric(
+              vertical: 22,
+            ), // Adjusted to match height
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
             ),
             child: const Center(
-              child: Text("\$26", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF1A2C4F))),
+              child: Text(
+                "\$26",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Color(0xFF1A2C4F),
+                ),
+              ),
             ),
           ),
         ),

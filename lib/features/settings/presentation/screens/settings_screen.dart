@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
-    static const String routeName = RoutesContants.settings;
+  static const String routeName = RoutesContants.settings;
   const SettingsScreen({super.key});
 
   @override

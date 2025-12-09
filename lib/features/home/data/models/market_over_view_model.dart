@@ -22,8 +22,8 @@ class MarketOverviewModel extends MarketOverviewEntity {
       ),
       marketCapPercentage:
           (json['market_cap_percentage'] as Map<String, dynamic>).map(
-        (key, value) => MapEntry(key, (value as num).toDouble()),
-      ),
+            (key, value) => MapEntry(key, (value as num).toDouble()),
+          ),
       marketCapChangePercentage24hUsd:
           json['market_cap_change_percentage_24h_usd']?.toDouble() ?? 0.0,
     );

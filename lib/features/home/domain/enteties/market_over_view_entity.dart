@@ -12,6 +12,6 @@ class MarketOverviewEntity {
     required this.totalMarketCap,
     required this.totalVolume,
     required this.marketCapPercentage,
-   this.marketCapChangePercentage24hUsd,
+    this.marketCapChangePercentage24hUsd,
   });
 }

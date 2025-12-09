@@ -1,12 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/features/home/domain/enteties/trending_entity.dart';
 import 'package:fintech/features/home/presentation/widgets/trending_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class TrendingListWidget extends StatelessWidget {
-  final List< TrendingEntity> trendingEntity;
+  final List<TrendingEntity> trendingEntity;
   const TrendingListWidget({super.key, required this.trendingEntity});
 
   @override

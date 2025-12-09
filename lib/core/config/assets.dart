@@ -31,8 +31,6 @@ class AppAssets {
   static const String ellipseL2 = 'assets/svg/icons/EllipseL2.svg';
   static const String ellipseL1 = 'assets/svg/icons/EllipseL1.svg';
 
-
-
   // --- IMAGES ---
   static const String onB1 = 'assets/images/onB1.png';
   static const String onB2 = 'assets/images/onB2.png';
@@ -40,7 +38,6 @@ class AppAssets {
   static const String onB4 = 'assets/images/onB4.png';
   static const String bg = 'assets/images/bg.png';
   static const String notfound = 'assets/images/notfound.jpg';
-
 
   // --- TRANSLATIONS ---
   static const String translationsPath = 'assets/translations';

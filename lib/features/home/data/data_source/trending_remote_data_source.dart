@@ -6,7 +6,6 @@ abstract class TrendingRemoteDataSource {
   Future<List<TrendingModel>> getTrendingCoins();
 }
 
-
 class TrendingRemoteDataSourceImpl implements TrendingRemoteDataSource {
   final ApiConsumer api;
   TrendingRemoteDataSourceImpl(this.api);
@@ -15,8 +14,11 @@ class TrendingRemoteDataSourceImpl implements TrendingRemoteDataSource {
     return api.get(EndPoints.trending).then((response) {
       final coins = response['coins'] as List;
       return coins
-          .map((coinData) =>
-              TrendingModel.fromJson(coinData['item'] as Map<String, dynamic>))
+          .map(
+            (coinData) => TrendingModel.fromJson(
+              coinData['item'] as Map<String, dynamic>,
+            ),
+          )
           .toList();
     });
   }

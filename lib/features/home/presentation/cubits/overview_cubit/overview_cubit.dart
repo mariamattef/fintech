@@ -6,10 +6,10 @@ class MarketOverviewCubit extends Cubit<MarketOverviewState> {
   final GetMarketOverviewUseCase getMarketOverviewUseCase;
 
   MarketOverviewCubit(this.getMarketOverviewUseCase)
-      : super(MarketOverviewInitial());
+    : super(MarketOverviewInitial());
 
   Future<void> getOverview() async {
-      emit(MarketOverviewLoading());
+    emit(MarketOverviewLoading());
 
     final result = await getMarketOverviewUseCase();
 

@@ -4,9 +4,9 @@ import 'package:fintech/features/home/data/data_source/trending_remote_data_sour
 import 'package:fintech/features/home/domain/enteties/trending_entity.dart';
 import 'package:fintech/features/home/domain/repos/trending_repository.dart';
 
-class TrendingRepositoryImp implements TrendingRepository {
+class TrendingRepositoryImpl implements TrendingRepository {
   final TrendingRemoteDataSource dataSource;
-  TrendingRepositoryImp(this.dataSource);
+  TrendingRepositoryImpl(this.dataSource);
   @override
   Future<Either<Failure, List<TrendingEntity>>> getTrending() async {
     try {

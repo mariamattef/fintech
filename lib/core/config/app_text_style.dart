@@ -28,6 +28,8 @@ class AppTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w600,
     fontFamily: AppFonts.lato,
+    height: 1,
+    letterSpacing: 0,
   );
   // use 18
   static const TextStyle headingH6 = TextStyle(
@@ -106,7 +108,7 @@ class AppTextStyles {
     fontFamily: AppFonts.lato,
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    height: 28.25/ 14,
+    height: 28.25 / 14,
     letterSpacing: 0.44,
   );
 

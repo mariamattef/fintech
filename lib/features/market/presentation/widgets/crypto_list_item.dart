@@ -87,7 +87,7 @@ class CryptoListItem extends StatelessWidget {
                   ),
                   Gap(4),
                   Container(
-                    padding:  EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 8.h,
                       vertical: 4.w,
                     ),

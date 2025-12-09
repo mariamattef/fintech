@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fintech/core/errors/error_model.dart';
 
-
 //!ServerException
 class ServerException implements Exception {
   final ErrorModel errorModel;

@@ -102,4 +102,3 @@ Future<void> authFaceId(BuildContext context) async {
     Fluttertoast.showToast(msg: "Error during authentication: ${e.toString()}");
   }
 }
-

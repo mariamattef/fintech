@@ -11,7 +11,7 @@ class CryptoChartCard extends StatefulWidget {
 }
 
 class _CryptoChartCardState extends State<CryptoChartCard> {
-  String selected = "1d"; 
+  String selected = "1d";
   @override
   Widget build(BuildContext context) {
     return Container(

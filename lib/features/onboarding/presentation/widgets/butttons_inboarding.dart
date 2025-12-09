@@ -18,7 +18,6 @@ class ButtonsInBoarding extends StatelessWidget {
             onPressed: () {
               // Navigator.pushNamed(context, RoutesContants.settings);
               Navigator.pushNamed(context, RoutesContants.login);
-
             },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(double.infinity.r, 55),

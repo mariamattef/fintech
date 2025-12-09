@@ -10,7 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class FingureVerifiedScreen extends StatelessWidget {
-    static const String routeName = RoutesContants.fingureVerified;
+  static const String routeName = RoutesContants.fingureVerified;
   const FingureVerifiedScreen({super.key});
 
   @override

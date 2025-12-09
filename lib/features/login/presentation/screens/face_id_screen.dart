@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class FaceIdScreen extends StatelessWidget {
-    static const String routeName = RoutesContants.faceId;
+  static const String routeName = RoutesContants.faceId;
   const FaceIdScreen({super.key});
 
   @override
@@ -40,16 +40,14 @@ class FaceIdScreen extends StatelessWidget {
                         FaceidVerifiedScreen.routeName,
                       );
                     },
-                    ),
-                ]
                   ),
-            )
-                  // Spacer(),
-                  )
-        ]
-            ), 
-              
-              );
-        
-     
-}}
+                ],
+              ),
+            ),
+            // Spacer(),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/features/home/presentation/widgets/text_header_home.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class TrendingSectionHeader extends StatelessWidget {
         TextButton(
           onPressed: onPressed,
           child: Text(
-            "View all",
+            "View all".tr(),
             style: AppTextStyles.textst12.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),

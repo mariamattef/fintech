@@ -4,5 +4,4 @@ import 'package:fintech/features/home/domain/enteties/trending_entity.dart';
 
 abstract class TrendingRepository {
   Future<Either<Failure, List<TrendingEntity>>> getTrending();
-
 }

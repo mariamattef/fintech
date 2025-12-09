@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_state.dart';
+import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topgainers_cubit.dart';
+import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topgainers_state.dart';
 import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_state.dart';
 import 'package:fintech/features/home/presentation/widgets/balance_cart_widget.dart';
@@ -71,7 +73,6 @@ class _CryptoHomeScreenState extends State<CryptoHomeScreen> {
                     }
                   },
                 ),
-
                 Gap(15.h),
                 TrendingSectionHeader(
                   title: "trendingNow".tr(),
@@ -85,7 +86,7 @@ class _CryptoHomeScreenState extends State<CryptoHomeScreen> {
                       if (state is TrendingLoading) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (state is TrendingSuccess) {
-                        return TrendingListWidget(trendingEntity: state.data, );
+                        return TrendingListWidget(trendingEntity: state.data);
                       } else if (state is TrendingError) {
                         return Text(
                           state.message,
@@ -100,7 +101,23 @@ class _CryptoHomeScreenState extends State<CryptoHomeScreen> {
                 Gap(20.h),
                 TextHeaderHome(header: "topGainers".tr()),
                 Gap(20.h),
-                TopGainersList(),
+                BlocBuilder<TopgainersCubit, TopgainersState>(
+                  builder: (context, state) {
+                    if (state is TopgainersLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is TopgainersSuccess) {
+                      return TopGainersList(
+                        topGainers: [...state.topGainersEntity],
+                      );
+                    } else if (state is TopgainersFailure) {
+                      return Text(
+                        state.message,
+                        style: const TextStyle(color: Colors.red),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
               ],
             ),
           ),

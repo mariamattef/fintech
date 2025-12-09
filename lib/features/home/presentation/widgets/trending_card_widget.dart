@@ -1,11 +1,12 @@
+import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class TrendingCardWidget extends StatelessWidget {
-  final String name, symbol, price, change;
-  final String img;
+  final String name, symbol, price, change, img;
+  
 
   const TrendingCardWidget({
     super.key,
@@ -38,18 +39,21 @@ class TrendingCardWidget extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-                Image.network(
-                  img,
-                  width: 20,
-                  height: 20,
-                  // placeholderBuilder: (BuildContext context) => const SizedBox.shrink(),
-                ),
+              CachedNetworkImage(
+                imageUrl: img,
+                width: 30.w,
+                height: 30.h,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ],
           ),
           Gap(4.h),
           Text(
             symbol,
-            style: const TextStyle(color: Colors.grey, fontSize: 12),
+            style: AppTextStyles.textst12.copyWith(
+              color: Color.fromRGBO(120, 122, 141, 1),
+            ),
           ),
           Gap(18.h),
           Row(
@@ -57,20 +61,18 @@ class TrendingCardWidget extends StatelessWidget {
             children: [
               Text(
                 price,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+                style:AppTextStyles.headingStyle20.copyWith(
+                   color: Theme.of(context).colorScheme.primary,
+                 ),
+                
+             
               ),
               Text(
                 "$change ▴",
-                style: TextStyle(
+                style: AppTextStyles.textst12.copyWith(
                   color: Theme.of(context).brightness == Brightness.dark
                       ? Color(0xff6079FA)
                       : Color(0xff4766F9),
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +20,16 @@ class HeaderWidget extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 22,
-                backgroundImage:
-                    photoUrl != null ? NetworkImage(photoUrl) : null,
+                backgroundImage: photoUrl != null
+                    ? NetworkImage(photoUrl)
+                    : null,
                 child: photoUrl == null
                     ? const Icon(Icons.person, size: 22)
                     : null,
               ),
               const SizedBox(width: 12),
               Text(
-                "Hi, $displayName  👋🏾",
+                "hi_user".tr(args: [displayName]),
                 style: AppTextStyles.headingH6.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -48,7 +50,6 @@ class HeaderWidget extends StatelessWidget {
         }
         return const SizedBox.shrink();
       },
-
     );
   }
 }
