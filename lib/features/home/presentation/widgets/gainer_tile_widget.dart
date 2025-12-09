@@ -42,7 +42,7 @@ class GainerTileWidget extends StatelessWidget {
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
-           Gap(15.h),
+          Gap(15.h),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

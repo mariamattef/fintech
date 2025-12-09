@@ -1,8 +1,6 @@
 import 'package:fintech/features/home/domain/enteties/topgainer_entity.dart';
 
-abstract class TopgainersState{
-  
-}
+abstract class TopgainersState {}
 
 class TopgainersInitial extends TopgainersState {}
 
@@ -18,5 +16,4 @@ class TopgainersFailure extends TopgainersState {
   final String message;
 
   TopgainersFailure(this.message);
-
 }

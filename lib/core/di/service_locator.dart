@@ -18,6 +18,11 @@ import 'package:fintech/features/home/domain/usecases/get_trending_usecase.dart'
 import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topgainers_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_cubit.dart';
+import 'package:fintech/features/market/data/data_source/crypto_remote_data_source.dart';
+import 'package:fintech/features/market/data/repos/crypto_repository_impl.dart';
+import 'package:fintech/features/market/domain/repos/crypto_repository.dart';
+import 'package:fintech/features/market/domain/use_cases/get_crypto_usecase.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
@@ -64,4 +69,17 @@ void setupServiceLocator() {
   );
   sl.registerLazySingleton(() => GetTopgainerUsecase(sl()));
   sl.registerLazySingleton(() => TopgainersCubit(sl()));
+
+  // Market
+  // Data
+  sl.registerLazySingleton<CryptoRemoteDataSource>(
+    () => CryptoRemoteDataSourceImpl(sl()),
+  );
+  sl.registerLazySingleton<CryptoRepository>(
+    () => CryptoRepositoryImpl(remoteDataSource: sl()),
+  );
+  // Domain
+  sl.registerLazySingleton(() => GetCryptoUsecase(sl()));
+  // Presentation
+  sl.registerFactory(() => CryptoCubit(getCryptoUsecase: sl()));
 }

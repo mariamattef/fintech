@@ -6,6 +6,7 @@ import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topga
 import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
 import 'package:fintech/features/settings/presentation/screens/settings_screen.dart';
@@ -46,7 +47,13 @@ class _RootState extends State<Root> {
           create: (context) => sl<MarketOverviewCubit>()..getOverview(),
         ),
         BlocProvider(create: (context) => sl<TrendingCubit>()..fetchTrending()),
-        BlocProvider(create: (context) => sl<TopgainersCubit>()..fetchTopGainers()),
+        BlocProvider(
+          create: (context) => sl<TopgainersCubit>()..fetchTopGainers(),
+        ),
+        BlocProvider(
+          create: (context) => sl<CryptoCubit>(),
+          // create: (context) => sl<TopgainersCubit>()..fetchTopGainers(),
+        ),
       ],
       child: Scaffold(
         body: PageView(

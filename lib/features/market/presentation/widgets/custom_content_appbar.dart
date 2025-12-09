@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,11 +9,11 @@ class CustomContentAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 30.0.r, top: 20.r),
+      padding: EdgeInsets.only( top: 20.r),
       child: Text(
-        'Crypto Market',
+        'Crypto Market'.tr(),
         style: AppTextStyles.headingH4.copyWith(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).colorScheme.primary,
         ),
       ),
     );

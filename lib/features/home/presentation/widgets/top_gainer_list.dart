@@ -19,7 +19,8 @@ class TopGainersList extends StatelessWidget {
             name: topGainers[index].name ?? '',
             symbol: topGainers[index].symbol ?? '',
             price: (topGainers[index].currentPrice ?? 0.0).toString(),
-            change: (topGainers[index].priceChangePercentage24h ?? 0.0).toString(),
+            change: (topGainers[index].priceChangePercentage24h ?? 0.0)
+                .toString(),
             img: topGainers[index].imageUrl ?? '',
           ),
         );

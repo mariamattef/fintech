@@ -3,12 +3,7 @@ class TemplateParams {
   TemplateParams({required this.id});
 }
 
-class ProductParams {
-  final String id;
-  ProductParams({required this.id});
-}
-
-class PostParams {
-  final String id;
-  PostParams({required this.id});
+class CryptoMarketParams {
+  final int page;
+  CryptoMarketParams({required this.page});
 }

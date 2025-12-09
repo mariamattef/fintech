@@ -6,7 +6,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class TrendingCardWidget extends StatelessWidget {
   final String name, symbol, price, change, img;
-  
 
   const TrendingCardWidget({
     super.key,
@@ -61,11 +60,9 @@ class TrendingCardWidget extends StatelessWidget {
             children: [
               Text(
                 price,
-                style:AppTextStyles.headingStyle20.copyWith(
-                   color: Theme.of(context).colorScheme.primary,
-                 ),
-                
-             
+                style: AppTextStyles.headingStyle20.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
               Text(
                 "$change ▴",
