@@ -7,6 +7,10 @@ part 'crypto_state.freezed.dart';
 class CryptoState with _$CryptoState {
   const factory CryptoState.initial() = _Initial;
   const factory CryptoState.loading() = _Loading;
-  const factory CryptoState.success(List<CryptoEntity> data, int currentPage, bool hasMore) = _Success;
+  const factory CryptoState.success(
+    List<CryptoEntity> data,
+    int currentPage,
+    bool hasMore,
+  ) = _Success;
   const factory CryptoState.error(String message) = _Error;
 }

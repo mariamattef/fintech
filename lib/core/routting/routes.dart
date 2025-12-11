@@ -26,7 +26,6 @@ class AppRouter {
   static final Map<String, WidgetBuilder> routes = {
     RoutesContants.root: (context) => const Root(),
     RoutesContants.home: (context) => const CryptoHomeScreen(),
-    RoutesContants.coinDetails: (context) => const CoinDetailsScreen(),
     RoutesContants.market: (context) => const MarketScreen(),
     RoutesContants.portfolio: (context) => const PortfolioScreen(),
     RoutesContants.settings: (context) => const SettingsScreen(),
@@ -45,15 +44,17 @@ class AppRouter {
         const SetFingureVerified(),
     RoutesContants.fingurePrint: (context) => const FingurePrintScreen(),
     RoutesContants.setFingurePrint: (context) => const SetFingurePrintScreen(),
-
     // RoutesContants.paymentMethod: (context) => const PaymentMethodScreen(),
   };
-
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    final builder = routes[settings.name];
-    if (builder != null) {
-      return MaterialPageRoute(builder: builder);
-    }
-    return MaterialPageRoute(builder: (context) => const NotFound());
-  }
-}
+      static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+      if (settings.name == RoutesContants.coinDetails) {
+        return MaterialPageRoute(
+          builder: (context) => CoinDetailsScreen(id: settings.arguments as String),
+        );
+      }
+      final builder = routes[settings.name];
+      if (builder != null) {
+        return MaterialPageRoute(builder: builder);
+      }
+      return MaterialPageRoute(builder: (context) => const NotFound());
+    }}

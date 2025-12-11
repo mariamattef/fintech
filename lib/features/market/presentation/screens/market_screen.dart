@@ -1,3 +1,4 @@
+import 'package:fintech/core/di/service_locator.dart';
 import 'package:fintech/core/params/params.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
@@ -37,7 +38,9 @@ class _MarketScreenState extends State<MarketScreen> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-    context.read<CryptoCubit>().getCryptos(params: CryptoMarketParams(page: _currentPage));
+    context.read<CryptoCubit>().getCryptos(
+      params: CryptoMarketParams(page: _currentPage),
+    );
   }
 
   @override
@@ -47,9 +50,13 @@ class _MarketScreenState extends State<MarketScreen> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
       _currentPage++;
-      context.read<CryptoCubit>().getCryptos(params: CryptoMarketParams(page: _currentPage), isLoadMore: true);
+      context.read<CryptoCubit>().getCryptos(
+        params: CryptoMarketParams(page: _currentPage),
+        isLoadMore: true,
+      );
     }
   }
 
@@ -64,11 +71,11 @@ class _MarketScreenState extends State<MarketScreen> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Gap(10),
+            Gap(10.h),
             SearchBartWidget(),
-            Gap(20),
+            Gap(20.h),
             SizedBox(
-              height: 40,
+              height: 40.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.symmetric(horizontal: 20.0.h),
@@ -118,7 +125,8 @@ class _MarketScreenState extends State<MarketScreen> {
                 builder: (context, state) {
                   return state.when(
                     initial: () => const SizedBox(),
-                    loading: () => const Center(child: CircularProgressIndicator()),
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
                     success: (cryptos, currentPage, hasMore) {
                       return ListView.builder(
                         controller: _scrollController,
@@ -126,13 +134,16 @@ class _MarketScreenState extends State<MarketScreen> {
                           horizontal: 20.0.w,
                           vertical: 10.0.h,
                         ),
-                        itemCount: cryptos.length + (hasMore ? 1 : 0), // Add 1 for loading indicator
+                        itemCount: cryptos.length + (hasMore ? 1 : 0),
                         itemBuilder: (context, index) {
                           if (index == cryptos.length) {
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
                           }
                           final crypto = cryptos[index];
                           return CryptoListItem(
+                            id: crypto.id,
                             name: crypto.name,
                             symbol: crypto.symbol,
                             rank: crypto.marketCapRank,

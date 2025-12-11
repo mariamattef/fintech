@@ -8,7 +8,8 @@ class GetCryptoUsecase {
   final CryptoRepository repository;
   GetCryptoUsecase(this.repository);
   Future<Either<Failure, List<CryptoEntity>>> call(
-      CryptoMarketParams params) async {
+    CryptoMarketParams params,
+  ) async {
     return await repository.getCryptos(page: params.page);
   }
 }

@@ -1,81 +1,128 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/core/di/service_locator.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
-import 'package:fintech/features/market/presentation/widgets/chart_cart_widget.dart';
+import 'package:fintech/features/market/domain/entities/crypto_details_entity.dart';
+import 'package:fintech/features/market/presentation/cubits/chart_cubit/chart_cubit.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_cubit.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_state.dart';
+import 'package:fintech/features/market/presentation/widgets/chart_section.dart';
 import 'package:fintech/features/market/presentation/widgets/coin_header_widget.dart';
+import 'package:fintech/features/market/presentation/widgets/statistics_list_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CoinDetailsScreen extends StatefulWidget {
   static const String routeName = RoutesContants.coinDetails;
-  const CoinDetailsScreen({super.key});
+  final String id;
+
+  const CoinDetailsScreen({super.key, required this.id});
 
   @override
   State<CoinDetailsScreen> createState() => _CoinDetailsScreenState();
 }
 
 class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
+  late final String coinId;
+
+  @override
+  void initState() {
+    super.initState();
+    coinId = widget.id;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        titleTextStyle: AppTextStyles.headingH4,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<CryptoDetailsCubit>()..loadCryptoDetails(coinId),
         ),
-        title: Text("Coin Details"),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(20.r),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CoinHeaderWidget(),
-                  Gap(20.h),
-                  CryptoChartCard(),
-                  Gap(25),
-                  Text(
-                    "Statics",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                  _buildStatisticsList(),
-                  Gap(25.h),
-                  Text("About Bitcoin", style: AppTextStyles.headingStyle18Po),
-                  Gap(15.h),
-                  Text(
-                    "Bitcoin is a decentralized cryptocurrency originally described in a 2008 whitepaper by a person, or group of people, using the alias Satoshi Nakamoto. It was launched soon after, in January 2009.",
-                    style: AppTextStyles.headingStyle16.copyWith(
-                      color: Color(0xff5D5C5D),
-                    ),
-                  ),
-                  const Gap(20),
-                ],
-              ),
-            ),
+        BlocProvider(create: (_) => sl<ChartCubit>()..loadChart(coinId, '1')),
+      ],
+      child: Scaffold(
+        appBar: AppBar(
+          titleTextStyle: AppTextStyles.headingH4,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context),
           ),
-          BottomButtonsCoinsDetails(),
-        ],
+          title: const Text("Coin Details"),
+          centerTitle: true,
+        ),
+        body: BlocBuilder<CryptoDetailsCubit, CryptoDetailsState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () => const SizedBox.shrink(),
+
+              loading: () => const Center(child: CircularProgressIndicator()),
+
+              failure: (msg) => Center(
+                child: Text(msg, style: TextStyle(color: Colors.red)),
+              ),
+
+              success: (coin) {
+                return _buildSuccessUI(context, coin);
+              },
+            );
+          },
+        ),
       ),
     );
   }
 
-  Widget _buildStatisticsList() {
+  Widget _buildSuccessUI(BuildContext context, CryptoDetailsEntity coin) {
     return Column(
       children: [
-        StetRowWidget(label: "Current Price", value: "44,826.12 \$"),
-        StetRowWidget(label: "Market Cap", value: "836,819 \$"),
-        StetRowWidget(label: "Volume 24h", value: "35,867 \$"),
-        StetRowWidget(label: "Available Supply", value: "18,784"),
-        StetRowWidget(label: "Max Supply", value: "21,000", isLast: true),
+        Expanded(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(20.r),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CoinHeaderWidget(name: coin.name, imageUrl: coin.image),
+                Gap(20.h),
+                Text(
+                  "Statics",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                
+                // ChartSection(coinId: coinId),
+               
+                StaticsListWidget(
+                  price: coin.currentPrice,
+                  marketCap: coin.marketCap,
+                  volume24h: coin.volume24h,
+                  availableSupply: coin.availableSupply,
+                  maxSupply: coin.maxSupply,
+                ),
+                Gap(25.h),
+                Text(
+                  "About ${coin.name}",
+                  style: AppTextStyles.headingStyle18Po,
+                ),
+                Gap(15.h),
+                Text(
+                  coin.description.isEmpty
+                      ? "No description available"
+                      : coin.description,
+                  style: AppTextStyles.headingStyle16.copyWith(
+                    color: const Color(0xff5D5C5D),
+                  ),
+                ),
+
+                const Gap(20),
+              ],
+            ),
+          ),
+        ),
+
+        const BottomButtonsCoinsDetails(),
       ],
     );
   }
@@ -146,7 +193,7 @@ class CryptoChartPainter extends CustomPainter {
     final gradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: [color.withOpacity(0.3), color.withOpacity(0.0)],
+      colors: [color.withValues(alpha: 0.3), color.withValues(alpha: 0.0)],
     );
 
     final fillPaint = Paint()
@@ -255,52 +302,6 @@ class BottomButtonsCoinsDetails extends StatelessWidget {
                   color: Theme.of(context).colorScheme.surface,
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class StetRowWidget extends StatelessWidget {
-  final String label;
-  final String value;
-  final bool isLast;
-  const StetRowWidget({
-    super.key,
-    required this.label,
-    required this.value,
-    this.isLast = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 12.h),
-      decoration: BoxDecoration(
-        border: isLast
-            ? null
-            : Border(
-                bottom: BorderSide(color: Colors.grey.withValues(alpha: 0.1)),
-              ),
-      ),
-      child: Row(
-        children: [
-          Text(label, style: AppTextStyles.xsMedium),
-          const Gap(6),
-          Icon(
-            Icons.info_rounded,
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Color.fromRGBO(96, 121, 250, 1)
-                : Color.fromRGBO(71, 102, 249, 1),
-            size: 12,
-          ),
-          const Spacer(),
-          Text(
-            value,
-            style: AppTextStyles.sMedium.copyWith(
-              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ],

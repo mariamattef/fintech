@@ -9,28 +9,31 @@ class CryptoCubit extends Cubit<CryptoState> {
   int _currentPage = 0;
   final List<CryptoEntity> _allCryptos = [];
 
-  CryptoCubit({required this.getCryptoUsecase}) : super(const CryptoState.initial());
+  CryptoCubit({required this.getCryptoUsecase})
+    : super(const CryptoState.initial());
 
-  Future<void> getCryptos({required CryptoMarketParams params, bool isLoadMore = false}) async {
+  Future<void> getCryptos({
+    required CryptoMarketParams params,
+    bool isLoadMore = false,
+  }) async {
     if (!isLoadMore) {
       _currentPage = 0;
       _allCryptos.clear();
       emit(const CryptoState.loading());
     }
-    
+
     _currentPage = params.page;
 
     final result = await getCryptoUsecase(params);
-    result.fold(
-      (failure) => emit(CryptoState.error(failure.errorMessage)),
-      (cryptos) {
-        if (cryptos.isEmpty) {
-          emit(CryptoState.success(_allCryptos, _currentPage, false));
-        } else {
-          _allCryptos.addAll(cryptos);
-          emit(CryptoState.success(_allCryptos, _currentPage, true));
-        }
-      },
-    );
+    result.fold((failure) => emit(CryptoState.error(failure.errorMessage)), (
+      cryptos,
+    ) {
+      if (cryptos.isEmpty) {
+        emit(CryptoState.success(_allCryptos, _currentPage, false));
+      } else {
+        _allCryptos.addAll(cryptos);
+        emit(CryptoState.success(_allCryptos, _currentPage, true));
+      }
+    });
   }
 }

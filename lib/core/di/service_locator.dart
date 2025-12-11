@@ -18,13 +18,25 @@ import 'package:fintech/features/home/domain/usecases/get_trending_usecase.dart'
 import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topgainers_cubit.dart';
 import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_cubit.dart';
+import 'package:fintech/features/market/data/data_source/chart_local_data_source.dart';
+import 'package:fintech/features/market/data/data_source/chart_remote_data_source.dart';
+import 'package:fintech/features/market/data/data_source/crypto_details_remote_data_source.dart';
 import 'package:fintech/features/market/data/data_source/crypto_remote_data_source.dart';
+import 'package:fintech/features/market/data/repos/chart_repository_impl.dart';
+import 'package:fintech/features/market/data/repos/crypto_details_repository_impl.dart';
 import 'package:fintech/features/market/data/repos/crypto_repository_impl.dart';
+import 'package:fintech/features/market/domain/repos/chart_repository.dart';
+import 'package:fintech/features/market/domain/repos/crypto_details_repository.dart';
 import 'package:fintech/features/market/domain/repos/crypto_repository.dart';
+import 'package:fintech/features/market/domain/use_cases/get_chart_usecase.dart';
+import 'package:fintech/features/market/domain/use_cases/get_crypto_details_usecase.dart';
 import 'package:fintech/features/market/domain/use_cases/get_crypto_usecase.dart';
+import 'package:fintech/features/market/presentation/cubits/chart_cubit/chart_cubit.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
 
 final sl = GetIt.instance;
 
@@ -36,20 +48,14 @@ void setupServiceLocator() {
   // Secure Storage
   sl.registerLazySingleton(() => const FlutterSecureStorage());
   sl.registerLazySingleton(() => SecureStorageService(sl()));
-
+  // Hive
+  sl.registerLazySingleton<HiveInterface>(() => Hive);
   // Features
   // Auth
   sl.registerLazySingleton(() => AuthCubit(sl()));
-
-  // Home
-  // Data
-  sl.registerLazySingleton<MarketOverviewDataSource>(
-    () => MarketOverviewDataSourceImpl(sl()),
-  );
   sl.registerLazySingleton<MarketRepository>(() => MarketRepositoryImpl(sl()));
-  // Domain
   sl.registerLazySingleton(() => GetMarketOverviewUseCase(sl()));
-  // Presentation
+
   sl.registerLazySingleton(() => MarketOverviewCubit(sl()));
 
   sl.registerLazySingleton<TrendingRemoteDataSource>(
@@ -58,28 +64,53 @@ void setupServiceLocator() {
   sl.registerLazySingleton<TrendingRepository>(
     () => TrendingRepositoryImpl(sl()),
   );
-  sl.registerLazySingleton(() => GetTrendingUsecase(sl()));
-  sl.registerLazySingleton(() => TrendingCubit(sl()));
 
-  sl.registerLazySingleton<TopgainerRemoteDataSource>(
-    () => TopgainerRemoteDataSourceImpl(sl()),
-  );
   sl.registerLazySingleton<TopgainerRepository>(
     () => TopgainerRepositoryImpl(sl()),
   );
-  sl.registerLazySingleton(() => GetTopgainerUsecase(sl()));
-  sl.registerLazySingleton(() => TopgainersCubit(sl()));
 
   // Market
-  // Data
+  // Data source
+  sl.registerLazySingleton<MarketOverviewDataSource>(
+    () => MarketOverviewDataSourceImpl(sl()),
+  );
+  sl.registerLazySingleton<TopgainerRemoteDataSource>(
+    () => TopgainerRemoteDataSourceImpl(sl()),
+  );
   sl.registerLazySingleton<CryptoRemoteDataSource>(
     () => CryptoRemoteDataSourceImpl(sl()),
   );
+  sl.registerLazySingleton<ChartRemoteDataSource>(
+    () => ChartRemoteDataSourceImpl(sl()),
+  );
+  sl.registerLazySingleton<ChartLocalDataSource>(
+    () => ChartLocalDataSourceImpl(sl<HiveInterface>().box('chart_box')),
+  );
+  sl.registerLazySingleton<CryptoDetailsRemoteDataSource>(
+    () => CryptoDetailsRemoteDataSourceImpl(sl()),
+  );
+
+  // repos
   sl.registerLazySingleton<CryptoRepository>(
     () => CryptoRepositoryImpl(remoteDataSource: sl()),
   );
-  // Domain
+  sl.registerLazySingleton<ChartRepository>(() => ChartRepositoryImpl(sl(), sl()));
+
+  sl.registerLazySingleton<CryptoDetailsRepository>(
+    () => CryptoDetailsRepositoryImpl(remoteDataSource: sl()),
+  );
+  // Domain  Use case
   sl.registerLazySingleton(() => GetCryptoUsecase(sl()));
+  sl.registerLazySingleton(() => GetChartUseCase(sl()));
+  sl.registerLazySingleton(() => TopgainersCubit(sl()));
+  sl.registerLazySingleton(() => GetCryptoDetailsUsecase(sl()));
+  sl.registerLazySingleton(() => GetTopgainerUsecase(sl()));
+  sl.registerLazySingleton(() => GetTrendingUsecase(sl()));
+
   // Presentation
+
   sl.registerFactory(() => CryptoCubit(getCryptoUsecase: sl()));
+  sl.registerFactory(() => ChartCubit(sl()));
+  sl.registerFactory(() => CryptoDetailsCubit(sl()));
+  sl.registerLazySingleton(() => TrendingCubit(sl()));
 }

@@ -2,26 +2,22 @@ import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class CoinHeaderWidget extends StatelessWidget {
-  const CoinHeaderWidget({super.key});
+  final String name;
+  final String imageUrl;
+
+  const CoinHeaderWidget({
+    super.key,
+    required this.name,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.currency_bitcoin,
-            color: Colors.orange,
-            size: 32,
-          ),
-        ),
+        CircleAvatar(radius: 22, backgroundImage: NetworkImage(imageUrl)),
         const SizedBox(width: 12),
-        Text("Bitcoin", style: AppTextStyles.headingH5),
+        Text(name, style: AppTextStyles.headingH5),
       ],
     );
   }

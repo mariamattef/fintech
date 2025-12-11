@@ -9,7 +9,7 @@ class CustomContentAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only( top: 20.r),
+      padding: EdgeInsets.only(top: 20.r),
       child: Text(
         'Crypto Market'.tr(),
         style: AppTextStyles.headingH4.copyWith(

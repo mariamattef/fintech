@@ -16,4 +16,5 @@ class CryptoRemoteDataSourceImpl implements CryptoRemoteDataSource {
         .map((json) => CryptoModel.fromJson(json))
         .toList();
   }
+
 }

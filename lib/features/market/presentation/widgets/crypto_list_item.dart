@@ -13,6 +13,7 @@ class CryptoListItem extends StatelessWidget {
   final String price;
   final double change;
   final String image;
+  final String id; 
 
   const CryptoListItem({
     super.key,
@@ -22,6 +23,7 @@ class CryptoListItem extends StatelessWidget {
     required this.price,
     required this.change,
     required this.image,
+    required this.id, 
   });
 
   @override
@@ -29,11 +31,11 @@ class CryptoListItem extends StatelessWidget {
     final bool isPositive = change >= 0;
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, CoinDetailsScreen.routeName);
+        Navigator.pushNamed(context, CoinDetailsScreen.routeName, arguments: id);
       },
       child: Card(
         child: Container(
-          margin: EdgeInsets.all( 5.0.h),
+          margin: EdgeInsets.all(5.0.h),
           padding: EdgeInsets.all(10.0.r),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,7 +95,7 @@ class CryptoListItem extends StatelessWidget {
                           : Color(0xff152C07),
                     ),
                   ),
-                  Gap(4),
+                  Gap(4.h),
                   Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: 4.h,
