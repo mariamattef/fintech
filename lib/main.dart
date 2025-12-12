@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/config/cubit/theme_cubit.dart';
+import 'package:fintech/core/config/language/cubit/language_cubit.dart';
 import 'package:fintech/core/config/theme_data/theme_data_dark.dart';
 import 'package:fintech/core/config/theme_data/theme_data_light.dart';
 import 'package:fintech/core/databases/cache/cache_helper.dart';
@@ -53,6 +54,7 @@ class MainApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => ThemeCubit()),
+          BlocProvider(create: (context) => LanguageCubit()),
           BlocProvider(create: (context) => sl<AuthCubit>()),
           BlocProvider(create: (context) => sl<MarketOverviewCubit>()),
         ],

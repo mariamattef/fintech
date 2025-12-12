@@ -93,7 +93,7 @@ class AppTextStyles {
     fontFamily: AppFonts.lato,
     fontSize: 12,
     fontWeight: FontWeight.w400,
-    height: 1.55,
+    height:16/12,
     letterSpacing: 0,
   );
   static const textst12 = TextStyle(
@@ -136,12 +136,18 @@ class AppTextStyles {
     height: 1.55,
     letterSpacing: .44,
   );
-
+  static const text15 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 15,
+    letterSpacing: .44,
+    height: 28.25 / 15,
+  );
   // body medium
   static const mRegular = TextStyle(
     fontFamily: AppFonts.lato,
     fontSize: 16,
-    height: 1.6,
+    height: 1,
+    fontWeight:  FontWeight.w700,
     letterSpacing: 0,
   );
   static const mMedium = TextStyle(
@@ -159,7 +165,13 @@ class AppTextStyles {
     height: 1.6,
     letterSpacing: -0.32,
   );
-
+  static const text16700 = TextStyle(
+    fontFamily: AppFonts.lato,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    height: 1,
+    letterSpacing: 0,
+  );
   // body medium
   static const lRegular = TextStyle(
     fontFamily: AppFonts.lato,

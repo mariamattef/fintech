@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/config/cubit/theme_cubit.dart';
+import 'package:fintech/core/config/language/cubit/language_cubit.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:fintech/features/settings/presentation/widgets/dark_mode_toggle.dart';
@@ -19,16 +20,19 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: BlocListener<LanguageCubit, Languages>(
+          listener: (context, local) {
+            context.setLocale(Locale(local.name));
+          },
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 15),
                 Text(
-                  "Settings",
+                  "Settings".tr(),
                   style: AppTextStyles.headingH4.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -38,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
                   builder: (context, state) {
                     if (state is AuthSuccess) {
                       final user = state.user;
-                      final displayName = user.displayName ?? 'User';
+                      final displayName = user.displayName ?? 'User'.tr();
                       final photoUrl = user.photoURL;
                       return ProfileHeader(
                         name: displayName,
@@ -50,43 +54,38 @@ class SettingsScreen extends StatelessWidget {
                             : null,
                       );
                     }
-                    return SizedBox.shrink();
+                    return const SizedBox.shrink();
                   },
                 ),
                 Gap(25.h),
-                const SectionTitle(title: "General"),
+                SectionTitle(title: "General".tr()),
                 Gap(5.h),
                 SettingsItem(
                   assetName: 'assets/svg/icons/Profile.svg',
-                  title: "My Account",
+                  title: "My Account".tr(),
                   onTap: () {},
                 ),
                 Gap(20.h),
                 SettingsItem(
                   assetName: 'assets/svg/icons/Wallet.svg',
-                  title: "Billing/Payment",
+                  title: "Billing/Payment".tr(),
                   onTap: () {},
                 ),
                 Gap(20.h),
                 SettingsItem(
                   assetName: 'assets/svg/icons/FAQ.svg',
-                  title: "FAQ & Support",
+                  title: "FAQ & Support".tr(),
                   onTap: () {},
                 ),
                 Gap(20.h),
-                const SectionTitle(title: "Settings"),
+                SectionTitle(title: "Settings".tr()),
                 SettingsItem(
                   assetName: 'assets/svg/icons/FAQ.svg',
                   title: "Language".tr(),
                   onTap: () {
-                    // if (value) {
-                    //   context.setLocale(const Locale('ar'));
-                    // } else {
-                    //   context.setLocale(const Locale('en'));
-                    // }
+                    context.read<LanguageCubit>().changeLanguage();
                   },
                 ),
-
                 DarkModeToggle(
                   value: Theme.of(context).brightness == Brightness.dark,
                   onChanged: (bool x) {

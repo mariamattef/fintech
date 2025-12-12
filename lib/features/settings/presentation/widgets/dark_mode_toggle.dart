@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_color.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class DarkModeToggle extends StatelessWidget {
         child: Icon(Icons.dark_mode_outlined, color: Colors.white),
       ),
       title: Text(
-        "Dark Mode",
+        "Dark Mode".tr(),
         style: AppTextStyles.mSemiBold.copyWith(
           color: Theme.of(context).colorScheme.primary,
         ),

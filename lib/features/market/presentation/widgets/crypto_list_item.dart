@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/core/widgets/icon_container_widget.dart';
 import 'package:fintech/features/market/presentation/screens/coin_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,23 +41,7 @@ class CryptoListItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                padding: EdgeInsets.all(10.r),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Color.fromRGBO(21, 21, 21, 1)
-                      : Color.fromRGBO(247, 247, 247, 1),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: CachedNetworkImage(
-                  imageUrl: image,
-                  width: 28.w,
-                  height: 28.h,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
-              ),
+              IconContainerWidget(image: image),
               Gap(15.h),
               Expanded(
                 child: Column(
@@ -147,3 +132,4 @@ class CryptoListItem extends StatelessWidget {
     );
   }
 }
+
