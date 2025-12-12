@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class PortfolioHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Text(
-      "Portfolio",
+      "Portfolio".tr(),
       style: AppTextStyles.headingH4.copyWith(
           color: Theme.of(context).colorScheme.primary,
         ),

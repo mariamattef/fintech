@@ -1,6 +1,7 @@
 import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotFound extends StatelessWidget {
   static const String routeName = RoutesContants.notFound;
@@ -10,7 +11,7 @@ class NotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(child: Image.asset(AppAssets.notfound, width: 250)),
+      body: Center(child: Image.asset(AppAssets.notfound, width: 250.w)),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,14 +15,14 @@ class HoldingsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "My Holdings",
+          "myHoldings".tr(),
           style: AppTextStyles.mMedium.copyWith(
             color: Theme.of(context).colorScheme.primary,
           ),
         ),
         Gap(30.h),
         HoldingItem(
-          name: "Bitcoin",
+          name: "bitcoin".tr(),
           symbol: "BTC",
           percent: "50%",
           amount: "0.05 BTC",
@@ -33,7 +34,7 @@ class HoldingsList extends StatelessWidget {
 
         Gap(15.h),
         HoldingItem(
-          name: "Ethereum",
+          name: "ethereum".tr(),
           symbol: "ETH",
           percent: "30%",
           amount: "1.5 ETH",
@@ -45,7 +46,7 @@ class HoldingsList extends StatelessWidget {
 
         SizedBox(height: 12),
         HoldingItem(
-          name: "Litecoin",
+          name: "litecoin".tr(),
           symbol: "LTC",
           percent: "20%",
           amount: "26.3 LTC",

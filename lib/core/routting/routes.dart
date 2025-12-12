@@ -3,7 +3,6 @@ import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/splash.dart';
 import 'package:fintech/features/auth/presentation/screens/login_screen.dart';
 import 'package:fintech/features/auth/presentation/screens/register_screen.dart';
-import 'package:fintech/features/home/buy_crypto_screen.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
 import 'package:fintech/features/login/presentation/screens/face_id_screen.dart';
 import 'package:fintech/features/login/presentation/screens/faceid_verified_screen.dart';
@@ -12,6 +11,8 @@ import 'package:fintech/features/login/presentation/screens/fingure_verified_scr
 import 'package:fintech/features/market/presentation/screens/coin_details_screen.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
 import 'package:fintech/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:fintech/features/payment/presentation/screens/buy_crypto_screen.dart';
+import 'package:fintech/features/payment/presentation/screens/payment_method_screen.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
 import 'package:fintech/features/register/presentation/screens/set_faceid_or_skip_screen.dart';
 import 'package:fintech/features/register/presentation/screens/set_faceid_screen.dart';
@@ -44,7 +45,7 @@ class AppRouter {
         const SetFingureVerified(),
     RoutesContants.fingurePrint: (context) => const FingurePrintScreen(),
     RoutesContants.setFingurePrint: (context) => const SetFingurePrintScreen(),
-    // RoutesContants.paymentMethod: (context) => const PaymentMethodScreen(),
+    RoutesContants.paymentMethod: (context) => const PaymentMethodScreen(),
   };
       static Route<dynamic> onGenerateRoute(RouteSettings settings) {
       if (settings.name == RoutesContants.coinDetails) {

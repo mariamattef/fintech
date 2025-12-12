@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,7 @@ class MonthSelector extends StatefulWidget {
 class _MonthSelectorState extends State<MonthSelector> {
   int selected = 1; // Dec
 
-  final months = ["Nov", "Dec", "Jan", "Feb", "Mar", "Apr"];
+  final months = ["Nov".tr(), "Dec".tr(), "Jan".tr(), "Feb".tr(), "Mar".tr(), "Apr".tr()];
 
   @override
   Widget build(BuildContext context) {

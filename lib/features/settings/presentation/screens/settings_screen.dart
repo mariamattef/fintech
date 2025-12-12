@@ -30,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 15),
+               Gap(50.h),
                 Text(
                   "Settings".tr(),
                   style: AppTextStyles.headingH4.copyWith(
@@ -80,7 +80,7 @@ class SettingsScreen extends StatelessWidget {
                 Gap(20.h),
                 SectionTitle(title: "Settings".tr()),
                 SettingsItem(
-                  assetName: 'assets/svg/icons/FAQ.svg',
+                  assetName: 'assets/svg/icons/Discovery.svg',
                   title: "Language".tr(),
                   onTap: () {
                     context.read<LanguageCubit>().changeLanguage();
@@ -104,57 +104,3 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 }
-
-// class SettingsScreen extends StatelessWidget {
-//   static const String routeName = RoutesContants.settings;
-//   const SettingsScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return 
-    
-//     Scaffold(
-//       appBar: AppBar(
-//         title: Text('settings'.tr()),
-//         actions: [
-//           Switch(
-//             value: context.isDarkMode,
-//             onChanged: (bool x) {
-//               if (context.isDarkMode) {
-//                 context.read<ThemeCubit>().updateTheme(ThemeMode.light);
-//               } else {
-//                 context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
-//               }
-//             },
-//           ),
-//         ],
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             ListTile(
-//               title: Text('language'.tr()),
-//               trailing: Switch(
-//                 value: context.locale == const Locale('ar'),
-//                 onChanged: (value) {
-//                   if (value) {
-//                     context.setLocale(const Locale('ar'));
-//                   } else {
-//                     context.setLocale(const Locale('en'));
-//                   }
-//                 },
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-  
-  
-  
-   
-   
-   
-//     );
-//   }
-// }

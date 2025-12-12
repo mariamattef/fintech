@@ -5,7 +5,6 @@ import 'package:fintech/features/market/domain/entities/crypto_details_entity.da
 import 'package:fintech/features/market/presentation/cubits/chart_cubit/chart_cubit.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_cubit.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_state.dart';
-import 'package:fintech/features/market/presentation/widgets/chart_section.dart';
 import 'package:fintech/features/market/presentation/widgets/coin_header_widget.dart';
 import 'package:fintech/features/market/presentation/widgets/statistics_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -91,9 +90,8 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                
+
                 // ChartSection(coinId: coinId),
-               
                 StaticsListWidget(
                   price: coin.currentPrice,
                   marketCap: coin.marketCap,

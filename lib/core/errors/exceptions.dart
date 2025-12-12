@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:fintech/core/errors/error_model.dart';
 
+//!OfflineException
+class OfflineException implements Exception {}
+
 //!ServerException
 class ServerException implements Exception {
   final ErrorModel errorModel;

@@ -34,45 +34,64 @@ Future<void> main() async {
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
   runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ar')],
-      path: AppAssets.translationsPath,
-      fallbackLocale: const Locale('en'),
-      child: const MainApp(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => LanguageCubit()),
+        BlocProvider(create: (context) => sl<AuthCubit>()),
+        BlocProvider(create: (context) => sl<MarketOverviewCubit>()),
+      ],
+      child: EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('ar')],
+        path: AppAssets.translationsPath,
+        fallbackLocale: const Locale('en'),
+        child: const MainApp(),
+      ),
     ),
   );
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<LanguageCubit>().fetchLocale(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => ThemeCubit()),
-          BlocProvider(create: (context) => LanguageCubit()),
-          BlocProvider(create: (context) => sl<AuthCubit>()),
-          BlocProvider(create: (context) => sl<MarketOverviewCubit>()),
-        ],
-        child: BlocBuilder<ThemeCubit, ThemeMode>(
-          builder: (context, newMode) {
-            return MaterialApp(
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              theme: getLightTheme(),
-              darkTheme: getDarkTheme(),
-              themeMode: newMode,
-              debugShowCheckedModeBanner: false,
-              initialRoute: Splash.routeName,
-              onGenerateRoute: AppRouter.onGenerateRoute,
-            );
-          },
-        ),
+      child: BlocConsumer<LanguageCubit, Languages>(
+        listener: (context, state) {
+          context.setLocale(Locale(state.name));
+        },
+        builder: (context, languageState) {
+          return BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, newMode) {
+              return MaterialApp(
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                theme: getLightTheme(),
+                darkTheme: getDarkTheme(),
+                themeMode: newMode,
+                debugShowCheckedModeBanner: false,
+                initialRoute: Splash.routeName,
+                onGenerateRoute: AppRouter.onGenerateRoute,
+              );
+            },
+          );
+        },
       ),
     );
   }

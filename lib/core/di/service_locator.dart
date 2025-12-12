@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fintech/core/connection/network_info.dart';
 import 'package:fintech/core/databases/api/api_consumer.dart';
 import 'package:fintech/core/databases/api/dio_consumer.dart';
 import 'package:fintech/core/storage/secure_storage_service.dart';
@@ -37,11 +38,19 @@ import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 final sl = GetIt.instance;
 
 void setupServiceLocator() {
   // Core
+  sl.registerLazySingleton(() => InternetConnectionChecker.createInstance(
+        checkTimeout: const Duration(seconds: 20),
+        checkInterval: const Duration(seconds: 20),
+      ));
+  sl.registerLazySingleton<InternetService>(
+    () => InternetServiceImpl(internetConnectionChecker: sl()),
+  );
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: sl()));
 
@@ -72,7 +81,7 @@ void setupServiceLocator() {
   // Market
   // Data source
   sl.registerLazySingleton<MarketOverviewDataSource>(
-    () => MarketOverviewDataSourceImpl(sl()),
+    () => MarketOverviewDataSourceImpl(api: sl(), internetService: sl()),
   );
   sl.registerLazySingleton<TopgainerRemoteDataSource>(
     () => TopgainerRemoteDataSourceImpl(sl()),
@@ -94,7 +103,9 @@ void setupServiceLocator() {
   sl.registerLazySingleton<CryptoRepository>(
     () => CryptoRepositoryImpl(remoteDataSource: sl()),
   );
-  sl.registerLazySingleton<ChartRepository>(() => ChartRepositoryImpl(sl(), sl()));
+  sl.registerLazySingleton<ChartRepository>(
+    () => ChartRepositoryImpl(sl(), sl()),
+  );
 
   sl.registerLazySingleton<CryptoDetailsRepository>(
     () => CryptoDetailsRepositoryImpl(remoteDataSource: sl()),

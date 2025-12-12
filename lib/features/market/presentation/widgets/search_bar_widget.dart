@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,7 @@ class SearchBartWidget extends StatelessWidget {
               ),
             ),
           ),
-          hintText: "Search",
+          hintText: "Search".tr(),
           hintStyle: const TextStyle(color: Colors.grey),
           suffixIcon: IconButton(
             padding: EdgeInsets.all(10.0.r),
