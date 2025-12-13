@@ -8,6 +8,7 @@ import 'package:fintech/features/home/presentation/cubits/overview_cubit/overvie
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
+import 'package:fintech/features/portfolio/presentation/cubit/portfolio_cubit.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
 import 'package:fintech/features/settings/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,9 @@ class _RootState extends State<Root> {
         BlocProvider(
           create: (context) => sl<CryptoCubit>(),
           // create: (context) => sl<TopgainersCubit>()..fetchTopGainers(),
+        ),
+        BlocProvider(
+          create: (context) => sl<PortfolioCubit>()..fetchCryptoPrices(['bitcoin', 'ethereum', 'ripple']),
         ),
       ],
       child: Scaffold(

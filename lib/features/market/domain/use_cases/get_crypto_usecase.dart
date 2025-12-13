@@ -10,6 +10,10 @@ class GetCryptoUsecase {
   Future<Either<Failure, List<CryptoEntity>>> call(
     CryptoMarketParams params,
   ) async {
-    return await repository.getCryptos(page: params.page);
+    if (params.query.isNotEmpty) {
+      return await repository.searchCryptos(query: params.query);
+    } else {
+      return await repository.getCryptos(page: params.page);
+    }
   }
 }

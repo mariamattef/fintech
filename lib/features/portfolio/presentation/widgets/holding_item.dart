@@ -12,7 +12,7 @@ class HoldingItem extends StatelessWidget {
   final String value;
   final String profit;
   final String profitPercent;
-  final IconData icon;
+  final String imageUrl;
 
   const HoldingItem({
     super.key,
@@ -23,7 +23,7 @@ class HoldingItem extends StatelessWidget {
     required this.value,
     required this.profit,
     required this.profitPercent,
-    required this.icon,
+    required this.imageUrl,
   });
 
   @override
@@ -40,7 +40,7 @@ class HoldingItem extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconContainerWidget(image: "assets/images/Face ID.png"),
+              IconContainerWidget(image: imageUrl),
               Gap(15.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class HoldingItem extends StatelessWidget {
                   Text(
                     symbol,
                     style: AppTextStyles.textst12.copyWith(
-                      color: Color.fromRGBO(120, 122, 141, 1),
+                      color: const Color.fromRGBO(120, 122, 141, 1),
                     ),
                   ),
                   Gap(15.h),
@@ -69,7 +69,7 @@ class HoldingItem extends StatelessWidget {
                   Text(
                     value,
                     style: AppTextStyles.xsMedium.copyWith(
-                      color: Color(0xffF67E42),
+                      color: const Color(0xffF67E42),
                     ),
                   ),
                 ],
@@ -88,12 +88,12 @@ class HoldingItem extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 profit,
-                style: AppTextStyles.sMedium.copyWith(color: Color(0xff7DDDA4)),
+                style: AppTextStyles.sMedium.copyWith(color: const Color(0xff7DDDA4)),
               ),
               Text(
                 profitPercent,
                 style: AppTextStyles.xsMedium.copyWith(
-                  color: Color(0xff7DDDA4),
+                  color: const Color(0xff7DDDA4),
                 ),
               ),
             ],

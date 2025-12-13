@@ -9,9 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class PaymentMethodScreen extends StatelessWidget {
+class PaymentMethodScreen extends StatefulWidget {
   static const String routeName = RoutesContants.paymentMethod;
   const PaymentMethodScreen({super.key});
+
+  @override
+  State<PaymentMethodScreen> createState() => _PaymentMethodScreenState();
+}
+
+class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
+  bool _isCreditCardExpanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -44,31 +51,53 @@ class PaymentMethodScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  _buildTitleRow(context),
-                  Gap(16.h),
-                  PaymentMethodHeaderButtons(
-                    visaSvg: "assets/svg/icons/Frame 427319754.svg",
-                    masterSvg: "assets/svg/icons/Frame 427319753.svg",
-                    appleSvg: "assets/svg/icons/Frame 427319752.svg",
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isCreditCardExpanded = !_isCreditCardExpanded;
+                      });
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Credit Card",
+                          style: AppTextStyles.headingH5.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                        Icon(
+                          _isCreditCardExpanded
+                              ? Icons.keyboard_arrow_up
+                              : Icons.keyboard_arrow_down,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ],
+                    ),
                   ),
-
-                  Gap(20.h),
-
-                  PaymentCard(imagePath: "assets/images/card.png"),
+                  Visibility(
+                    visible: _isCreditCardExpanded,
+                    child: Column(
+                      children: [
+                        Gap(16.h),
+                        PaymentMethodHeaderButtons(
+                          visaSvg: "assets/svg/icons/visa.svg",
+                          masterSvg: "assets/svg/icons/Components---Sprint-3.svg",
+                          appleSvg: "assets/svg/icons/apple-pay-svgrepo-com.svg",
+                        ),
+                        Gap(20.h),
+                        PaymentCard(imagePath: "assets/images/card.png"),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-
             Gap(20.h),
-
             PaymentTile(title: "Google Pay", onTap: () {}),
-
             Gap(20.h),
-
             PaymentTile(title: "Mobile Banking", onTap: () {}),
-
             Gap(20.h),
-
             PaymentSwitchTile(
               title: "Send receipt to your email",
               value: true,
@@ -78,10 +107,11 @@ class PaymentMethodScreen extends StatelessWidget {
         ),
       ),
       bottomSheet: Padding(
-        padding:  EdgeInsets.only(left: 20.0.w, right: 20.0.w,bottom: 20.h),
-        child: CustomElevationBottom(text: 'Buy', onPressed: () {}),
+        padding: EdgeInsets.only(left: 20.0.w, right: 20.0.w, bottom: 20.h),
+        child: CustomElevationBottom(text: 'Buy', onPressed: () {
+          Navigator.pushNamed(context, RoutesContants.home);
+        }),
       ),
-
     );
   }
 

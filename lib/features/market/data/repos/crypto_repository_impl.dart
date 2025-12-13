@@ -19,18 +19,28 @@ class CryptoRepositoryImpl implements CryptoRepository {
       return Right(result);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
+        }
+      }
+    
+      @override
+      Future<Either<Failure, List<CryptoEntity>>> searchCryptos({required String query}) async {
+        try {
+          final result = await remoteDataSource.searchCryptos(query: query);
+          return Right(result);
+        } catch (e) {
+          return Left(ServerFailure(e.toString()));
+        }
+      }
+    
+    
+      //  @override
+      // Future<Either<Failure, List<CryptoEntity>>> getCryptos() async {
+      //   try {
+      //     final result = await remote.fetchCryptos();
+      //     return Right(result);
+      //   } catch (e) {
+      //     return Left(ServerFailure(e.toString()));
+      //   }
+      // }
     }
-  }
-
-
-
-  //  @override
-  // Future<Either<Failure, List<CryptoEntity>>> getCryptos() async {
-  //   try {
-  //     final result = await remote.fetchCryptos();
-  //     return Right(result);
-  //   } catch (e) {
-  //     return Left(ServerFailure(e.toString()));
-  //   }
-  // }
-}
+    

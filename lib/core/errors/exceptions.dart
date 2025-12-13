@@ -89,7 +89,7 @@ ErrorModel _createErrorModel(dynamic data, int? statusCode) {
   }
 }
 
-handleDioException(DioException e) {
+Never handleDioException(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionError:
       throw ConnectionErrorException(
@@ -148,6 +148,10 @@ handleDioException(DioException e) {
               errorMessage: e.response?.data?.toString() ?? 'Gateway timeout',
             ),
           );
+        default:
+          throw UnknownException(
+            _createErrorModel(e.response?.data, e.response?.statusCode),
+          );
       }
 
     case DioExceptionType.cancel:
@@ -156,6 +160,10 @@ handleDioException(DioException e) {
       );
 
     case DioExceptionType.unknown:
+      throw UnknownException(
+        ErrorModel(errorMessage: e.toString(), status: 500),
+      );
+    default:
       throw UnknownException(
         ErrorModel(errorMessage: e.toString(), status: 500),
       );

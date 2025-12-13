@@ -42,9 +42,14 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
       ],
       child: Scaffold(
         appBar: AppBar(
-          titleTextStyle: AppTextStyles.headingH4,
+          titleTextStyle: AppTextStyles.headingH4.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Theme.of(context).colorScheme.primary,
+            ),
             onPressed: () => Navigator.pop(context),
           ),
           title: const Text("Coin Details"),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/features/portfolio/domain/entities/crypto_currency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -7,7 +8,8 @@ import 'package:gap/gap.dart';
 import 'holding_item.dart';
 
 class HoldingsList extends StatelessWidget {
-  const HoldingsList({super.key});
+  final List<CryptoCurrency> cryptoPrices;
+  const HoldingsList({super.key, required this.cryptoPrices});
 
   @override
   Widget build(BuildContext context) {
@@ -21,40 +23,35 @@ class HoldingsList extends StatelessWidget {
           ),
         ),
         Gap(30.h),
-        HoldingItem(
-          name: "bitcoin".tr(),
-          symbol: "BTC",
-          percent: "50%",
-          amount: "0.05 BTC",
-          value: "\$2,262.53",
-          profit: "+\$145.20",
-          profitPercent: "+6.85%",
-          icon: Icons.currency_bitcoin,
-        ),
+        ...cryptoPrices.map((crypto) {
+          final String name = crypto.id;
+          final String symbol = crypto.id.toUpperCase();
+          final double currentPrice = crypto.usdPrice;
+          final double priceChange24h = crypto.usd24hrChange;
+          final String amount = "N/A"; 
+          final String percent = "N/A"; 
+          final String profit = priceChange24h >= 0
+              ? "+\$${(priceChange24h).toStringAsFixed(2)}"
+              : "-\$${(priceChange24h).abs().toStringAsFixed(2)}";
+          final String profitPercent =
+              "${priceChange24h >= 0 ? '+' : ''}${(priceChange24h).toStringAsFixed(2)}%";
 
-        Gap(15.h),
-        HoldingItem(
-          name: "ethereum".tr(),
-          symbol: "ETH",
-          percent: "30%",
-          amount: "1.5 ETH",
-          value: "\$3,150.75",
-          profit: "+\$56.70",
-          profitPercent: "+1.83%",
-          icon: Icons.blur_circular,
-        ),
-
-        SizedBox(height: 12),
-        HoldingItem(
-          name: "litecoin".tr(),
-          symbol: "LTC",
-          percent: "20%",
-          amount: "26.3 LTC",
-          value: "\$2,503.76",
-          profit: "+\$120.80",
-          profitPercent: "+5.07%",
-          icon: Icons.light_mode,
-        ),
+          return Column(
+            children: [
+              HoldingItem(
+                name: name,
+                symbol: symbol,
+                percent: percent,
+                amount: amount,
+                value: "\$${currentPrice.toStringAsFixed(2)}",
+                profit: profit,
+                profitPercent: profitPercent,
+                imageUrl: crypto.image ?? '',
+              ),
+              Gap(15.h),
+            ],
+          );
+        }),
       ],
     );
   }

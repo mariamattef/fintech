@@ -1,14 +1,67 @@
 import 'package:fintech/core/config/app_text_style.dart';
+import 'package:fintech/features/portfolio/domain/entities/crypto_currency.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class PortfolioPieChart extends StatelessWidget {
-  const PortfolioPieChart({super.key});
+  final List<CryptoCurrency> cryptoPrices;
+  const PortfolioPieChart({super.key, required this.cryptoPrices});
 
   @override
   Widget build(BuildContext context) {
+    final List<Color> pieColors = [
+      const Color(0xff8b6af5),
+      const Color(0xffff8b8b),
+      const Color(0xff60c1ff),
+      Colors.green,
+      Colors.orange,
+      Colors.purple,
+    ];
+
+    double totalPortfolioValue = 0.0;
+    for (var crypto in cryptoPrices) {
+      double amount = 1.0; 
+      totalPortfolioValue += (crypto.usdPrice) * amount;
+    }
+
+    List<PieChartSectionData> pieChartSections = [];
+    List<Widget> legendItems = [];
+
+    for (int i = 0; i < cryptoPrices.length; i++) {
+      final crypto = cryptoPrices[i];
+      final Color color = pieColors[i % pieColors.length];
+      final double currentPrice = crypto.usdPrice;
+      final String symbol = crypto.id.toUpperCase();
+
+      double amount = 1.0; 
+      double value = currentPrice * amount;
+      double percentage = (value / totalPortfolioValue) * 100;
+
+      pieChartSections.add(
+        PieChartSectionData(
+          color: color,
+          value: percentage, 
+          title: '${percentage.toStringAsFixed(1)}%',
+          radius: 20.r,
+          titleStyle: AppTextStyles.sMedium.copyWith(color: Colors.white),
+        ),
+      );
+
+      legendItems.add(
+        Column(
+          children: [
+            LegendItem(
+              color: color,
+              text: "\$${value.toStringAsFixed(2)} $symbol",
+            ),
+            if (i < cryptoPrices.length - 1) Gap(10.h),
+          ],
+        ),
+      );
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -24,20 +77,7 @@ class PortfolioPieChart extends StatelessWidget {
                   sectionsSpace: 0,
                   centerSpaceRadius: 55.r,
                   startDegreeOffset: -90,
-                  sections: [
-                    PieChartSectionData(
-                      color: const Color(0xff8b6af5),
-                      radius: 20.r,
-                    ),
-                    PieChartSectionData(
-                      color: const Color(0xffff8b8b),
-                      radius: 20.r,
-                    ),
-                    PieChartSectionData(
-                      color: const Color(0xff60c1ff),
-                      radius: 20.r,
-                    ),
-                  ],
+                  sections: pieChartSections,
                 ),
               ),
 
@@ -46,7 +86,7 @@ class PortfolioPieChart extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    "\$143,421.20",
+                    "\$${totalPortfolioValue.toStringAsFixed(2)}",
                     style: AppTextStyles.text15.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -57,15 +97,11 @@ class PortfolioPieChart extends StatelessWidget {
             ],
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            LegendItem(color: Color(0xff60c1ff), text: "\$54,382.64 BTC"),
-            Gap(10.h),
-            LegendItem(color: Color(0xff8b6af5), text: "\$4,145.61 ETH"),
-            Gap(10.h),
-            LegendItem(color: Color(0xffff8b8b), text: "\$64,20.5 LTC"),
-          ],
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: legendItems,
+          ),
         ),
       ],
     );
@@ -88,10 +124,13 @@ class LegendItem extends StatelessWidget {
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         const SizedBox(width: 8),
-        Text(
-          text,
-          style: AppTextStyles.text15.copyWith(
-            color: Theme.of(context).colorScheme.primary,
+        Expanded(
+          child: Text(
+            text,
+            style: AppTextStyles.text15.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

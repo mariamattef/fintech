@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 class GainerTileWidget extends StatelessWidget {
@@ -34,13 +35,23 @@ class GainerTileWidget extends StatelessWidget {
               color: Colors.grey.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: CachedNetworkImage(
-              imageUrl: img,
-              height: 30.h,
-              width: 30.w,
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
+            child: img.toLowerCase().endsWith('.svg')
+                ? SvgPicture.network(
+                    img,
+                    height: 30.h,
+                    width: 30.w,
+                    placeholderBuilder: (context) =>
+                        const CircularProgressIndicator(),
+                  )
+                : CachedNetworkImage(
+                    imageUrl: img,
+                    height: 30.h,
+                    width: 30.w,
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
           ),
           Gap(15.h),
           Expanded(

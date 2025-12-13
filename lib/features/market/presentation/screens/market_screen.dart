@@ -33,19 +33,20 @@ class _MarketScreenState extends State<MarketScreen> {
   String _selectedFilter = 'All';
   final ScrollController _scrollController = ScrollController();
   int _currentPage = 1;
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-    context.read<CryptoCubit>().getCryptos(
-      params: CryptoMarketParams(page: _currentPage),
-    );
+    _fetchCryptos();
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -53,11 +54,23 @@ class _MarketScreenState extends State<MarketScreen> {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
       _currentPage++;
-      context.read<CryptoCubit>().getCryptos(
-        params: CryptoMarketParams(page: _currentPage),
-        isLoadMore: true,
-      );
+      _fetchCryptos(isLoadMore: true);
     }
+  }
+
+  void _onSearchChanged(String query) {
+    setState(() {
+      _searchQuery = query;
+      _currentPage = 1; // Reset page when search query changes
+    });
+    _fetchCryptos();
+  }
+
+  void _fetchCryptos({bool isLoadMore = false}) {
+    context.read<CryptoCubit>().getCryptos(
+      params: CryptoMarketParams(page: _currentPage, query: _searchQuery),
+      isLoadMore: isLoadMore,
+    );
   }
 
   @override
@@ -72,7 +85,10 @@ class _MarketScreenState extends State<MarketScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gap(10.h),
-            SearchBartWidget(),
+            SearchBartWidget(
+              controller: _searchController,
+              onChanged: _onSearchChanged,
+            ),
             Gap(20.h),
             SizedBox(
               height: 40.h,
@@ -112,7 +128,7 @@ class _MarketScreenState extends State<MarketScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 10.0.h),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100.0.r),
-                          side: BorderSide(color: Colors.transparent),
+                          side: const BorderSide(color: Colors.transparent),
                         ),
                       ),
                     ),
@@ -149,7 +165,6 @@ class _MarketScreenState extends State<MarketScreen> {
                             rank: crypto.marketCapRank,
                             price: crypto.currentPrice.toString(),
                             change: crypto.priceChangePercentage24h.toDouble(),
-                            // isPositive: crypto.priceChangePercentage24h >= 0,
                             image: crypto.image,
                           );
                         },

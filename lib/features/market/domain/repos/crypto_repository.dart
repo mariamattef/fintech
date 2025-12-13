@@ -4,5 +4,6 @@ import 'package:fintech/features/market/domain/entities/crypto_entity.dart';
 
 abstract class CryptoRepository {
   Future<Either<Failure, List<CryptoEntity>>> getCryptos({required int page});
+  Future<Either<Failure, List<CryptoEntity>>> searchCryptos({required String query});
   // Future<Either<Failure, List<CryptoEntity>>> getCharts();
 }

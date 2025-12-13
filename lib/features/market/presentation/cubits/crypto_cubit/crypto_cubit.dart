@@ -16,24 +16,36 @@ class CryptoCubit extends Cubit<CryptoState> {
     required CryptoMarketParams params,
     bool isLoadMore = false,
   }) async {
-    if (!isLoadMore) {
-      _currentPage = 0;
+    if (params.query.isNotEmpty) {
       _allCryptos.clear();
       emit(const CryptoState.loading());
-    }
-
-    _currentPage = params.page;
-
-    final result = await getCryptoUsecase(params);
-    result.fold((failure) => emit(CryptoState.error(failure.errorMessage)), (
-      cryptos,
-    ) {
-      if (cryptos.isEmpty) {
-        emit(CryptoState.success(_allCryptos, _currentPage, false));
-      } else {
-        _allCryptos.addAll(cryptos);
-        emit(CryptoState.success(_allCryptos, _currentPage, true));
+      final result = await getCryptoUsecase(params);
+      result.fold(
+        (failure) => emit(CryptoState.error(failure.errorMessage)),
+        (cryptos) {
+          emit(CryptoState.success(cryptos, 1, false)); // Search results are not paginated, so page is 1 and hasMore is false
+        },
+      );
+    } else {
+      if (!isLoadMore) {
+        _currentPage = 0;
+        _allCryptos.clear();
+        emit(const CryptoState.loading());
       }
-    });
+
+      _currentPage = params.page;
+
+      final result = await getCryptoUsecase(params);
+      result.fold((failure) => emit(CryptoState.error(failure.errorMessage)), (
+        cryptos,
+      ) {
+        if (cryptos.isEmpty) {
+          emit(CryptoState.success(_allCryptos, _currentPage, false));
+        } else {
+          _allCryptos.addAll(cryptos);
+          emit(CryptoState.success(_allCryptos, _currentPage, true));
+        }
+      });
+    }
   }
 }

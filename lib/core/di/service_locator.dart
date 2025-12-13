@@ -35,6 +35,15 @@ import 'package:fintech/features/market/domain/use_cases/get_crypto_usecase.dart
 import 'package:fintech/features/market/presentation/cubits/chart_cubit/chart_cubit.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_cubit.dart';
+import 'package:fintech/features/portfolio/data/datasources/portfolio_crypto_remote_datasource.dart';
+import 'package:fintech/features/portfolio/data/repositories/crypto_repository_impl.dart';
+import 'package:fintech/features/portfolio/data/repositories/transaction_repository_impl.dart';
+import 'package:fintech/features/portfolio/domain/repositories/portfolio_crypto_repository.dart';
+import 'package:fintech/features/portfolio/domain/repositories/transaction_repository.dart';
+import 'package:fintech/features/portfolio/domain/usecases/get_crypto_prices.dart';
+import 'package:fintech/features/portfolio/domain/usecases/get_transactions.dart';
+import 'package:fintech/features/portfolio/presentation/cubit/portfolio_cubit.dart';
+import 'package:fintech/features/portfolio/presentation/cubit/transaction_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
@@ -99,9 +108,17 @@ void setupServiceLocator() {
     () => CryptoDetailsRemoteDataSourceImpl(sl()),
   );
 
+  // Portfolio
+  sl.registerLazySingleton<PortfolioCryptoRemoteDataSource>(
+    () => PortfolioCryptoRemoteDataSourceImpl(client: sl()),
+  );
+
   // repos
   sl.registerLazySingleton<CryptoRepository>(
     () => CryptoRepositoryImpl(remoteDataSource: sl()),
+  );
+  sl.registerLazySingleton<PortfolioCryptoRepository>(
+    () => PortfolioCryptoRepositoryImpl(remoteDataSource: sl()),
   );
   sl.registerLazySingleton<ChartRepository>(
     () => ChartRepositoryImpl(sl(), sl()),
@@ -110,18 +127,26 @@ void setupServiceLocator() {
   sl.registerLazySingleton<CryptoDetailsRepository>(
     () => CryptoDetailsRepositoryImpl(remoteDataSource: sl()),
   );
+  // Transactions
+  sl.registerLazySingleton<TransactionRepository>(
+      () => TransactionRepositoryImpl());
+
   // Domain  Use case
+  sl.registerLazySingleton(() => GetCryptoPricesUseCase(sl()));
   sl.registerLazySingleton(() => GetCryptoUsecase(sl()));
   sl.registerLazySingleton(() => GetChartUseCase(sl()));
   sl.registerLazySingleton(() => TopgainersCubit(sl()));
   sl.registerLazySingleton(() => GetCryptoDetailsUsecase(sl()));
   sl.registerLazySingleton(() => GetTopgainerUsecase(sl()));
   sl.registerLazySingleton(() => GetTrendingUsecase(sl()));
+  sl.registerLazySingleton(() => GetTransactionsUseCase(sl()));
 
   // Presentation
 
   sl.registerFactory(() => CryptoCubit(getCryptoUsecase: sl()));
   sl.registerFactory(() => ChartCubit(sl()));
   sl.registerFactory(() => CryptoDetailsCubit(sl()));
+  sl.registerFactory(() => PortfolioCubit(getCryptoPricesUseCase: sl()));
   sl.registerLazySingleton(() => TrendingCubit(sl()));
+  sl.registerFactory(() => TransactionCubit(sl()));
 }

@@ -5,13 +5,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SearchBartWidget extends StatelessWidget {
-  const SearchBartWidget({super.key});
+  final ValueChanged<String>? onChanged;
+  final TextEditingController? controller;
+
+  const SearchBartWidget({
+    super.key,
+    this.onChanged,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: TextField(
+        controller: controller,
+        onChanged: onChanged,
         decoration: InputDecoration(
           prefixIcon: Padding(
             padding: EdgeInsets.all(10.0.r),
@@ -41,34 +50,6 @@ class SearchBartWidget extends StatelessWidget {
             onPressed: () {},
           ),
         ),
-
-        // decoration: InputDecoration(
-        //   filled: true,
-        //   fillColor: Colors.white,
-        //   prefixIcon: Padding(
-        //     padding: EdgeInsets.all(10.0.r),
-        //     child: SvgPicture.asset('assets/svg/icons/search-normal.svg'),
-        //   ),
-        //   hintText: "Search",
-        //   hintStyle: const TextStyle(color: Colors.grey),
-        //   border: OutlineInputBorder(
-        //     borderRadius: BorderRadius.circular(12.0.r),
-        //     borderSide: const BorderSide(color: Colors.transparent, width: 0),
-        //   ),
-        //   enabledBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.circular(12.0.r),
-        //     borderSide: const BorderSide(color: Colors.transparent, width: 0),
-        //   ),
-        //   focusedBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.circular(12.0.r),
-        //     borderSide: const BorderSide(color: Colors.transparent, width: 0),
-        //   ),
-        //   suffixIcon: IconButton(
-        //     padding: EdgeInsets.all(10.0.r),
-        //     icon: SvgPicture.asset('assets/svg/icons/setting-5.svg'),
-        //     onPressed: () {},
-        //   ),
-        // ),
       ),
     );
   }

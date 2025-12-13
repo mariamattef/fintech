@@ -1,6 +1,7 @@
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -38,13 +39,23 @@ class TrendingCardWidget extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              CachedNetworkImage(
-                imageUrl: img,
-                width: 30.w,
-                height: 30.h,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
+              img.toLowerCase().endsWith('.svg')
+                  ? SvgPicture.network(
+                      img,
+                      width: 30.w,
+                      height: 30.h,
+                      placeholderBuilder: (context) =>
+                          const CircularProgressIndicator(),
+                    )
+                  : CachedNetworkImage(
+                      imageUrl: img,
+                      width: 30.w,
+                      height: 30.h,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
             ],
           ),
           Gap(4.h),
