@@ -114,19 +114,4 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
       ),
     );
   }
-
-  Widget _buildTitleRow(context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          "Credit Card",
-          style: AppTextStyles.headingH5.copyWith(
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ),
-        Icon(Icons.keyboard_arrow_down, color: Colors.white),
-      ],
-    );
-  }
 }

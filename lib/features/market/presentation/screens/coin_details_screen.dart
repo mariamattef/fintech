@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/di/service_locator.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
@@ -5,6 +6,7 @@ import 'package:fintech/features/market/domain/entities/crypto_details_entity.da
 import 'package:fintech/features/market/presentation/cubits/chart_cubit/chart_cubit.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_cubit.dart';
 import 'package:fintech/features/market/presentation/cubits/crypto_details_cubit/crypto_details_state.dart';
+import 'package:fintech/features/market/presentation/widgets/chart_cart_widdget.dart';
 import 'package:fintech/features/market/presentation/widgets/coin_header_widget.dart';
 import 'package:fintech/features/market/presentation/widgets/statistics_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +54,7 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
             ),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text("Coin Details"),
+          title: Text("coin_details_screen.title".tr()),
           centerTitle: true,
         ),
         body: BlocBuilder<CryptoDetailsCubit, CryptoDetailsState>(
@@ -76,62 +78,68 @@ class _CoinDetailsScreenState extends State<CoinDetailsScreen> {
     );
   }
 
-  Widget _buildSuccessUI(BuildContext context, CryptoDetailsEntity coin) {
-    return Column(
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(20.r),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CoinHeaderWidget(name: coin.name, imageUrl: coin.image),
-                Gap(20.h),
-                Text(
-                  "Statics",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+Widget _buildSuccessUI(BuildContext context, CryptoDetailsEntity coin) {
+  return Column(
+    children: [
+      Expanded(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CryptoChartCard(),
+              Gap(20.h),
+              CoinHeaderWidget(
+                name: coin.name,
+                imageUrl: coin.image,
+              ),
+              Gap(20.h),
+              Text(
+                "coin_details_screen.statistics".tr(),
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
+              ),
+              Gap(10.h),
+              StaticsListWidget(
+                price: coin.currentPrice,
+                marketCap: coin.marketCap,
+                volume24h: coin.volume24h,
+                availableSupply: coin.availableSupply,
+                maxSupply: coin.maxSupply,
+              ),
+              Gap(25.h),
+              Text(
+                "coin_details_screen.about_coin_name".tr(args: [coin.name]),
+                style: AppTextStyles.headingStyle18Po,
+              ),
+              Gap(15.h),
+              Text(
+                coin.description.isEmpty
+                    ? "coin_details_screen.no_description".tr()
+                    : coin.description,
+                style: AppTextStyles.headingStyle16.copyWith(
+                  color: const Color(0xff5D5C5D),
+                ),
+              ),
 
-                // ChartSection(coinId: coinId),
-                StaticsListWidget(
-                  price: coin.currentPrice,
-                  marketCap: coin.marketCap,
-                  volume24h: coin.volume24h,
-                  availableSupply: coin.availableSupply,
-                  maxSupply: coin.maxSupply,
-                ),
-                Gap(25.h),
-                Text(
-                  "About ${coin.name}",
-                  style: AppTextStyles.headingStyle18Po,
-                ),
-                Gap(15.h),
-                Text(
-                  coin.description.isEmpty
-                      ? "No description available"
-                      : coin.description,
-                  style: AppTextStyles.headingStyle16.copyWith(
-                    color: const Color(0xff5D5C5D),
-                  ),
-                ),
-
-                const Gap(20),
-              ],
-            ),
+              Gap(30.h),
+            ],
           ),
         ),
+      ),
 
-        const BottomButtonsCoinsDetails(),
-      ],
-    );
-  }
+      /// ✅ ثابت تحت
+      const BottomButtonsCoinsDetails(),
+    ],
+  );
 }
 
-// --- Custom Painter for the Smooth Gradient Chart ---
+
+}
+
 class CryptoChartPainter extends CustomPainter {
   final Color color;
 
@@ -281,7 +289,7 @@ class BottomButtonsCoinsDetails extends StatelessWidget {
                   borderRadius: BorderRadius.circular(31.r),
                 ),
               ),
-              child: const Text("Sell", style: AppTextStyles.headingStyle18Po),
+              child: Text("coin_details_screen.sell".tr(), style: AppTextStyles.headingStyle18Po),
             ),
           ),
           const SizedBox(width: 20),

@@ -4,6 +4,7 @@ import 'package:fintech/features/market/presentation/widgets/chart_cart_widget.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'crypto_line_chart.dart';
 
 class ChartSection extends StatefulWidget {
@@ -21,7 +22,7 @@ class _ChartSectionState extends State<ChartSection> {
   @override
   void initState() {
     super.initState();
-    context.read<ChartCubit>().loadChart(widget.coinId, "1");
+    // context.read<ChartCubit>().loadChart(widget.coinId, "1");
   }
 
   @override
@@ -55,7 +56,7 @@ class _ChartSectionState extends State<ChartSection> {
                   failure: (msg) => Center(
                     child: Text(msg, style: const TextStyle(color: Colors.red)),
                   ),
-                  success: (list) => CryptoLineChart( processedData: list,),
+                  success: (list) => CryptoLineChart(processedData: list),
                 );
               },
             ),

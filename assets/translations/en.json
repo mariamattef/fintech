@@ -251,5 +251,11 @@
   "buyBitcoin": "Buy Bitcoin",
   "sellEthereum": "Sell Ethereum",
   "twoHoursAgo": "2 hours ago",
-  "oneDayAgo": "1 day ago"
+  "oneDayAgo": "1 day ago",
+  "coin_details_screen.title": "Coin Details",
+  "coin_details_screen.statistics": "Statistics",
+  "coin_details_screen.about_coin_name": "About {}",
+  "coin_details_screen.no_description": "No description available",
+  "coin_details_screen.sell": "Sell",
+  "coin_details_screen.buy": "Buy"
 }

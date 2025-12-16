@@ -37,7 +37,7 @@ class HeaderWidget extends StatelessWidget {
               const Spacer(),
               IconButton(
                 onPressed: () async {
-                  context.read<AuthCubit>().logout();
+                  context.read<AuthCubit>().logout(context);
                 },
                 icon: Icon(
                   Icons.notifications_outlined,

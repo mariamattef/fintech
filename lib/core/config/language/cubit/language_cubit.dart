@@ -1,6 +1,6 @@
+import 'dart:ui' as ui;
 import 'package:collection/collection.dart';
 import 'package:fintech/core/databases/cache/cache_helper.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum Languages { en, ar }
@@ -12,13 +12,12 @@ class LanguageCubit extends Cubit<Languages> {
 
   Languages get appLang => state;
 
-  Future<void> fetchLocale(BuildContext context) async {
+  Future<void> fetchLocale() async {
     if (CacheHelper.getLanguage() == null) {
       final detected =
           Languages.values.firstWhereOrNull(
-            (lang) => View.of(
-              context,
-            ).platformDispatcher.locale.languageCode.contains(lang.name),
+            (lang) => ui.PlatformDispatcher.instance.locale.languageCode
+                .contains(lang.name),
           ) ??
           defaultLang;
 

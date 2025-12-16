@@ -62,7 +62,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    context.read<LanguageCubit>().fetchLocale(context);
+    context.read<LanguageCubit>().fetchLocale();
   }
 
   @override

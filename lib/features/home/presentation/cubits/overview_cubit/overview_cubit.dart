@@ -20,5 +20,3 @@ class MarketOverviewCubit extends Cubit<MarketOverviewState> {
   }
 }
 
-// Exception has occurred.
-// StateError (Bad state: Cannot emit new states after calling close)
