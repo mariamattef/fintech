@@ -3,8 +3,6 @@ import 'package:fintech/core/databases/api/end_points.dart';
 import 'package:fintech/core/databases/cache/cache_helper.dart';
 import 'package:fintech/core/di/service_locator.dart';
 
-
-
 class ApiInterceptor extends Interceptor {
   @override
   Future<void> onRequest(
@@ -30,7 +28,7 @@ class ApiInterceptor extends Interceptor {
         try {
           final dio = Dio(BaseOptions(baseUrl: EndPoints.baserUrl));
           final response = await dio.post(
-            'EndPoints.refreshToken',  // No Need refreshing the base URL
+            'EndPoints.refreshToken', // No Need refreshing the base URL
             data: {'refreshToken': refreshToken},
           );
 

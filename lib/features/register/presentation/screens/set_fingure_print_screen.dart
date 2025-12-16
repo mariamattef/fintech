@@ -35,7 +35,6 @@ class SetFingurePrintScreen extends StatelessWidget {
                         height: 140,
                         width: 120,
                         fit: BoxFit.contain,
-
                       ),
                     ),
                   ),

@@ -1,4 +1,3 @@
-
 import 'package:fintech/core/config/assets.dart';
 
 import 'package:fintech/core/routting/routes_contants.dart';
@@ -18,7 +17,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class LoginScreen extends StatefulWidget {
-
   static const String routeName = RoutesContants.login;
 
   const LoginScreen({super.key});
@@ -57,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
 
                       const Gap(80),
-
 
                       Form(
                         key: _formKey,
@@ -106,7 +103,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     context,
 
                                     RoutesContants.root,
-
                                   );
                                 } else if (state is AuthFailure) {
                                   ScaffoldMessenger.of(context)
@@ -155,7 +151,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   },
                                 ),
                                 Gap(30),
-
                               ],
                             ),
                           ],

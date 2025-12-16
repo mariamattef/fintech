@@ -12,6 +12,10 @@ abstract class Failure {
   Failure(this.errorMessage);
 }
 
+class OfflineFailure extends Failure {
+  OfflineFailure(super.errorMessage);
+}
+
 class ServerFailure extends Failure {
   ServerFailure(super.errorMessage);
 

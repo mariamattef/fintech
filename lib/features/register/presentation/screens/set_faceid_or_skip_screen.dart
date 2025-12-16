@@ -1,4 +1,3 @@
-
 import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
@@ -35,7 +34,6 @@ class SetFaceidOrSkipScreen extends StatelessWidget {
                       child: FaceIdWidget(
                         stringImg: AppAssets.faceId,
                         onTap: () {},
-
                       ),
                     ),
                   ),

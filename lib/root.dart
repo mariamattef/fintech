@@ -1,10 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/assets.dart';
+import 'package:fintech/core/di/service_locator.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/home/presentation/cubits/topgainers_cubit/topgainers_cubit.dart';
+import 'package:fintech/features/home/presentation/cubits/trending_cubit/trending_cubit.dart';
+import 'package:fintech/features/home/presentation/cubits/overview_cubit/overview_cubit.dart';
 import 'package:fintech/features/home/presentation/screens/crypto_home_screen.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
 import 'package:fintech/features/market/presentation/screens/market_screen.dart';
+import 'package:fintech/features/portfolio/presentation/cubit/portfolio_cubit.dart';
 import 'package:fintech/features/portfolio/presentation/screens/portfolio_screen.dart';
 import 'package:fintech/features/settings/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,11 +25,12 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  late List<Widget> pages;
+  late final List<Widget> pages;
   int _currentIndex = 0;
-  late PageController? controller;
+  late final PageController controller;
   @override
   void initState() {
+    super.initState();
     pages = [
       const CryptoHomeScreen(),
       const MarketScreen(),
@@ -29,113 +38,129 @@ class _RootState extends State<Root> {
       const SettingsScreen(),
     ];
     controller = PageController(initialPage: _currentIndex);
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: controller,
-        children: pages,
-      ),
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<MarketOverviewCubit>()..getOverview(),
         ),
-        child: SizedBox(
-          height: 87.h,
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _currentIndex,
-            onTap: (index) {
-              _currentIndex = index;
-              controller!.jumpToPage(index);
-              setState(() {});
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
-                  child: SvgPicture.asset(AppAssets.home),
-
-                ),
-                activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset(
-                    AppAssets.homeFilled,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(
-                        context,
-                      ).bottomNavigationBarTheme.selectedItemColor!,
-                      BlendMode.srcIn,
+        BlocProvider(create: (context) => sl<TrendingCubit>()..fetchTrending()),
+        BlocProvider(
+          create: (context) => sl<TopgainersCubit>()..fetchTopGainers(),
+        ),
+        BlocProvider(
+          create: (context) => sl<CryptoCubit>(),
+          // create: (context) => sl<TopgainersCubit>()..fetchTopGainers(),
+        ),
+        BlocProvider(
+          create: (context) => sl<PortfolioCubit>()..fetchCryptoPrices(['bitcoin', 'ethereum', 'ripple']),
+        ),
+      ],
+      child: Scaffold(
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: controller,
+          children: pages,
+        ),
+        bottomNavigationBar: Theme(
+          data: Theme.of(context).copyWith(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          child: SizedBox(
+            height: 87.h,
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: _currentIndex,
+              onTap: (index) {
+                _currentIndex = index;
+                controller.jumpToPage(index);
+                setState(() {});
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(bottom: 6.0.h),
+                    child: SvgPicture.asset(AppAssets.home),
+                  ),
+                  activeIcon: Padding(
+                    padding: EdgeInsets.only(bottom: 4.0.h),
+                    child: SvgPicture.asset(
+                      AppAssets.homeFilled,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(
+                          context,
+                        ).bottomNavigationBarTheme.selectedItemColor!,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
+                  label: 'Home'.tr(),
                 ),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
-                  child: SvgPicture.asset(AppAssets.chart),
-
-                ),
-                activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset(
-                    AppAssets.chartFilled,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(
-                        context,
-                      ).bottomNavigationBarTheme.selectedItemColor!,
-                      BlendMode.srcIn,
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(bottom: 6.0.h),
+                    child: SvgPicture.asset(AppAssets.chart),
+                  ),
+                  activeIcon: Padding(
+                    padding: EdgeInsets.only(bottom: 4.0.h),
+                    child: SvgPicture.asset(
+                      AppAssets.chartFilled,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(
+                          context,
+                        ).bottomNavigationBarTheme.selectedItemColor!,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
+                  label: 'Market'.tr(),
                 ),
-                label: 'Market',
-              ),
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
-                  child: SvgPicture.asset(AppAssets.briefcase),
-
-                ),
-                activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset(
-                    AppAssets.briefcaseFilled,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(
-                        context,
-                      ).bottomNavigationBarTheme.selectedItemColor!,
-                      BlendMode.srcIn,
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(bottom: 6.0.h),
+                    child: SvgPicture.asset(AppAssets.briefcase),
+                  ),
+                  activeIcon: Padding(
+                    padding: EdgeInsets.only(bottom: 4.0.h),
+                    child: SvgPicture.asset(
+                      AppAssets.briefcaseFilled,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(
+                          context,
+                        ).bottomNavigationBarTheme.selectedItemColor!,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
+                  label: 'Portfolio'.tr(),
                 ),
-                label: 'Portfolio',
-              ),
-              BottomNavigationBarItem(
-                icon: Padding(
-                  padding: EdgeInsets.only(bottom: 6.0.h),
-                  child: SvgPicture.asset(AppAssets.setting),
-                ),
-                activeIcon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0.h),
-                  child: SvgPicture.asset(
-                    AppAssets.settingFilled,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(
-                        context,
-                      ).bottomNavigationBarTheme.selectedItemColor!,
-                      BlendMode.srcIn,
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: EdgeInsets.only(bottom: 6.0.h),
+                    child: SvgPicture.asset(AppAssets.setting),
+                  ),
+                  activeIcon: Padding(
+                    padding: EdgeInsets.only(bottom: 4.0.h),
+                    child: SvgPicture.asset(
+                      AppAssets.settingFilled,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(
+                          context,
+                        ).bottomNavigationBarTheme.selectedItemColor!,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
+                  label: 'Settings'.tr(),
                 ),
-                label: 'Settings',
-              ),
-            ],
+              
+              
+              ],
+            ),
           ),
         ),
       ),

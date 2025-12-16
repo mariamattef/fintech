@@ -29,7 +29,7 @@ class FingurePrintWidget extends StatelessWidget {
         Spacer(),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context,RoutesContants.fingureVerified);
+            Navigator.pushNamed(context, RoutesContants.fingureVerified);
           },
           child: child,
         ),

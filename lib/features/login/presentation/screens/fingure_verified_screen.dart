@@ -3,14 +3,13 @@ import 'package:fintech/core/config/assets.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/widgets/custom_elevation_botton.dart';
 import 'package:fintech/features/auth/presentation/widgets/text_header.dart';
-import 'package:fintech/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class FingureVerifiedScreen extends StatelessWidget {
-    static const String routeName = RoutesContants.fingureVerified;
+  static const String routeName = RoutesContants.fingureVerified;
   const FingureVerifiedScreen({super.key});
 
   @override

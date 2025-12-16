@@ -8,7 +8,8 @@ class TextBottomAuthWidget extends StatelessWidget {
   const TextBottomAuthWidget({
     super.key,
     required this.text,
-    required this.text2, this.onPressed,
+    required this.text2,
+    this.onPressed,
   });
 
   @override

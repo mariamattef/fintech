@@ -9,7 +9,6 @@ ThemeData getLightTheme() {
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundLightBlue,
     fontFamily: AppFonts.lato,
-   
 
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryLightBlue300,

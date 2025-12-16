@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fintech/core/config/app_color.dart';
 import 'package:fintech/core/config/app_text_style.dart';
 import 'package:fintech/core/config/assets.dart';
@@ -31,9 +32,9 @@ class BalanceCardWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "Current Balance",
+                "current_balance".tr(),
                 style: AppTextStyles.sSemiBold.copyWith(
-                  color: Color(0xFFF5F8FE),
+                  color: const Color(0xFFF5F8FE),
                 ),
               ),
               const SizedBox(height: 10),
@@ -51,7 +52,7 @@ class BalanceCardWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Weekly Profit ",
+                      "weekly_profit".tr(),
                       style: AppTextStyles.xsSemiBold.copyWith(
                         color: Colors.white,
                       ),
@@ -63,7 +64,7 @@ class BalanceCardWidget extends StatelessWidget {
                         horizontal: 12.w,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.1),
+                        color: Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(9.r),
                       ),
                       child: Text(
@@ -84,11 +85,11 @@ class BalanceCardWidget extends StatelessWidget {
           right: 0,
           top: 0,
           child: SvgPicture.asset(
-           AppAssets.ellipseR3,
+            AppAssets.ellipseR3,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(13, 13, 13, 0.2)
-                  : Color.fromRGBO(255, 255, 255, 0.2),
+                  ? const Color.fromRGBO(13, 13, 13, 0.2)
+                  : const Color.fromRGBO(255, 255, 255, 0.2),
               BlendMode.srcIn,
             ),
           ),
@@ -100,8 +101,8 @@ class BalanceCardWidget extends StatelessWidget {
             AppAssets.ellipseR2,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(13, 13, 13, 0.3)
-                  : Color.fromRGBO(255, 255, 255, 0.3),
+                  ? const Color.fromRGBO(13, 13, 13, 0.3)
+                  : const Color.fromRGBO(255, 255, 255, 0.3),
               BlendMode.srcIn,
             ),
           ),
@@ -113,8 +114,8 @@ class BalanceCardWidget extends StatelessWidget {
             AppAssets.ellipseR1,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(13, 13, 13, 0.5)
-                  : Color.fromRGBO(255, 255, 255, 0.5),
+                  ? const Color.fromRGBO(13, 13, 13, 0.5)
+                  : const Color.fromRGBO(255, 255, 255, 0.5),
               BlendMode.srcIn,
             ),
           ),
@@ -126,8 +127,8 @@ class BalanceCardWidget extends StatelessWidget {
             AppAssets.ellipseL3,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(13, 13, 13, 0.2)
-                  : Color.fromRGBO(255, 255, 255, 0.2),
+                  ? const Color.fromRGBO(13, 13, 13, 0.2)
+                  : const Color.fromRGBO(255, 255, 255, 0.2),
               BlendMode.srcIn,
             ),
           ),
@@ -139,8 +140,8 @@ class BalanceCardWidget extends StatelessWidget {
             AppAssets.ellipseL2,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(13, 13, 13, 0.3)
-                  : Color.fromRGBO(255, 255, 255, 0.3),
+                  ? const Color.fromRGBO(13, 13, 13, 0.3)
+                  : const Color.fromRGBO(255, 255, 255, 0.3),
               BlendMode.srcIn,
             ),
           ),
@@ -153,8 +154,8 @@ class BalanceCardWidget extends StatelessWidget {
             AppAssets.ellipseL1,
             colorFilter: ColorFilter.mode(
               Theme.of(context).brightness == Brightness.dark
-                  ? Color.fromRGBO(13, 13, 13, 0.5)
-                  : Color.fromRGBO(255, 255, 255, 0.5),
+                  ? const Color.fromRGBO(13, 13, 13, 0.5)
+                  : const Color.fromRGBO(255, 255, 255, 0.5),
               BlendMode.srcIn,
             ),
           ),

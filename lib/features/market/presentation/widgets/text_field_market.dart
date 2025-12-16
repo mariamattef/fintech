@@ -40,7 +40,6 @@ class TextFieldMarket extends StatelessWidget {
           focusedBorder: InputBorder.none,
         ),
       ),
-    
     );
   }
 }

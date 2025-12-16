@@ -39,11 +39,7 @@ class SetFaceidVerified extends StatelessWidget {
                     ),
                   ),
                   const Spacer(flex: 2),
-                  FaceIdWidget(
-                    onTap: () {},
-                    stringImg: AppAssets.component1,
-
-                  ),
+                  FaceIdWidget(onTap: () {}, stringImg: AppAssets.component1),
                   const Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

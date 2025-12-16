@@ -4,7 +4,6 @@ import 'package:fintech/core/databases/api/api_interceptors.dart';
 import 'package:fintech/core/databases/api/end_points.dart';
 import 'package:fintech/core/errors/exceptions.dart';
 
-
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 

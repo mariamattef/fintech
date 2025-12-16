@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fintech/core/routting/routes_contants.dart';
 import 'package:fintech/core/storage/secure_storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -109,11 +110,16 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> logout() async {
+  Future<void> logout(context) async {
     emit(AuthLoading());
     try {
       await FirebaseAuth.instance.signOut();
       await _secureStorageService.deleteToken();
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+       RoutesContants.login,
+        (route) => false,
+      );
       emit(AuthInitial());
     } catch (e) {
       log('Logout Exception: $e');

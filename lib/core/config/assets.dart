@@ -20,6 +20,7 @@ class AppAssets {
   static const String ellipse51_1 = 'assets/svg/icons/Ellipse 51 (1).svg';
   static const String group = 'assets/svg/icons/Group.svg';
   static const String ellipse50 = 'assets/svg/icons/Ellipse 50.svg';
+  static const String strok = 'assets/svg/icons/Stroke 1.svg';
 
   static const String search = 'assets/svg/icons/search-normal.svg';
   // static const String setting5 = 'assets/svg/icons/setting-5.svg';
@@ -31,16 +32,13 @@ class AppAssets {
   static const String ellipseL2 = 'assets/svg/icons/EllipseL2.svg';
   static const String ellipseL1 = 'assets/svg/icons/EllipseL1.svg';
 
-
-
   // --- IMAGES ---
   static const String onB1 = 'assets/images/onB1.png';
   static const String onB2 = 'assets/images/onB2.png';
   static const String onB3 = 'assets/images/onB3.png';
   static const String onB4 = 'assets/images/onB4.png';
-  static const String bg = 'assets/images/bg.png';
+  static const String bg = 'assets/images/vecteezy_smiling-professional-woman-in-business-attire-and-hijab_54511073 1.png';
   static const String notfound = 'assets/images/notfound.jpg';
-
 
   // --- TRANSLATIONS ---
   static const String translationsPath = 'assets/translations';

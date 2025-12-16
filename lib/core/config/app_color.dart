@@ -10,7 +10,8 @@ class AppColors {
   // static const primaryLightBlue100 = Color(0xff5fa9e8);
   // static const primaryLightBlue200 = Color(0xff409be0);
   static const primaryLightBlue300 = Color(0xff1D3A70);
-  static const scaffoldBackgroundLightBlue = Color(0xffF5F8FE);
+  static const scaffoldBackgroundLightBlue = Color.fromRGBO(237, 240, 244, 1);
+  //  Color(0xffF5F8FE);
 
   // Dark Blue Theme
   static const primaryDarkBlue0 = Color(0xff0D0D0D);

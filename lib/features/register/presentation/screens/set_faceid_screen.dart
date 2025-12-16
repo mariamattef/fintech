@@ -45,11 +45,14 @@ class SetFaceidScreen extends StatelessWidget {
                       //     SetFaceidVerified.routeName,
                       //   );
                       // }
-                      Navigator.pushNamed(context, RoutesContants.setFaceidVerified);
+                      Navigator.pushNamed(
+                        context,
+                        RoutesContants.setFaceidVerified,
+                      );
                     },
                   ),
                   const Spacer(),
-                   Text(
+                  Text(
                     textAlign: TextAlign.center,
                     'Once your scanning is complete, you will be able to sign in by using face ID',
                     style: TextStyle(

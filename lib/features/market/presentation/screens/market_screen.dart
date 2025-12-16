@@ -1,8 +1,13 @@
+import 'package:fintech/core/di/service_locator.dart';
+import 'package:fintech/core/params/params.dart';
 import 'package:fintech/core/routting/routes_contants.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_cubit.dart';
+import 'package:fintech/features/market/presentation/cubits/crypto_cubit/crypto_state.dart';
 import 'package:fintech/features/market/presentation/widgets/crypto_list_item.dart';
 import 'package:fintech/features/market/presentation/widgets/custom_content_appbar.dart';
 import 'package:fintech/features/market/presentation/widgets/search_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
@@ -26,148 +31,152 @@ class _MarketScreenState extends State<MarketScreen> {
     'AI',
   ];
   String _selectedFilter = 'All';
-  final List<Map<String, dynamic>> _cryptoList = [
-    {
-      'name': 'Bitcoin',
-      'symbol': 'BTC',
-      'rank': 1,
-      'price': '54,382.64',
-      'change': '+15.3%',
-      'isPositive': true,
-      'icon': Icons.currency_bitcoin, // Placeholder
-      'iconColor': Colors.orange,
-    },
-    {
-      'name': 'Ethereum',
-      'symbol': 'ETH',
-      'rank': 2,
-      'price': '4,145.61',
-      'change': '-2.1%',
-      'isPositive': false,
-      'icon': Icons.diamond_outlined, // Placeholder
-      'iconColor': Colors.deepPurple,
-    },
-    {
-      'name': 'Litecoin',
-      'symbol': 'LTC',
-      'rank': 3,
-      'price': '207.3',
-      'change': '-1.1%',
-      'isPositive': false,
-      'icon': Icons.flash_on, // Placeholder
-      'iconColor': Colors.blueGrey,
-    },
-    {
-      'name': 'Solana',
-      'symbol': 'SOL',
-      'rank': 4,
-      'price': '227.93',
-      'change': '+15.3%',
-      'isPositive': true,
-      'icon': Icons.flare_outlined, // Placeholder
-      'iconColor': Colors.purple,
-    },
-    {
-      'name': 'Binance Coin',
-      'symbol': 'BNB',
-      'rank': 5,
-      'price': '610.5',
-      'change': '+2.35%',
-      'isPositive': true,
-      'icon': Icons.hexagon_outlined, // Placeholder
-      'iconColor': Colors.amber,
-    },
-    {
-      'name': 'Ripple',
-      'symbol': 'XRP',
-      'rank': 6,
-      'price': '1.0358',
-      'change': '+15.3%',
-      'isPositive': true,
-      'icon': Icons.cancel_outlined, // Placeholder
-      'iconColor': Colors.blueAccent,
-    },
-  ];
+  final ScrollController _scrollController = ScrollController();
+  int _currentPage = 1;
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+    _fetchCryptos();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      _currentPage++;
+      _fetchCryptos(isLoadMore: true);
+    }
+  }
+
+  void _onSearchChanged(String query) {
+    setState(() {
+      _searchQuery = query;
+      _currentPage = 1; // Reset page when search query changes
+    });
+    _fetchCryptos();
+  }
+
+  void _fetchCryptos({bool isLoadMore = false}) {
+    context.read<CryptoCubit>().getCryptos(
+      params: CryptoMarketParams(page: _currentPage, query: _searchQuery),
+      isLoadMore: isLoadMore,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: CustomContentAppBar(),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SearchBartWidget(),
-          Gap(20),
-          SizedBox(
-            height: 40,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 20.0.h),
-              itemCount: _filters.length,
-              itemBuilder: (context, index) {
-                final filter = _filters[index];
-                final isSelected = _selectedFilter == filter;
-                return Padding(
-                  padding: EdgeInsets.only(right: 10.0.h),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedFilter = filter;
-                      });
-                    },
-                    child: Chip(
-                      label: Text(
-                        filter,
-                        style: TextStyle(
-                          color: isSelected
-                              ? (Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.black
-                                    : Colors.white)
-                              : (Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : const Color(0xFF1E1F4B)),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: CustomContentAppBar(),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gap(10.h),
+            SearchBartWidget(
+              controller: _searchController,
+              onChanged: _onSearchChanged,
+            ),
+            Gap(20.h),
+            SizedBox(
+              height: 40.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 20.0.h),
+                itemCount: _filters.length,
+                itemBuilder: (context, index) {
+                  final filter = _filters[index];
+                  final isSelected = _selectedFilter == filter;
+                  return Padding(
+                    padding: EdgeInsets.only(right: 10.0.h),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedFilter = filter;
+                        });
+                      },
+                      child: Chip(
+                        label: Text(
+                          filter,
+                          style: TextStyle(
+                            color: isSelected
+                                ? (Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.black
+                                      : Colors.white)
+                                : (Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : const Color(0xFF1E1F4B)),
+                          ),
+                        ),
+                        backgroundColor: isSelected
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.surface,
+                        padding: EdgeInsets.symmetric(horizontal: 10.0.h),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0.r),
+                          side: const BorderSide(color: Colors.transparent),
                         ),
                       ),
-                      backgroundColor: isSelected
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.surface,
-                      padding: EdgeInsets.symmetric(horizontal: 10.0.h),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100.0.r),
-                        side: BorderSide(color: Colors.transparent),
-                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-                vertical: 10.0,
+                  );
+                },
               ),
-              itemCount: _cryptoList.length,
-              itemBuilder: (context, index) {
-                final crypto = _cryptoList[index];
-                return CryptoListItem(
-                  name: crypto['name'],
-                  symbol: crypto['symbol'],
-                  rank: crypto['rank'],
-                  price: crypto['price'],
-                  change: crypto['change'],
-                  isPositive: crypto['isPositive'],
-                  icon: crypto['icon'],
-                  iconColor: crypto['iconColor'],
-                );
-              },
             ),
-          ),
-        ],
+            Expanded(
+              child: BlocBuilder<CryptoCubit, CryptoState>(
+                builder: (context, state) {
+                  return state.when(
+                    initial: () => const SizedBox(),
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
+                    success: (cryptos, currentPage, hasMore) {
+                      return ListView.builder(
+                        controller: _scrollController,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0.w,
+                          vertical: 10.0.h,
+                        ),
+                        itemCount: cryptos.length + (hasMore ? 1 : 0),
+                        itemBuilder: (context, index) {
+                          if (index == cryptos.length) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          final crypto = cryptos[index];
+                          return CryptoListItem(
+                            id: crypto.id,
+                            name: crypto.name,
+                            symbol: crypto.symbol,
+                            rank: crypto.marketCapRank,
+                            price: crypto.currentPrice.toString(),
+                            change: crypto.priceChangePercentage24h.toDouble(),
+                            image: crypto.image,
+                          );
+                        },
+                      );
+                    },
+                    error: (message) => Center(child: Text(message)),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

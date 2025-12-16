@@ -1,6 +1,4 @@
 import 'package:fintech/core/routting/routes_contants.dart';
-import 'package:fintech/features/login/presentation/screens/faceid_verified_screen.dart';
-import 'package:fintech/features/login/presentation/screens/fingure_verified_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,4 +100,3 @@ Future<void> authFaceId(BuildContext context) async {
     Fluttertoast.showToast(msg: "Error during authentication: ${e.toString()}");
   }
 }
-

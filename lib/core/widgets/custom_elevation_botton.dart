@@ -11,19 +11,22 @@ class CustomElevationBottom extends StatelessWidget {
     super.key,
     this.onPressed,
     required this.text,
-    this.width, this.style,
+    this.width,
+    this.style,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      style:style?? ElevatedButton.styleFrom(
-        minimumSize: Size(width ?? double.infinity.r, 55),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(31.r),
-        ),
-      ),
+      style:
+          style ??
+          ElevatedButton.styleFrom(
+            minimumSize: Size(width ?? double.infinity.r, 55),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(31.r),
+            ),
+          ),
       child: Text(text, style: AppTextStyles.lSemiBold),
     );
   }

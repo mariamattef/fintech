@@ -29,7 +29,7 @@ class TextHeader extends StatelessWidget {
         ),
         Gap(20),
         Text(
-          ' ${subtitle?? ''}  ${subtile2 ?? ''}'  ,
+          ' ${subtitle ?? ''}  ${subtile2 ?? ''}',
           textAlign: TextAlign.center,
           style: AppTextStyles.lMedium,
         ),

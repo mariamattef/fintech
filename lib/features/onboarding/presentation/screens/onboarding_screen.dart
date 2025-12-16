@@ -7,8 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-
-    static const String routeName = RoutesContants.onboarding;
+  static const String routeName = RoutesContants.onboarding;
 
   const OnBoardingScreen({super.key});
 
